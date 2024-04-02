@@ -1,5 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
+import './App.css';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,6 +16,8 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Logo from './Images/StarryEyes_Logo_1.png';
+import Checkbox from '@mui/material/Checkbox';
+import Slider from '@mui/material/Slider';
 
 const drawerWidth = 240;
 
@@ -61,7 +64,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'space-between',
   alignItems: 'center',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
@@ -69,7 +71,7 @@ const IconWrapper = styled('div')({
   marginLeft: 'auto'
 });
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft({activeItems, setActiveItems, sliderValue, setSliderValue}) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -79,6 +81,16 @@ export default function PersistentDrawerLeft() {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleCheckboxChange = (index) => {
+    const updatedActiveItems = [...activeItems];
+    updatedActiveItems[index] = !updatedActiveItems[index];
+    setActiveItems(updatedActiveItems);
+  };
+
+  const handleSliderChange = (event, newValue) => {
+    setSliderValue(newValue);
   };
 
   return (
@@ -93,9 +105,15 @@ export default function PersistentDrawerLeft() {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            sx={{
+              mr: 2,
+              ...(open && { display: 'none' }),
+              color: "white",
+              backgroundColor: "#334854",
+              borderRadius: "1px"
+            }}
           >
-            <MenuIcon />
+            <MenuIcon/>
           </IconButton>
           <Box sx={{ marginLeft: 'auto' }}>
             <img
@@ -136,16 +154,43 @@ export default function PersistentDrawerLeft() {
         <Divider />
         <List>
           <ListItem button>
-            <ListItemText primary="Layer 1" />
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center'}}>
+                <Checkbox
+                  className='Checkbox'
+                  checked={activeItems[0]}
+                  onChange={() => handleCheckboxChange(0)}
+                />
+                <ListItemText primary="Layer 1" />
+              </Box>
+              {activeItems[0] && (
+                <Slider
+                  value={sliderValue}
+                  onChange={handleSliderChange}
+                  aria-labelledby="continuous-slider"
+                  style={{width:'150px', marginLeft: '2px', color:'#334854'}}
+                />
+              )}
+            </Box>
           </ListItem>
           <ListItem button>
+            <Checkbox
+              className='Checkbox'
+              checked={activeItems[1]}
+              onChange={() => handleCheckboxChange(1)}
+            />
             <ListItemText primary="Layer 2" />
           </ListItem>
           <ListItem button>
-            <ListItemText primary="Layer 3" />
+            <Checkbox
+              className='Checkbox'
+              checked={activeItems[2]}
+              onChange={() => handleCheckboxChange(2)}
+            />
+            <ListItemText primary="Pixelkarte Grau" />
           </ListItem>
         </List>
-      </Drawer>
+        </Drawer>
       <Main open={open}>
         <DrawerHeader />
       </Main>
