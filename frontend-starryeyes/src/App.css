@@ -57,17 +57,3 @@
   flex-direction: row;
   align-items: center;
 }
-
-.PopupContent .subscribeButton {
-  color: white;
-  background-color: #334854;
-  border-color: #334854;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-}
-
-.PopupContent .subscribeButton:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
-}

@@ -2,6 +2,7 @@ import {MapContainer, TileLayer, Marker, Popup, ZoomControl, useMapEvents} from 
 import './App.css';
 import React, {useState} from 'react';
 import PopupContent from './Popup.js';
+import MarkerIcon from './MarkerIcon';
 
 function MapClickHandler({ setClickPosition }) {
     useMapEvents({
@@ -66,7 +67,7 @@ function App({ activeItems, sliderValue }) {
                 <MapClickHandler setClickPosition={setClickPosition} />
 
                 {clickPosition && (
-                    <Marker position={clickPosition}>
+                    <Marker position={clickPosition} icon={MarkerIcon}>
                         <Popup>
                             <PopupContent clickPosition={clickPosition} />
                         </Popup>

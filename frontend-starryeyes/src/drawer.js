@@ -110,7 +110,9 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
               ...(open && { display: 'none' }),
               color: "white",
               backgroundColor: "#334854",
-              borderRadius: "1px"
+              borderRadius: "1px",
+              '&:hover': {
+                backgroundColor: "#667784"}
             }}
           >
             <MenuIcon/>
