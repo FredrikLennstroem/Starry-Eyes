@@ -12,7 +12,7 @@ const pool = new Pool({
   host: 'localhost',
   database: 'geoserver',
   password: 'kruemel11',
-  port: 5433,
+  port: 5432,
 });
 
 // Route zum Speichern der Abonnementdaten
