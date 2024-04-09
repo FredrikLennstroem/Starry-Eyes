@@ -1,27 +1,78 @@
-import { MapContainer, TileLayer, Marker, Popup, ZoomControl} from "react-leaflet";
+import {MapContainer, TileLayer, Marker, Popup, ZoomControl, useMapEvents} from "react-leaflet";
 import './App.css';
+import React, {useState} from 'react';
+import PopupContent from './Popup.js';
 
-function App() {
-    const position = [51.505, -0.09];
+function MapClickHandler({ setClickPosition }) {
+    useMapEvents({
+        click(e) {
+            setClickPosition(e.latlng);
+        }
+    });
+
+    return null;
+}
+
+function App({ activeItems, sliderValue }) {
+    const [clickPosition, setClickPosition] = useState([47.535, 7.642]);
+    const bounds = [
+        [45.659168946713827, 5.8358140744676303], // Südwestliche Grenze
+        [47.869910020393519, 10.979311848153316]  // Nordöstliche Grenze
+    ];
+
     return (
         <div className="App">
             <MapContainer
                 className="map-container"
-                center={position}
-                zoom={13}
+                center={[47.535, 7.642]}
+                zoom={8}
                 scrollWheelZoom={true}
                 zoomControl={false}
+                maxBounds={bounds}
+                maxBoundsViscosity={1.0}
+                minZoom={8}
             >
+
+                {activeItems[0] && (
+                    <TileLayer
+                        transparent={true}
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-grau/default/current/3857/{z}/{x}/{y}.jpeg"
+                    />
+                )}
+
+                {activeItems[1] && (
+                    <TileLayer
+                        transparent={true}
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-grau/default/current/3857/{z}/{x}/{y}.jpeg"
+                    />
+                )}
+
+                {activeItems[2] && (
+                    <TileLayer
+                        transparent={true}
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-grau/default/current/3857/{z}/{x}/{y}.jpeg"
+                    />
+                )}    
+
                 <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">
-                    OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    transparent={true}
+                    attribution='&copy; <a href="https://www.geo.admin.ch/">swisstopo</a>'
+                    url="https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg"
                 />
-                <Marker position={position}>
-                    <Popup>
-                        A pretty CSS3 popup. <br /> Easily customizable.
-                    </Popup>
-                </Marker>
+
+                <MapClickHandler setClickPosition={setClickPosition} />
+
+                {clickPosition && (
+                    <Marker position={clickPosition}>
+                        <Popup>
+                            <PopupContent clickPosition={clickPosition} />
+                        </Popup>
+                    </Marker>
+                )}
+
                 <ZoomControl position="bottomleft" />
             </MapContainer>
         </div>
@@ -29,3 +80,4 @@ function App() {
 }
 
 export default App;
+

@@ -17,9 +17,57 @@
   left: 0;
   width: 100%;
   height: 100%;
+  cursor: crosshair;
 }
 
 .custom-zoom-control .leaflet-control-zoom {
   display: none;
 }
 
+.Checkbox.MuiSvgIcon-root {
+  color:#334854;
+}
+
+.Checkbox.Mui-checked .MuiSvgIcon-root {
+  color:#334854;
+}
+
+.InfoIcon {
+  color:#b0b0b0;
+  font-size: 5px;
+}
+
+.InfoIcon :hover {
+  color:#334854;
+}
+
+.PopupBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.PopupBox div {
+  margin-left: 20px;
+}
+
+.IconBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.PopupContent .subscribeButton {
+  color: white;
+  background-color: #334854;
+  border-color: #334854;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.PopupContent .subscribeButton:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
