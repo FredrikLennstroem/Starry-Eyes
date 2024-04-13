@@ -17,10 +17,10 @@ const pool = new Pool({
 
 // Route zum Speichern der Abonnementdaten
 app.post('/api/subscription', async (req, res) => {
-  const { email, latitude, longitude } = req.body;
+  const { email, latitude, longitude, easting, northing } = req.body;
   try {
     const client = await pool.connect();
-    await client.query('INSERT INTO Subscriptions (emailadresse, latitude, longitude) VALUES ($1, $2, $3)', [email, latitude, longitude]);
+    await client.query('INSERT INTO Subscriptions (email, latitude, longitude, easting, northing) VALUES ($1, $2, $3, $4, $5)', [email, latitude, longitude, easting, northing]);
     client.release();
     res.status(200).json({ message: 'Subscription successful' });
   } catch (error) {
