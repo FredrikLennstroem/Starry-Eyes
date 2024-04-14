@@ -3,6 +3,7 @@ import './App.css';
 import React, {useState} from 'react';
 import PopupContent from './Popup.js';
 import MarkerIcon from './MarkerIcon';
+import SuccessSnackbar from './SuccessSnackbar';
 
 function MapClickHandler({ setClickPosition }) {
     useMapEvents({
@@ -20,6 +21,7 @@ function App({ activeItems, sliderValue }) {
         [45.659168946713827, 5.8358140744676303], // Südwestliche Grenze
         [47.869910020393519, 10.979311848153316]  // Nordöstliche Grenze
     ];
+    const [showSuccessSnackbar, setShowSuccessSnackbar] = useState(false); // Anzeige für erfolgreiches abonnieren
 
     return (
         <div className="App">
@@ -69,13 +71,16 @@ function App({ activeItems, sliderValue }) {
                 {clickPosition && (
                     <Marker position={clickPosition} icon={MarkerIcon}>
                         <Popup>
-                            <PopupContent clickPosition={clickPosition} />
+                            <PopupContent
+                            clickPosition={clickPosition}
+                            setShowSuccessSnackbar={setShowSuccessSnackbar}/>
                         </Popup>
                     </Marker>
                 )}
 
                 <ZoomControl position="bottomleft" />
             </MapContainer>
+            <SuccessSnackbar open={showSuccessSnackbar} /> 
         </div>
     );
 }

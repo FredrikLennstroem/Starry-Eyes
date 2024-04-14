@@ -8,10 +8,10 @@ async function convertCoordinatesToLV95(easting, northing) {
         }
 
         const data = await response.json();
-        return data; // Return the JSON response
+        return data;
     } catch (error) {
         console.error('Error:', error);
-        throw error; // Rethrow the error for handling in the caller function
+        throw error;
     }
 }
 

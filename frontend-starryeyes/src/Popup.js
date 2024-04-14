@@ -8,24 +8,21 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpwardOutlined';
 import SunsetIcon from '@mui/icons-material/WbTwilightOutlined';
 import InfoIconButton from './InfoIconButton';
 import FormDialog from './FormDialog';
-import convertCoordinatesToLV95 from './TransformToLV95.js'; // Import the conversion function
+import convertCoordinatesToLV95 from './TransformToLV95.js';
 
-function PopupContent({ clickPosition }) {
+function PopupContent({ clickPosition, showSuccessSnackbar, setShowSuccessSnackbar }) {
     const [dialogOpen, setDialogOpen] = useState(false);
     const [lv95Coords, setLv95Coords] = useState(null);
 
-    // Click handler for "Abonnieren" button
     const handleAbonnierenClick = () => {
-        // Perform coordinate conversion
         convertCoordinatesToLV95(clickPosition.lng, clickPosition.lat)
             .then(data => {
                 console.log('Result:', data);
-                setLv95Coords(data); // Update state with LV95 coordinates
-                setDialogOpen(true); // Open the dialog
+                setLv95Coords(data);
+                setDialogOpen(true); 
             })
             .catch(error => {
                 console.error('Error:', error);
-                // Handle the error here
             });
     };
 
@@ -103,6 +100,7 @@ function PopupContent({ clickPosition }) {
                 handleClose={() => setDialogOpen(false)}
                 clickPosition={clickPosition}
                 lv95Coords={lv95Coords}
+                setShowSuccessSnackbar={setShowSuccessSnackbar}
             />
         </div>
     );
