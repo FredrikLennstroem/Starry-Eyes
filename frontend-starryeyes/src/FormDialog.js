@@ -73,11 +73,54 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
             type="email"
             fullWidth
             variant="standard"
+            sx={{
+              '& .MuiInputLabel-root': {
+                color: 'black'
+              },
+              '& .MuiInputBase-root': {
+                  color: '#334854',
+                  '&:before': {
+                      borderBottomColor: '#334854',
+                  },
+                  '&:after': {
+                      borderBottomColor: '#334854'
+                  },
+              },
+            }}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Abbrechen</Button>
-          <Button type="submit">Bestätigen</Button>
+          <Button
+            onClick={handleClose}
+            variant="outlined"
+              sx={{
+              color: "#334854",
+              padding: '3px 9px',
+              fontSize: '0.8rem',
+              borderColor: "#334854",
+              backgroundColor: "white",
+              '&:hover': {
+                backgroundColor: "#667784",
+                borderColor: "#334854",
+                color: "white"
+                }
+              }}
+            >Abbrechen
+            </Button>
+          <Button
+            type="submit"
+            variant="contained"
+              sx={{
+              color: "white",
+              padding: '4px 10px',
+              fontSize: '0.8rem',
+              backgroundColor: "#334854",
+              '&:hover': {
+                backgroundColor: "#667784"
+                }
+              }}
+            >Bestätigen
+            </Button>
         </DialogActions>
       </Dialog>
     </>

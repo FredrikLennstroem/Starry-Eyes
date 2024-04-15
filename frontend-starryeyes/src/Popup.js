@@ -85,10 +85,13 @@ function PopupContent({ clickPosition, showSuccessSnackbar, setShowSuccessSnackb
                     variant="contained"
                     sx={{
                         color: "white",
+                        padding: '4px 10px',
+                        fontSize: '0.8rem',
                         backgroundColor: "#334854",
                         '&:hover': {
                             backgroundColor: "#667784"
                         }
+
                     }}
                     onClick={handleAbonnierenClick}
                 >

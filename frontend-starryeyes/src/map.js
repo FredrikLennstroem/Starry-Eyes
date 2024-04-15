@@ -80,6 +80,7 @@ function App({ activeItems, sliderValue }) {
 
                 <ZoomControl position="bottomleft" />
             </MapContainer>
+            <div className="white-box"></div>
             <SuccessSnackbar open={showSuccessSnackbar} /> 
         </div>
     );
