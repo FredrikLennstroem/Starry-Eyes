@@ -5,18 +5,16 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import Logo from './Images/StarryEyes_Logo_1.png';
 import Checkbox from '@mui/material/Checkbox';
 import Slider from '@mui/material/Slider';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -70,15 +68,12 @@ const IconWrapper = styled('div')({
   marginLeft: 'auto'
 });
 
-export default function PersistentDrawerLeft({activeItems, setActiveItems, sliderValue, setSliderValue}) {
-  const [open, setOpen] = React.useState(false);
+export default function PersistentDrawerLeft({activeItems, setActiveItems, sliderValue, setSliderValue, MenuOpen, setMenuOpen}) {
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+
 
   const handleDrawerClose = () => {
-    setOpen(false);
+    setMenuOpen(false);
   };
 
   const handleCheckboxChange = (index) => {
@@ -94,37 +89,6 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-
-      {/*Appbar ist nicht sichtbar, jedoch notwendig für Positionierung des Menubutton*/}
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
-          <IconButton
-            color="black"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              mr: 2,
-              ...(open && { display: 'none' }),
-              color: "white",
-              backgroundColor: "#334854",
-              borderRadius: "1px",
-              '&:hover': {
-                backgroundColor: "#667784"}
-            }}
-          >
-            <MenuIcon/>
-          </IconButton>
-          <Box sx={{ marginLeft: 'auto' }}>
-            <img
-              src={Logo}
-              alt="Logo"
-              style={{ width: '150px', height: '50px' }}
-            />
-          </Box>
-        </Toolbar>
-      </AppBar>
-
       <Drawer
         sx={{
           width: drawerWidth,
@@ -136,7 +100,7 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
         }}
         variant="persistent"
         anchor="left"
-        open={open}
+        open={MenuOpen}
       >
         <DrawerHeader>
           <Typography
@@ -153,7 +117,7 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItem button>
+          <ListItem>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <Box sx={{ display: 'flex', alignItems: 'center'}}>
                 <Checkbox
@@ -173,7 +137,7 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
               )}
             </Box>
           </ListItem>
-          <ListItem button>
+          <ListItem>
             <Checkbox
               className='Checkbox'
               checked={activeItems[1]}
@@ -181,7 +145,7 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
             />
             <ListItemText primary="Layer 2" />
           </ListItem>
-          <ListItem button>
+          <ListItem >
             <Checkbox
               className='Checkbox'
               checked={activeItems[2]}
@@ -189,9 +153,13 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
             />
             <ListItemText primary="Pixelkarte Grau" />
           </ListItem>
+          <Divider />
+          <ListItem button component={Link} to="/symbologie">
+            <ListItemText primary="Symbologie" sx={{ paddingLeft: '42px'}}/>
+          </ListItem>
         </List>
         </Drawer>
-      <Main open={open}>
+      <Main open={MenuOpen}>
         <DrawerHeader />
       </Main>
     </Box>

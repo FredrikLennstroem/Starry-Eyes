@@ -11,7 +11,7 @@ import Divider from '@mui/material/Divider';
 import Moonphase from './Images/Moon_1.jpg';
 
 const drawerWidth = 150;
-const drawerHeight = 535;
+const drawerHeight = 555;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -60,12 +60,14 @@ export default function PersistentDrawerRight({ MoonOpen, setMoonOpen }) {
         anchor="right"
         open={MoonOpen}
       >
-        <DrawerHeader>
-          <IconButton onClick={handleMoonClose}>
-            <ChevronRightIcon />
-          </IconButton>
-          <Typography fontWeight="bold" variant="h6">Mondphasen</Typography>
-        </DrawerHeader>
+        <Typography 
+          fontWeight="bold"
+          variant="h6"
+          sx={{
+            padding: '3px 3px'
+          }}
+          >Mondphasen
+        </Typography>
         <Divider />
         <List sx={{ width: '100%', padding: 0 }}>
           Heute
@@ -95,9 +97,14 @@ export default function PersistentDrawerRight({ MoonOpen, setMoonOpen }) {
             />
           </Box>
         </List>
+        <Divider />
+        <IconButton onClick={handleMoonClose}>
+          <ChevronRightIcon />
+        </IconButton>
       </CustomDrawer>
       <Main open={MoonOpen}>
         <DrawerHeader />
+        
       </Main>
     </Box>
   );
