@@ -126,9 +126,15 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
             <ListItemText primary="Symbologie" sx={{ paddingLeft: '42px'}}/>
           </ListItem>
         </List>
-        </Drawer>
+        <List sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
+            <ListItem sx={{ marginTop: 'auto', marginBottom: '0px' }}>
+              <Typography variant="body2" sx={{ color: 'blue', textDecoration: 'underline', fontSize: 'smaller' }}>
+                <a href="https://github.com/FredrikLennstroem/Starry-Eyes" target="_blank" rel="noopener noreferrer">GitHub-Page</a>
+              </Typography>
+            </ListItem>
+        </List>
+      </Drawer>
       <Main open={MenuOpen}>
-        <DrawerHeader />
       </Main>
     </Box>
   );

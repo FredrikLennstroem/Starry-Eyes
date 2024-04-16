@@ -2,10 +2,18 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Box, Drawer, CssBaseline, IconButton, List, Typography, Divider } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import Moonphase from '../Images/Moon_1.jpg';
+import { Moon, Hemisphere } from "lunarphase-js";
+import NewMoon from '../Images/Moon/Moon_1_New.png';
+import WaxingCrescent from '../Images/Moon/Moon_2_Waxing_Crescent.png';
+import FirstQuarter from '../Images/Moon/Moon_3_First_Quarter.png';
+import WaxingGibbous from '../Images/Moon/Moon_4_Waxing_Gibbous.png';
+import Full from '../Images/Moon/Moon_5_Full.png';
+import WaningGibbous from '../Images/Moon/Moon_6_Waning_Gibbous.png';
+import LastQuarter from '../Images/Moon/Moon_7_Last_Quarter.png';
+import WaningCrescent from '../Images/Moon/Moon_8_Waning_Crescent.png';
 
-const drawerWidth = 150;
-const drawerHeight = 555;
+const drawerWidth = 140;
+const drawerHeight = 495;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -26,24 +34,31 @@ const CustomDrawer = styled(Drawer)(({ theme }) => ({
     boxSizing: 'border-box',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-start', // Änderung auf 'flex-start' für vertikale Ausrichtung
-    alignItems: 'stretch', // Änderung auf 'stretch' für horizontale Ausrichtung
-    marginTop: `calc(50vh - ${drawerHeight / 2}px)`, // Vertikal zentriert
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    marginTop: `calc(50vh - ${drawerHeight / 2}px)`,
   },
-}));
-
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  padding: theme.spacing(0, 1),
-  ...theme.mixins.toolbar,
-  justifyContent: 'flex-end',
 }));
 
 export default function PersistentDrawerRight({ MoonOpen, setMoonOpen }) {
 
   const handleMoonClose = () => {
     setMoonOpen(false);
+  };
+
+  const todayPhase = Moon.lunarPhase(new Date(), { hemisphere: Hemisphere.NORTHERN });
+  const tomorrowPhase = Moon.lunarPhase(new Date(new Date().getTime() + 24 * 60 * 60 * 1000), { hemisphere: Hemisphere.NORTHERN });
+  const dayAfterTomorrowPhase = Moon.lunarPhase(new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000), { hemisphere: Hemisphere.NORTHERN });
+
+  const moonImages = {
+    'New': NewMoon,
+    'Waxing Crescent': WaxingCrescent,
+    'First Quarter': FirstQuarter,
+    'Waxing Gibbous': WaxingGibbous,
+    'Full': Full,
+    'Waning Gibbous': WaningGibbous,
+    'Last Quarter': LastQuarter,
+    'Waning Crescent': WaningCrescent
   };
 
   return (
@@ -64,41 +79,42 @@ export default function PersistentDrawerRight({ MoonOpen, setMoonOpen }) {
         </Typography>
         <Divider />
         <List sx={{ width: '100%', padding: 0 }}>
-          Heute
+          <Typography>Heute</Typography>
           <Box sx={{ padding: '3px 10px' }}>
             <img
-              src={Moonphase}
+              src={moonImages[todayPhase]}
               alt="Moonphase"
-              style={{ width: '120px', height: '120px' }}
+              title={`Heute: ${todayPhase}`}
+              style={{ width: '100px', height: '100px' }}
             />
           </Box>
           <Divider />
-          Morgen
+          <Typography>Morgen</Typography>
           <Box sx={{ padding: '3px 10px' }}>
-            <img
-              src={Moonphase}
-              alt="Moonphase"
-              style={{ width: '120px', height: '120px' }}
-            />
+          <img
+            src={moonImages[tomorrowPhase]}
+            alt="Moonphase"
+            title={`Morgen: ${tomorrowPhase}`}
+            style={{ width: '100px', height: '100px' }}
+          />
           </Box>
           <Divider />
-          Übermorgen
+          <Typography>Übermorgen</Typography>
           <Box sx={{ padding: '3px 10px' }}>
             <img
-              src={Moonphase}
+              src={moonImages[dayAfterTomorrowPhase]}
               alt="Moonphase"
-              style={{ width: '120px', height: '120px' }}
+              title={`Übermorgen: ${dayAfterTomorrowPhase}`}
+              style={{ width: '100px', height: '100px' }}
             />
           </Box>
         </List>
         <Divider />
-        <IconButton onClick={handleMoonClose}>
+        <IconButton title= "Ausblenden" onClick={handleMoonClose}>
           <ChevronRightIcon />
         </IconButton>
       </CustomDrawer>
       <Main open={MoonOpen}>
-        <DrawerHeader />
-        
       </Main>
     </Box>
   );
