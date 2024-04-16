@@ -1,9 +1,9 @@
 import {MapContainer, TileLayer, Marker, Popup, ZoomControl, useMapEvents} from "react-leaflet";
 import './App.css';
 import React, {useState} from 'react';
-import PopupContent from './Popup.js';
-import MarkerIcon from './MarkerIcon';
-import SuccessSnackbar from './SuccessSnackbar';
+import PopupContent from './PopUp/Popup.js';
+import MarkerIcon from './PopUp/MarkerIcon.js';
+import SuccessSnackbar from './SuccessSnackbar.js';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';

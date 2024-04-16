@@ -1,14 +1,8 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import IconButton from '@mui/material/IconButton';
+import { Box, Drawer, CssBaseline, IconButton, List, Typography, Divider } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import Moonphase from './Images/Moon_1.jpg';
+import Moonphase from '../Images/Moon_1.jpg';
 
 const drawerWidth = 150;
 const drawerHeight = 555;

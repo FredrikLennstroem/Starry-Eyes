@@ -1,6 +1,5 @@
 import React from 'react';
-import Snackbar from '@mui/material/Snackbar';
-import Slide from '@mui/material/Slide';
+import { Snackbar, Slide } from '@mui/material';
 
 export default function SuccessSnackbar({ open }) {
   return (

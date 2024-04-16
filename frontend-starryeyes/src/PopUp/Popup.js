@@ -6,8 +6,8 @@ import EyeIcon from '@mui/icons-material/VisibilityOutlined';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownwardOutlined';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpwardOutlined';
 import SunsetIcon from '@mui/icons-material/WbTwilightOutlined';
-import InfoIconButton from './InfoIconButton';
-import FormDialog from './FormDialog';
+import InfoIconButton from './InfoIconButton.js';
+import FormDialog from './FormDialog.js';
 import convertCoordinatesToLV95 from './TransformToLV95.js';
 
 function PopupContent({ clickPosition, showSuccessSnackbar, setShowSuccessSnackbar }) {

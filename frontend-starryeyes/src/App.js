@@ -1,9 +1,9 @@
 import './App.css';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import PersistentDrawerLeft from './drawer.js';
-import Map from './map.js';
-import Moonbox from './Moonbox.js';
+import PersistentDrawerLeft from './Drawer/MenuDrawer.js';
+import Map from './Map.js';
+import Moonbox from './Drawer/MoonDrawer.js';
 import Symbologie from './Symbologie.js';
 
 function App() {

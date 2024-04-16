@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import { IconButton, Tooltip } from '@mui/material';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 
 function InfoIconButton({ tooltipText }) {
