@@ -19,12 +19,6 @@ import numpy as np
 from retry_requests import retry
 from weather_codes import weather_codes_de, weather_codes_en
 
-# Globale Email variabeln
-SMTP_SERVER = 'smtp.gmail.com' #Email Server (don't change!)
-SMTP_PORT = 587 #Server Port (don't change!)
-GMAIL_USERNAME = 'noreply.starryeyes@gmail.com' 
-GMAIL_PASSWORD = 'dgur tkpe lolq kdlq' # App-Passwort generiert durch GMAIL
-
 # img2base64---------------------------------------------------------------------------
 
 def img2base64(img:str):
@@ -41,7 +35,7 @@ def img2base64(img:str):
 
 # Verwendet HTML-Struktur
 class Emailer:
-    def send_email(self, recipient, subject, content):
+    def send_email(self, sender, pw, server, port, recipient, subject, content):
         """
         Sendet Email mit HTML-Struktur.
 
@@ -53,7 +47,7 @@ class Emailer:
         """
         try:
             msg = MIMEMultipart()
-            msg['From'] = GMAIL_USERNAME
+            msg['From'] = sender
             msg['To'] = recipient
             msg['Subject'] = subject
 
@@ -63,16 +57,16 @@ class Emailer:
             msg.attach(MIMEText(html_content, 'html'))
 
             # Connect to Gmail Server
-            session = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
+            session = smtplib.SMTP(server, port)
             session.ehlo()
             session.starttls()
             session.ehlo()
 
             # Login to Gmail
-            session.login(GMAIL_USERNAME, GMAIL_PASSWORD)
+            session.login(sender, pw)
 
             # Send Email & Exit
-            session.sendmail(GMAIL_USERNAME, recipient, msg.as_string())
+            session.sendmail(sender, recipient, msg.as_string())
             session.quit()
             print("Email sent")
         except Exception as e:
