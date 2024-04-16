@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import markerIconSVG from './Images/marker.svg';
+import markerIconSVG from '../Images/marker.svg';
 
 const customIcon = L.icon({
   iconUrl: markerIconSVG,

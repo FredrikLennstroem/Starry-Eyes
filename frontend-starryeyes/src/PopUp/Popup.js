@@ -1,25 +1,29 @@
-import './App.css';
-import {React, useState} from 'react';
-import {Typography, Button, Box} from '@mui/material';
+import React, { useState } from 'react';
+import { Typography, Button, Box } from '@mui/material';
 import StarIcon from '@mui/icons-material/AutoAwesomeOutlined';
 import SunIcon from '@mui/icons-material/WbSunnyOutlined';
 import EyeIcon from '@mui/icons-material/VisibilityOutlined';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownwardOutlined';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpwardOutlined';
 import SunsetIcon from '@mui/icons-material/WbTwilightOutlined';
-import InfoIconButton from './InfoIconButton';
-import FormDialog from './FormDialog';
+import InfoIconButton from './InfoIconButton.js';
+import FormDialog from './FormDialog.js';
+import convertCoordinatesToLV95 from './TransformToLV95.js';
 
-function PopupContent({ clickPosition }) {
-
+function PopupContent({ clickPosition, showSuccessSnackbar, setShowSuccessSnackbar }) {
     const [dialogOpen, setDialogOpen] = useState(false);
+    const [lv95Coords, setLv95Coords] = useState(null);
 
-    const handleDialogOpen = () => {
-      setDialogOpen(true);
-    };
-  
-    const handleDialogClose = () => {
-      setDialogOpen(false);
+    const handleAbonnierenClick = () => {
+        convertCoordinatesToLV95(clickPosition.lng, clickPosition.lat)
+            .then(data => {
+                console.log('Result:', data);
+                setLv95Coords(data);
+                setDialogOpen(true); 
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     };
 
     return (
@@ -31,7 +35,7 @@ function PopupContent({ clickPosition }) {
                 <Box className="IconBox">
                     <SunIcon/>
                     <ArrowDownwardIcon fontSize='3px'/>
-                    <div margin-left="10px">hh:mm</div>
+                    <div marginleft="10px">hh:mm</div>
                 </Box>
                 <InfoIconButton tooltipText="Infotext" />
             </Box>
@@ -76,23 +80,31 @@ function PopupContent({ clickPosition }) {
                 <InfoIconButton tooltipText="Infotext" />
             </Box>
             <br/> 
-            <Box textAlign={'right'}>         
-                <Button 
+            <Box textAlign={'right'}>
+                <Button
                     variant="contained"
                     sx={{
                         color: "white",
+                        padding: '4px 10px',
+                        fontSize: '0.8rem',
                         backgroundColor: "#334854",
                         '&:hover': {
-                            backgroundColor: "#667784"}}}
-                    onClick={handleDialogOpen}
-                    >Abonnieren
+                            backgroundColor: "#667784"
+                        }
+
+                    }}
+                    onClick={handleAbonnierenClick}
+                >
+                    Abonnieren
                 </Button>
-                <FormDialog
-                    open={dialogOpen}
-                    handleClose={handleDialogClose}
-                    clickPosition={clickPosition}
-                />
-            </Box>  
+            </Box>
+            <FormDialog
+                open={dialogOpen}
+                handleClose={() => setDialogOpen(false)}
+                clickPosition={clickPosition}
+                lv95Coords={lv95Coords}
+                setShowSuccessSnackbar={setShowSuccessSnackbar}
+            />
         </div>
     );
 }
