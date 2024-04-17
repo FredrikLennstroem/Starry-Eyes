@@ -32,28 +32,9 @@
   color:#334854;
 }
 
-.InfoIcon {
-  color:#b0b0b0;
-  font-size: 5px;
-}
-
-.InfoIcon :hover {
-  color:#334854;
-}
-
-.PopupBox {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.PopupBox div {
-  margin-left: 20px;
-}
-
 .IconBox {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 3px;
 }

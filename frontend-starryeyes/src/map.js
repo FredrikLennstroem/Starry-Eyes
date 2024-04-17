@@ -57,11 +57,11 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                 {activeItems[1] && (
                     <TileLayer
                         transparent={true}
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-grau/default/current/3857/{z}/{x}/{y}.jpeg"
+                        attribution='&copy; <a href="http://localhost:8080/geoserver/wms">Geoserver</a> contributors'
+                        url="http://localhost:8080/geoserver/wms?service=WMS&version=1.1.0&request=GetMap&layers=viirs_npp_202300&styles=&format=image/png&transparent=true&height=512&width=512&srs=EPSG:4326&bbox=5.824999999999994,45.03333333333333,11.10416666666666,48.64583333333333"
                     />
                 )}
-
+                
                 {activeItems[2] && (
                     <TileLayer
                         transparent={true}

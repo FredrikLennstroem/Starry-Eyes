@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
+import '../App.css';
 import { Typography, Button, Box } from '@mui/material';
-import StarIcon from '@mui/icons-material/AutoAwesomeOutlined';
-import SunIcon from '@mui/icons-material/WbSunnyOutlined';
-import EyeIcon from '@mui/icons-material/VisibilityOutlined';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownwardOutlined';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpwardOutlined';
-import SunsetIcon from '@mui/icons-material/WbTwilightOutlined';
-import InfoIconButton from './InfoIconButton.js';
 import FormDialog from './FormDialog.js';
 import convertCoordinatesToLV95 from './TransformToLV95.js';
+import SunsetTerrain from '../Images/Icons/Sonnenuntergang_Gelände.png';
+import SunsetHorizon from '../Images/Icons/Sonnenuntergang_Horizont.png';
+import SunriseHorizon from '../Images/Icons/Sonnenaufgang_Horizont.png';
+import SunriseTerrain from '../Images/Icons/Sonnenaufgang_Gelände.png'
+import SunVisibility from '../Images/Icons/Sonne_Auge.png';
+import StarVisibility from '../Images/Icons/Stern_Auge.png'
 
 function PopupContent({ clickPosition, showSuccessSnackbar, setShowSuccessSnackbar }) {
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -31,54 +31,30 @@ function PopupContent({ clickPosition, showSuccessSnackbar, setShowSuccessSnackb
             <Typography fontWeight= "bold" variant="h6">
                 Aktuelle Infos
             </Typography>
-            <Box className="PopupBox">
                 <Box className="IconBox">
-                    <SunIcon/>
-                    <ArrowDownwardIcon fontSize='3px'/>
-                    <div marginleft="10px">hh:mm</div>
+                    <img src={SunsetTerrain} alt="SunsetTerrain" title={'Sonnenuntergang Gelände'} style={{ width: '40px', height: '30px' }}/>
+                    <div style={{ width: '40px', textAlign: 'right' }}>hh:mm</div>
                 </Box>
-                <InfoIconButton tooltipText="Infotext" />
-            </Box>
-            <Box className="PopupBox">
                 <Box className="IconBox">
-                    <SunsetIcon/>
-                    <ArrowDownwardIcon fontSize='3px'/>
-                    <div>hh:mm</div>
+                    <img src={SunsetHorizon} alt="SunsetHorizon" title={'Sonnenuntergang Horizont'} style={{ width: '40px', height: '30px' }}/>
+                    <div style={{ width: '40px', textAlign: 'right' }}>hh:mm</div>
                 </Box>
-                <InfoIconButton tooltipText="Infotext" />
-            </Box>
-            <Box className="PopupBox">
                 <Box className="IconBox">
-                    <SunIcon/>
-                    <ArrowUpwardIcon fontSize='3px'/>
-                    <div>hh:mm</div>
+                    <img src={SunriseHorizon} alt="SunriseHorizon" title={'Sonnenaufgang Horizont'} style={{ width: '40px', height: '30px' }}/>
+                    <div style={{ width: '40px', textAlign: 'right' }}>hh:mm</div>
                 </Box>
-                <InfoIconButton tooltipText="Infotext" />
-            </Box>
-            <Box className="PopupBox">
                 <Box className="IconBox">
-                    <SunsetIcon/>
-                    <ArrowUpwardIcon fontSize='3px'/>
-                    <div>hh:mm</div>
+                    <img src={SunriseTerrain} alt="SunriseTerrain" title={'Sonnenaufgang Gelände'} style={{ width: '40px', height: '30px' }}/>
+                    <div style={{ width: '40px', textAlign: 'right' }}>hh:mm</div>
                 </Box>
-                <InfoIconButton tooltipText="Infotext" />
-            </Box>
-            <Box className="PopupBox">
                 <Box className="IconBox">
-                    <SunIcon/>
-                    <EyeIcon fontSize='3px'/>
-                    <div>100%</div>
+                    <img src={SunVisibility} alt="SunVisibility" title={'Sichtbarkeit Sonne'} style={{ width: '30px', height: '30px', marginLeft: '5px', marginRight: '5px'  }}/>
+                    <div style={{ width: '40px', textAlign: 'right' }}>100%</div>
                 </Box>
-                <InfoIconButton tooltipText="Infotext" />
-            </Box>
-            <Box className="PopupBox">
                 <Box className="IconBox">
-                    <StarIcon/>
-                    <EyeIcon fontSize='3px'/>
-                    <div>100%</div>
+                    <img src={StarVisibility} alt="StarVisibility" title={'Sichtbarkeit Sterne'} style={{ width: '30px', height: '30px', marginLeft: '5px', marginRight: '5px'  }}/>
+                    <div style={{ width: '40px', textAlign: 'right' }}>100%</div>
                 </Box>
-                <InfoIconButton tooltipText="Infotext" />
-            </Box>
             <br/> 
             <Box textAlign={'right'}>
                 <Button
