@@ -111,9 +111,14 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
               checked={activeItems[1]}
               onChange={() => handleCheckboxChange(1)}
             />
-            <ListItemText primary="Layer 2" />
+            <ListItemText primary="Lightpolution" />
           </ListItem>
-          <ListItem >
+            {activeItems[1] &&
+            <ListItem style={{padding: '0px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginLeft: '60px'}}>
+              <Typography fontWeight= "bold" marginBottom= "5px">Legende</Typography>
+              <img src="http://localhost:8080/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=StarryEyes:viirs_npp_202300&legend_options=fontName:Arial;fontSize:23;dx:10" alt="Legend" style={{ width: 'auto', height: '100px' }} />
+            </ListItem>} 
+          <ListItem>
             <Checkbox
               className='Checkbox'
               checked={activeItems[2]}
