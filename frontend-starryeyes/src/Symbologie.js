@@ -39,7 +39,7 @@ const Symbologie = () => {
         style={{ width: '150px', height: '50px' }}
         />
       </div>
-      <div style={{position: 'absolute', top: '80px', left: '15px'}}>
+      <div style={{ overflow: 'auto', position: 'absolute', maxWidth: '600px', maxHeight: 'calc(100vh - 100px)', top: '80px', left: '15px', padding: '10px'}}>
         <Typography fontWeight= "bold" variant="h6" sx={{textAlign: 'left'}}>Symbolerklärungen</Typography>
         <Typography fontWeight= 'bold' sx={{marginTop: '10px', textAlign: 'left'}}>Standortinformationen</Typography>
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginTop: '5px' }}>
@@ -61,7 +61,7 @@ const Symbologie = () => {
           </Box>
           <Box className="IconBox">
             <img src={SunVisibility} alt="SunVisibility" style={{ width: '30px', height: '30px', paddingLeft: '5px', paddingRight: '5px' }} />
-            <Typography sx={{ paddingLeft: '15px', textAlign: 'left'}}>Wahrscheinlichkeit, dass die Sonne am Horizont sichtbar sein wird</Typography>
+            <Typography sx={{ paddingLeft: '15px', textAlign: 'left' }}>Wahrscheinlichkeit, dass die Sonne am Horizont sichtbar sein wird</Typography>
           </Box>
           <Box className="IconBox">
             <img src={StarVisibility} alt="StarVisibility" style={{ width: '30px', height: '30px', paddingLeft: '5px', paddingRight: '5px' }} />
