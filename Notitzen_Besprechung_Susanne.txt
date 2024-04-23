@@ -1,0 +1,22 @@
+-Ecken abgrunden der GUI-Elemente? -> Unnstimmigkeit zu Standardelementen.
+
+-Besseren Titel als Aktuelle Infos
+
+-Möglicherweise einen Kartenausschnitt auf dem Abo-Fenster
+
+-Abo-Infotext in Anleitung oder ausführen im Fensster
+
+-Anderer Begriff als Abonieren
+
+-Infotext wenn Webseite aufkommt
+
+-Linienstärke evtl. anpassen überall, so ist Formsprache überall gleich
+
+
+Visualisierung Lightpollution:
+-evtl über Grenzwerte statt mit Quantil
+->Grenzwert bei 3 und dann equal-intervall
+-Fabskala auf Anwendung anpassen
+-Karte Evtl invertieren -> Zeigt Orte mit wenig lichtverscshmutzung
+
+-Bezeichnungen anpassen/vereinheitlichen
