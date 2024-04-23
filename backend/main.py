@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 import yaml
 import os
-import email_functions as ef
+import backend.starryeyes as se
 from IPython.display import HTML
 
 
@@ -44,54 +44,32 @@ class InputData(BaseModel):
 
 @app.post("/email")
 async def email(data: InputData):
-    print("Received input:", data.data)
+    print("Input erhalten:", data.data) # Debug-message
 
-    cloud = ef.openweather_hour(lat, long, 1) # Meteo-API abfragen
+    cloud = se.openweather_hour(lat, long, 1) # Meteo-API abfragen
     cloud_html = cloud.head(11).to_html() # wandelt Pandas-Tabelle in html-tabelle um
 
-    logo_64 = ef.img2base64(logo_path)
+    # Umwandeln der Bilder in base64-string
+    logo_64 = se.img2base64(logo_path)
     logo_cid = os.path.basename(logo_path)
-    abdeckung_64 = ef.img2base64(abdeckung_path)
+    abdeckung_64 = se.img2base64(abdeckung_path)
     abdeckung_cid = os.path.basename(abdeckung_path)
 
-    html_text = f"""
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Email</title>
-    </head>
-    <body>
-        <div>
-            <img src='data:image/jpeg;base64,{logo_64}' alt='{logo_cid}'>
-            <h2>Bestätigung Abo</h2>
-        </div>
-        <div>
-            <table>
-                <th>Position:</th>
-                <tr>
-                    <td><b>LV95:</b></td><td><b>WGS84:</b></td>
-                </tr>
-                <tr>
-                    <td>E: {E}<br>N: {N}</td><td>lat: {lat}<br>long: {long}</td>
-                </tr>
-            </table>
-        </div>
-        <div>
-            <hr>
-            <h3>Abdeckung am Horizont</h3>
-            <img src='data:image/jpeg;base64,{abdeckung_64}' alt='{abdeckung_cid}'>
-        </div>
-        <div>
-            <h3>Aktuelle Wolkenprognose:</h3>
-                {cloud_html}
-        </div>
+    # HTML-Struktur erstellen
+    html_text = se.html_struct(
+        logo_64=logo_64,
+        logo_cid=logo_cid,
+        E=E,
+        N=N,
+        lat=lat,
+        long=long,
+        abdeckung_64=abdeckung_64,
+        abdeckung_cid=abdeckung_cid,
+        cloud_html=cloud_html
+        )
 
-    </body>
-    </html>
-
-    """
-
-    ef.Emailer().send_email(sender=config['GMAIL_USERNAME'],
+    # EMAIL schicken
+    se.send_email(sender=config['GMAIL_USERNAME'],
                         pw=config['GMAIL_PASSWORD'],
                         server=config['SMTP_SERVER'],
                         port=config['SMTP_PORT'],
@@ -100,3 +78,8 @@ async def email(data: InputData):
                         content=html_text)
 
     return {"message": "Input received and printed in terminal"}
+
+@app.post("/sun")
+async def sun(data: InputData):
+    print("Input erhalten:")
+    pass
