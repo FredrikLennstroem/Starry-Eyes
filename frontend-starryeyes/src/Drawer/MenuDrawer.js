@@ -4,6 +4,8 @@ import '../App.css';
 import { Box, Drawer, Typography, CssBaseline, List, Divider, IconButton, ListItem, ListItemText, Checkbox, Slider } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { Link } from 'react-router-dom';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 const drawerWidth = 240;
 
@@ -54,6 +56,20 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
     setSliderValue(newValue);
   };
 
+  const formatTime = (minutes) => {
+    const hours = Math.floor(minutes / 60);
+    const mins = Math.abs(minutes % 60);
+    return `${Math.abs(hours).toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+  };
+
+  const handleIncrement = () => {
+    setSliderValue((prevValue) => prevValue - 15);
+  };
+
+  const handleDecrement = () => {
+    setSliderValue((prevValue) => prevValue + 15);
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -93,15 +109,27 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
                   checked={activeItems[0]}
                   onChange={() => handleCheckboxChange(0)}
                 />
-                <ListItemText primary="Layer 1" />
+                <ListItemText primary="Hillshade" />
               </Box>
               {activeItems[0] && (
-                <Slider
-                  value={sliderValue}
-                  onChange={handleSliderChange}
-                  aria-labelledby="continuous-slider"
-                  style={{width:'150px', marginLeft: '2px', color:'#334854'}}
-                />
+                <div>
+                  <IconButton onClick={handleDecrement} size="small">
+                    <AddIcon />
+                  </IconButton>
+                  <Slider
+                    value={sliderValue}
+                    onChange={handleSliderChange}
+                    aria-labelledby="continuous-slider"
+                    min={0}
+                    max={1425}
+                    step={15}
+                    style={{width:'150px', marginLeft: '2px', color:'#334854'}}
+                  />
+                  <IconButton onClick={handleIncrement} size="small">
+                    <RemoveIcon />
+                  </IconButton>
+                  <Box marginLeft="8px">{formatTime(sliderValue)}</Box>
+                </div>
               )}
             </Box>
           </ListItem>

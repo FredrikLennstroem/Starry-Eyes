@@ -8,7 +8,7 @@ import Symbologie from './Symbologie.js';
 
 function App() {
   const [activeItems, setActiveItems] = useState([false, false, false]);
-  const [sliderValue, setSliderValue] = useState(50);
+  const [sliderValue, setSliderValue] = useState(0);  //Default Wert soll hier mal die aktuelle Zeit sein!
   const [MoonOpen, setMoonOpen] = React.useState(true);
   const [MenuOpen, setMenuOpen] = React.useState(false);
 
