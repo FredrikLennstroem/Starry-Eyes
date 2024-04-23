@@ -40,6 +40,11 @@ const IconWrapper = styled('div')({
   marginLeft: 'auto'
 });
 
+function roundToQuarterHour(date) {
+  const quarterHour = 15 * 60 * 1000;
+  return new Date(Math.ceil(date.getTime() / quarterHour) * quarterHour);
+}
+
 export default function PersistentDrawerLeft({activeItems, setActiveItems, sliderValue, setSliderValue, MenuOpen, setMenuOpen}) {
 
   const handleDrawerClose = () => {
@@ -50,6 +55,13 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
     const updatedActiveItems = [...activeItems];
     updatedActiveItems[index] = !updatedActiveItems[index];
     setActiveItems(updatedActiveItems);
+    
+    if (!updatedActiveItems[0]) {
+      const now = roundToQuarterHour(new Date());
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      setSliderValue(hours * 60 + minutes);
+    }
   };
 
   const handleSliderChange = (event, newValue) => {
@@ -63,12 +75,12 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
   };
 
   const handleIncrement = () => {
-    setSliderValue((prevValue) => prevValue - 15);
-  };
-
+    if (sliderValue - 15 >= 0) {
+      setSliderValue((prevValue) => prevValue - 15);}};
+  
   const handleDecrement = () => {
-    setSliderValue((prevValue) => prevValue + 15);
-  };
+    if (sliderValue + 15 <= 1425) {
+      setSliderValue((prevValue) => prevValue + 15);}};
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -90,6 +102,7 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
           <Typography
             fontWeight= "bold"
             variant="h6"
+            marginLeft="20px"
             >
             Layermanager
           </Typography>
@@ -109,12 +122,13 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
                   checked={activeItems[0]}
                   onChange={() => handleCheckboxChange(0)}
                 />
-                <ListItemText primary="Hillshade" />
+                <ListItemText primary="Schatten" />
+                {activeItems[0] && (<Box marginRight="10px">{formatTime(sliderValue)}</Box>)}
               </Box>
               {activeItems[0] && (
-                <div>
-                  <IconButton onClick={handleDecrement} size="small">
-                    <AddIcon />
+                <div style={{ marginLeft: '5px', display: 'flex', alignItems: 'center' }}>
+                  <IconButton onClick={handleIncrement} size="small" disabled={sliderValue === 0}>
+                    <RemoveIcon />
                   </IconButton>
                   <Slider
                     value={sliderValue}
@@ -123,12 +137,11 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
                     min={0}
                     max={1425}
                     step={15}
-                    style={{width:'150px', marginLeft: '2px', color:'#334854'}}
+                    style={{width:'130px', marginLeft: '4px', marginRight: '4px', color:'#334854'}}
                   />
-                  <IconButton onClick={handleIncrement} size="small">
-                    <RemoveIcon />
+                  <IconButton onClick={handleDecrement} size="small" disabled={sliderValue === 1425}>
+                    <AddIcon />
                   </IconButton>
-                  <Box marginLeft="8px">{formatTime(sliderValue)}</Box>
                 </div>
               )}
             </Box>
@@ -139,7 +152,7 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
               checked={activeItems[1]}
               onChange={() => handleCheckboxChange(1)}
             />
-            <ListItemText primary="Lightpolution" />
+            <ListItemText primary="Lichtverschmutzung" />
           </ListItem>
             {activeItems[1] &&
             <ListItem style={{padding: '0px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginLeft: '60px'}}>

@@ -4,10 +4,10 @@ import React, {useState} from 'react';
 import PopupContent from './PopUp/Popup.js';
 import MarkerIcon from './PopUp/MarkerIcon.js';
 import SuccessSnackbar from './SuccessSnackbar.js';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Logo from './Images/StarryEyes_Logo_1.png';
+import MondMenu from './Images/Icons/MondMenu.png';
 
 function MapClickHandler({ setClickPosition }) {
     useMapEvents({
@@ -33,6 +33,13 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
         setMenuOpen(true);
     };
 
+    const formatSliderValue = (value) => {
+        const hours = Math.floor(value / 60);
+        const minutes = value % 60;
+        console.log(`${hours}_${minutes.toString().padStart(2, '0')}`);
+        return `${hours}_${minutes.toString().padStart(2, '0')}`;
+      };
+
     return (
         <div className="App">
             <MapContainer
@@ -47,11 +54,13 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
             >
 
                 {activeItems[0] && (
-                    <TileLayer
+                    <WMSTileLayer
+                        key={`StarryEyes:hillshade_${formatSliderValue(sliderValue)}`}
+                        layers={`StarryEyes:hillshade_${formatSliderValue(sliderValue)}`}
+                        url="http://localhost:8080/geoserver/StarryEyes/wms"
+                        format="image/png"
                         transparent={true}
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-grau/default/current/3857/{z}/{x}/{y}.jpeg"
-                        
+                        tileSize={512}
                     />
                 )}
 
@@ -68,12 +77,12 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
 
                 {activeItems[2] && (
                     <WMSTileLayer
-                    layers="testuebung:kantone"
-                    url="http://localhost:8080/geoserver/testuebung/wms"
-                    format="image/png"
-                    transparent={true}
-                    tileSize={512}
-                />   
+                        layers="testuebung:kantone"
+                        url="http://localhost:8080/geoserver/testuebung/wms"
+                        format="image/png"
+                        transparent={true}
+                        tileSize={512}
+                    />   
                 )}    
 
                 <TileLayer
@@ -97,7 +106,7 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                 <ZoomControl position="bottomleft" />
             </MapContainer>
             <div style={{ position: 'absolute', top: '50%', right: 0, transform: 'translateY(-50%)', zIndex: 1000 }}>
-                <ChevronLeftIcon
+                <IconButton
                     color="white"
                     aria-label="open drawer"
                     onClick={handleMoonOpen}
@@ -113,7 +122,12 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                         backgroundColor: "#667784",
                         cursor: "pointer"}
                     }}>
-                </ChevronLeftIcon>
+                    <img
+                        src={MondMenu}
+                        alt="Logo"
+                        style={{ width: '50px', height: 'auto' }}
+                    />
+                </IconButton>
             </div>
             <div style={{ position: 'absolute', top: '15px', left: '30px', zIndex: 1000 }}>
                 <IconButton

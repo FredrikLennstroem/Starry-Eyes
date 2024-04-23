@@ -6,11 +6,21 @@ import Map from './Map.js';
 import Moonbox from './Drawer/MoonDrawer.js';
 import Symbologie from './Symbologie.js';
 
+function roundToQuarterHour(date) {
+  const quarterHour = 15 * 60 * 1000; // 15 Minuten in Millisekunden
+  return new Date(Math.ceil(date.getTime() / quarterHour) * quarterHour);
+}
+
 function App() {
   const [activeItems, setActiveItems] = useState([false, false, false]);
-  const [sliderValue, setSliderValue] = useState(0);  //Default Wert soll hier mal die aktuelle Zeit sein!
-  const [MoonOpen, setMoonOpen] = React.useState(true);
-  const [MenuOpen, setMenuOpen] = React.useState(false);
+  const [MoonOpen, setMoonOpen] = useState(true);
+  const [MenuOpen, setMenuOpen] = useState(false);
+  const [sliderValue, setSliderValue] = useState(() => {
+    const now = roundToQuarterHour(new Date());
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    return hours * 60 + minutes;
+  });
 
   return (
     <Router>
