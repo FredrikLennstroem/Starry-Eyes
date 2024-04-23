@@ -1,5 +1,5 @@
 """
-Funktionen Starry-Eyes-Backend.
+Funktionen Starry-Eyes Backend.
 """
 from datetime import datetime, timedelta
 import subprocess
@@ -154,8 +154,8 @@ def openweather_hour(lat: float, long: float, days:int):
     hourly_cloud_cover_mid = hourly.Variables(3).ValuesAsNumpy()
     hourly_cloud_cover_high = hourly.Variables(4).ValuesAsNumpy()
     hourly_visibility = hourly.Variables(5).ValuesAsNumpy()
-    # Array erstellen das Wetter-codes mit den Codes der aktuellen Stunde matcht
-    hourly_weather = np.vectorize(weather_codes_de.get)(hourly_weather_code)
+    
+    hourly_weather = np.vectorize(weather_codes_de.get)(hourly_weather_code)# Array erstellen das Wetter-codes mit den Codes der aktuellen Stunde matcht
 
     hourly_data = {"date": pd.date_range(
     	start = pd.to_datetime(hourly.Time(), unit = "s", utc = True),
