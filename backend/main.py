@@ -4,8 +4,11 @@ from fastapi.middleware.cors import CORSMiddleware
 
 import yaml
 import os
-import backend.starryeyes as se
+import starryeyes as se
 from IPython.display import HTML
+
+from fastapi import Request
+import json
 
 
 PROJ_ROOT = 'C:/_Schule/FHNW/6/GIS/Projekt/Test_api'
@@ -17,10 +20,6 @@ config_file = f'{PROJ_ROOT}/backend/config.yaml'
 emailSubject = "Bin öppis am Probiere. -Fredi"
 logo_path = f'{PROJ_ROOT}/backend/img/email-banner.png'
 abdeckung_path = f'{PROJ_ROOT}/backend/img/abdeckung.jpg'
-lat = 47.13881
-long = 7.91573
-E = 2636192
-N = 1220979
 #------------------------------------------------------------------------------------------------------
 
 # Config-File laden
@@ -43,8 +42,18 @@ class InputData(BaseModel):
     data: str
 
 @app.post("/email")
-async def email(data: InputData):
-    print("Input erhalten:", data.data) # Debug-message
+async def email(request: Request):
+    data = await request.body()
+    print("Input erhalten:", data) # Debug-message
+
+    data_str = data.decode("utf-8")
+    data_json = json.loads(data_str)
+
+    lat = float(data_json["latitude"])
+    long = float(data_json["longitude"])
+    e = float(data_json["easting"])
+    n = float(data_json["northing"])
+    email_recipient = data_json["email"]
 
     cloud = se.openweather_hour(lat, long, 1) # Meteo-API abfragen
     cloud_html = cloud.head(11).to_html() # wandelt Pandas-Tabelle in html-tabelle um
@@ -59,8 +68,8 @@ async def email(data: InputData):
     html_text = se.html_struct(
         logo_64=logo_64,
         logo_cid=logo_cid,
-        E=E,
-        N=N,
+        E=e,
+        N=n,
         lat=lat,
         long=long,
         abdeckung_64=abdeckung_64,
@@ -68,12 +77,12 @@ async def email(data: InputData):
         cloud_html=cloud_html
         )
 
-    # EMAIL schicken
+    #EMAIL schicken
     se.send_email(sender=config['GMAIL_USERNAME'],
                         pw=config['GMAIL_PASSWORD'],
                         server=config['SMTP_SERVER'],
                         port=config['SMTP_PORT'],
-                        recipient=data.data, 
+                        recipient=email_recipient, 
                         subject=emailSubject, 
                         content=html_text)
 
@@ -83,3 +92,19 @@ async def email(data: InputData):
 async def sun(data: InputData):
     print("Input erhalten:")
     pass
+
+@app.post("/email2") # API zum Debuggen
+async def email2(request: Request):
+    try:
+        data = await request.body()
+
+        data_str = data.decode("utf-8")
+        print(data_str)
+
+        payload = json.loads(data)
+        email_address = payload.get("email")
+    except Exception as e:
+        print("Error processing email:", e)
+        return {"message": "Error processing email"}, 500
+
+

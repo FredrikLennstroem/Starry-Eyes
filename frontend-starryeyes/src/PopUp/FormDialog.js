@@ -8,7 +8,7 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
     const formData = new FormData(event.target);
     const formJson = Object.fromEntries(formData.entries());
     try {
-      const response = await fetch('http://localhost:5000/api/subscription', {
+      const response = await fetch('http://127.0.0.1:8000/email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -21,6 +21,7 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
           northing: parseFloat(lv95Coords.northing).toFixed(3),
         })
       });
+
       if (response.ok) {
         setShowSuccessSnackbar(true);
         handleClose();
