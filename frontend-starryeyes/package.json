@@ -17,6 +17,7 @@
     "leaflet": "^1.9.4",
     "leaflet-geosearch": "^3.11.1",
     "leaflet-geotiff": "^0.2.0",
+    "leaflet-shadow-simulator": "^0.57.1",
     "lunarphase-js": "^2.0.3",
     "notistack": "^3.0.1",
     "ol": "^9.0.0",
