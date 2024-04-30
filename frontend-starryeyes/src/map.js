@@ -33,6 +33,10 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
         setMenuOpen(true);
     };
 
+    const handleMarkerClick = () => {
+        console.log("Popup geöffnet");
+    };
+
     const formatSliderValue = (value) => {
         const hours = Math.floor(value / 60);
         const minutes = value % 60;
@@ -95,7 +99,7 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                 <MapClickHandler setClickPosition={setClickPosition} />
 
                 {clickPosition && (
-                    <Marker position={clickPosition} icon={MarkerIcon}>
+                    <Marker position={clickPosition} icon={MarkerIcon} eventHandlers={{ click: handleMarkerClick }}>
                         <Popup className="popupCustom" borderRadius={0}>
                             <PopupContent
                             clickPosition={clickPosition}
