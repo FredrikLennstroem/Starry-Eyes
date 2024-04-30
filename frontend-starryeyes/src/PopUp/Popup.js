@@ -2,58 +2,17 @@ import React, { useState, useEffect } from 'react';
 import '../App.css';
 import { Typography, Button, Box } from '@mui/material';
 import FormDialog from './FormDialog.js';
-import convertCoordinatesToLV95 from './TransformToLV95.js';
 import SunsetTerrain from '../Images/Icons/Sonnenuntergang_Gelände.png';
 import SunsetHorizon from '../Images/Icons/Sonnenuntergang_Horizont.png';
 import SunriseHorizon from '../Images/Icons/Sonnenaufgang_Horizont.png';
 import SunriseTerrain from '../Images/Icons/Sonnenaufgang_Gelände.png'
 import SunVisibility from '../Images/Icons/Sonne_Auge.png';
 import StarVisibility from '../Images/Icons/Stern_Auge.png'
+import convertCoordinatesToLV95 from './TransformToLV95.js';
 
-function PopupContent({ clickPosition, showSuccessSnackbar, setShowSuccessSnackbar }) {
+function PopupContent({ clickPosition, showSuccessSnackbar, setShowSuccessSnackbar, sunTimes }) {
     const [dialogOpen, setDialogOpen] = useState(false);
     const [lv95Coords, setLv95Coords] = useState(null);
-    const [sunTimes, setSunTimes] = useState({
-        sunsetTerrain: 'hh:mm',
-        sunsetHorizon: 'hh:mm',
-        sunriseHorizon: 'hh:mm',
-        sunriseTerrain: 'hh:mm',
-        sunsetCloud: '--'
-    });
-
-    useEffect(() => {
-        const fetchSunTimes = async () => {
-            try {
-                const response = await fetch ('http://127.0.0.1:8000/sun', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        latitude: clickPosition.lat.toFixed(6),
-                        longitude: clickPosition.lng.toFixed(6)
-                    })
-                });
-                if (!response.ok){
-                    throw new Error('Network response was not ok')
-                }
-                const data = await response.json();
-                console.log('Response data:', data)
-                setSunTimes({
-                    sunsetTerrain: data.sunset_dem,
-                    sunsetHorizon: data.sunset_globe,
-                    sunriseHorizon: data.sunrise_globe,
-                    sunriseTerrain: data.sunrise_dem,
-                    // sunsetCloud: data.sunset_cloud
-                });
-            } catch (error) {
-                console.log('Error bei Sonnen-API-Abfrage:', error);
-            }
-        };
-        if (clickPosition) {
-            fetchSunTimes();
-        }
-    }, [clickPosition]);
 
     const handleAbonnierenClick = () => {
         convertCoordinatesToLV95(clickPosition.lng, clickPosition.lat)
@@ -66,7 +25,7 @@ function PopupContent({ clickPosition, showSuccessSnackbar, setShowSuccessSnackb
                 console.error('Error:', error);
             });
     };
-
+    
     return (
         <div>
             <Typography fontWeight= "bold" variant="h6">

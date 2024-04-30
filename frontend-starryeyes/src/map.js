@@ -1,6 +1,6 @@
 import {MapContainer, WMSTileLayer, TileLayer, Marker, Popup, ZoomControl, useMapEvents} from "react-leaflet";
 import './App.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PopupContent from './PopUp/Popup.js';
 import MarkerIcon from './PopUp/MarkerIcon.js';
 import SuccessSnackbar from './SuccessSnackbar.js';
@@ -39,6 +39,48 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
         console.log(`${hours}_${minutes.toString().padStart(2, '0')}`);
         return `${hours}_${minutes.toString().padStart(2, '0')}`;
       };
+
+    const [sunTimes, setSunTimes] = useState({
+        sunsetTerrain: 'hh:mm',
+        sunsetHorizon: 'hh:mm',
+        sunriseHorizon: 'hh:mm',
+        sunriseTerrain: 'hh:mm',
+        sunsetCloud: '--'
+    });
+
+    useEffect(() => {
+        const fetchSunTimes = async () => {
+            try {
+                const response = await fetch ('http://127.0.0.1:8000/sun', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        latitude: clickPosition.lat.toFixed(6),
+                        longitude: clickPosition.lng.toFixed(6)
+                    })
+                });
+                if (!response.ok){
+                    throw new Error('Network response was not ok')
+                }
+                const data = await response.json();
+                console.log('Response data:', data)
+                setSunTimes({
+                    sunsetTerrain: data.sunset_dem,
+                    sunsetHorizon: data.sunset_globe,
+                    sunriseHorizon: data.sunrise_globe,
+                    sunriseTerrain: data.sunrise_dem,
+                    // sunsetCloud: data.sunset_cloud
+                });
+            } catch (error) {
+                console.log('Error bei Sonnen-API-Abfrage:', error);
+            }
+        };
+        if (clickPosition) {
+            fetchSunTimes();
+        }
+    }, [clickPosition]);
 
     return (
         <div className="App">
@@ -98,6 +140,7 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                     <Marker position={clickPosition} icon={MarkerIcon}> 
                         <Popup className="popupCustom" borderRadius={0}>
                             <PopupContent
+                            sunTimes={sunTimes} 
                             clickPosition={clickPosition}
                             setShowSuccessSnackbar={setShowSuccessSnackbar}/>
                         </Popup>
