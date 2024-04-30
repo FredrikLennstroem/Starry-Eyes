@@ -38,3 +38,7 @@
   align-items: flex-end;
   padding: 3px;
 }
+
+.popupCustom .leaflet-popup-content-wrapper {
+  border-radius: 0%;
+}

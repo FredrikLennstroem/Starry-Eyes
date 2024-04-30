@@ -66,12 +66,12 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
 
                 {activeItems[1] && (
                     <WMSTileLayer
-                        layers="StarryEyes:viirs_npp_202300"
+                        layers="StarryEyes:Lichtverschmutzung_CH_2024"
                         url="http://localhost:8080/geoserver/StarryEyes/wms"
                         format="image/png"
                         transparent={true}
                         tileSize={512}
-                        styles="Lightpolution"
+                        styles="Lightpollution"
                     />              
                 )}
 
@@ -89,13 +89,14 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                     transparent={true}
                     attribution='&copy; <a href="https://www.geo.admin.ch/">swisstopo</a>'
                     url="https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg"
+                    // url="https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.swisstlm3d-karte-farbe.3d/default/current/3857/{z}/{x}/{y}.jpeg"
                 />
 
                 <MapClickHandler setClickPosition={setClickPosition} />
 
                 {clickPosition && (
                     <Marker position={clickPosition} icon={MarkerIcon}>
-                        <Popup>
+                        <Popup className="popupCustom" borderRadius={0}>
                             <PopupContent
                             clickPosition={clickPosition}
                             setShowSuccessSnackbar={setShowSuccessSnackbar}/>
@@ -105,19 +106,14 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
 
                 <ZoomControl position="bottomleft" />
             </MapContainer>
-            <div style={{ position: 'absolute', top: '50%', right: 0, transform: 'translateY(-50%)', zIndex: 1000 }}>
+            <div style={{ position: 'absolute', bottom: '2px', right: 0, transform: 'translateY(-50%)', zIndex: 1000 }}>
                 <IconButton
-                    color="white"
-                    aria-label="open drawer"
                     onClick={handleMoonOpen}
-                    edge="start"
                     sx={{
-                      fontSize: 35,
-                      mr: 2,
+                      padding: 0.5,
+                      marginRight: 2,
                       ...(MoonOpen && { display: 'none' }),
-                      color: "white",
                       backgroundColor: "#334854",
-                      borderRadius: "50%",
                       '&:hover': {
                         backgroundColor: "#667784",
                         cursor: "pointer"}
@@ -161,4 +157,3 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
 }
 
 export default App;
-

@@ -46,7 +46,7 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
           onSubmit: handleSubmit,
         }}
       >
-        <DialogTitle fontWeight="bold" variant="h6">Ort abonnieren</DialogTitle>
+        <DialogTitle fontWeight="bold" variant="h6">Ort überwachen</DialogTitle>
         <DialogContent>
           Standortkoordinaten:
           <br/>
@@ -93,6 +93,7 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
               padding: '3px 9px',
               fontSize: '0.8rem',
               borderColor: "#334854",
+              borderRadius: "0%",
               backgroundColor: "white",
               '&:hover': {
                 backgroundColor: "#667784",
@@ -109,6 +110,7 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
               color: "white",
               padding: '4px 10px',
               fontSize: '0.8rem',
+              borderRadius: "0%",
               backgroundColor: "#334854",
               '&:hover': {
                 backgroundColor: "#667784"

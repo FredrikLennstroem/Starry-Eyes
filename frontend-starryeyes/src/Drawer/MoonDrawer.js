@@ -34,9 +34,9 @@ const CustomDrawer = styled(Drawer)(({ theme }) => ({
     boxSizing: 'border-box',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-end',
     alignItems: 'stretch',
-    marginTop: `calc(50vh - ${drawerHeight / 2}px)`,
+    marginTop: `calc(100vh - ${drawerHeight}px - 20px)`,
   },
 }));
 

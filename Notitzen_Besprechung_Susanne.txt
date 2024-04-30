@@ -1,4 +1,4 @@
--Ecken abgrunden der GUI-Elemente? -> Unnstimmigkeit zu Standardelementen.
+-Ecken abgrunden der GUI-Elemente? -> Unnstimmigkeit zu Standardelementen. -->erledigt
 
 -Besseren Titel als Aktuelle Infos
 
@@ -13,7 +13,7 @@
 -Linienstärke evtl. anpassen überall, so ist Formsprache überall gleich
 
 
-Visualisierung Lightpollution:
+Visualisierung Lightpollution: -->erledigt
 -evtl über Grenzwerte statt mit Quantil
 ->Grenzwert bei 3 und dann equal-intervall
 -Fabskala auf Anwendung anpassen

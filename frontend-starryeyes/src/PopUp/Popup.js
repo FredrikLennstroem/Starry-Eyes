@@ -56,13 +56,14 @@ function PopupContent({ clickPosition, showSuccessSnackbar, setShowSuccessSnackb
                     <div style={{ width: '40px', textAlign: 'right' }}>100%</div>
                 </Box>
             <br/> 
-            <Box textAlign={'right'}>
+            <Box textAlign={'center'}>
                 <Button
                     variant="contained"
                     sx={{
                         color: "white",
                         padding: '4px 10px',
-                        fontSize: '0.8rem',
+                        borderRadius: '0%',
+                        fontSize: '0.7rem',
                         backgroundColor: "#334854",
                         '&:hover': {
                             backgroundColor: "#667784"
@@ -71,7 +72,7 @@ function PopupContent({ clickPosition, showSuccessSnackbar, setShowSuccessSnackb
                     }}
                     onClick={handleAbonnierenClick}
                 >
-                    Abonnieren
+                    Ort überwachen
                 </Button>
             </Box>
             <FormDialog
