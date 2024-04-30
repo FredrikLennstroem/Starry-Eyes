@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Logo from './Images/StarryEyes_Logo_1.png';
 import MondMenu from './Images/Icons/MondMenu.png';
+import Symbologie from "./Symbologie.js";
 
 function MapClickHandler({ setClickPosition }) {
     useMapEvents({
@@ -94,6 +95,11 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                 maxBoundsViscosity={1.0}
                 minZoom={8}
             >
+                {activeItems[2] && (
+                    <div style={{ position: 'absolute', height: 'auto', width: '100%', zIndex: 1000 }}>
+                        <Symbologie />
+                    </div>
+                )}
 
                 {activeItems[0] && (
                     <WMSTileLayer
@@ -103,6 +109,7 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                         format="image/png"
                         transparent={true}
                         tileSize={512}
+                        styles="Schatten"
                     />
                 )}
 
@@ -113,19 +120,9 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                         format="image/png"
                         transparent={true}
                         tileSize={512}
-                        styles="Lightpollution"
+                        styles="Lichtverschmutzung"
                     />              
-                )}
-
-                {activeItems[2] && (
-                    <WMSTileLayer
-                        layers="testuebung:kantone"
-                        url="http://localhost:8080/geoserver/testuebung/wms"
-                        format="image/png"
-                        transparent={true}
-                        tileSize={512}
-                    />   
-                )}    
+                )} 
 
                 <TileLayer
                     transparent={true}
@@ -137,7 +134,11 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                 <MapClickHandler setClickPosition={setClickPosition} />
 
                 {clickPosition && (
+<<<<<<< Updated upstream
                     <Marker position={clickPosition} icon={MarkerIcon}> 
+=======
+                    <Marker position={clickPosition} icon={MarkerIcon}>
+>>>>>>> Stashed changes
                         <Popup className="popupCustom" borderRadius={0}>
                             <PopupContent
                             sunTimes={sunTimes} 

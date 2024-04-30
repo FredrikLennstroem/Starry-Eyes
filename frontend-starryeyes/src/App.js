@@ -1,10 +1,9 @@
 import './App.css';
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import PersistentDrawerLeft from './Drawer/MenuDrawer.js';
 import Map from './Map.js';
 import Moonbox from './Drawer/MoonDrawer.js';
-import Symbologie from './Symbologie.js';
 
 function roundToQuarterHour(date) {
   const quarterHour = 15 * 60 * 1000; // 15 Minuten in Millisekunden
@@ -26,9 +25,6 @@ function App() {
     <Router>
       <div className="App">
         <div className="content">
-          <Routes>
-            <Route path="/symbologie" element={<Symbologie/>}/>
-            <Route path="/" element={
               <div>
                 <Map 
                   activeItems={activeItems} 
@@ -53,8 +49,6 @@ function App() {
                   setMoonOpen={setMoonOpen}
                 />
               </div>
-            } />
-          </Routes>
         </div>
       </div>
     </Router>

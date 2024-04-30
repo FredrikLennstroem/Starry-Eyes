@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles';
 import '../App.css';
 import { Box, Drawer, Typography, CssBaseline, List, Divider, IconButton, ListItem, ListItemText, Checkbox, Slider } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { Link } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
@@ -157,19 +156,16 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
             {activeItems[1] &&
             <ListItem style={{padding: '0px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginLeft: '60px'}}>
               <Typography fontWeight= "bold" marginBottom= "5px">Legende</Typography>
-              <img src="http://localhost:8080/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=StarryEyes:viirs_npp_202300&legend_options=fontName:Arial;fontSize:15;dx:10" alt="Legend" style={{ width: 'auto', height: '100px' }} />
+              <img src="http://localhost:8080/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=StarryEyes:Lichtverschmutzung_CH_2024&legend_options=fontName:Arial;fontSize:15;dx:10" alt="Legend" style={{ width: 'auto', height: '100px' }} />
             </ListItem>} 
+          <Divider />
           <ListItem>
             <Checkbox
               className='Checkbox'
               checked={activeItems[2]}
               onChange={() => handleCheckboxChange(2)}
             />
-            <ListItemText primary="Pixelkarte Grau" />
-          </ListItem>
-          <Divider />
-          <ListItem button component={Link} to="/symbologie">
-            <ListItemText primary="Symbologie" sx={{ paddingLeft: '42px'}}/>
+            <ListItemText primary="Symbolerklärung"/>
           </ListItem>
         </List>
         <List sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
