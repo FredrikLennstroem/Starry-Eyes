@@ -48,6 +48,9 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
 
   const handleDrawerClose = () => {
     setMenuOpen(false);
+    const updatedActiveItems = [...activeItems];
+    updatedActiveItems[2] = false;
+    setActiveItems(updatedActiveItems);
   };
 
   const handleCheckboxChange = (index) => {

@@ -1,6 +1,6 @@
 import {MapContainer, WMSTileLayer, TileLayer, Marker, Popup, ZoomControl, useMapEvents} from "react-leaflet";
 import './App.css';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import PopupContent from './PopUp/Popup.js';
 import MarkerIcon from './PopUp/MarkerIcon.js';
 import SuccessSnackbar from './SuccessSnackbar.js';
@@ -49,7 +49,8 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
         sunsetCloud: '--'
     });
 
-    useEffect(() => {
+    const handleMarkerClick = () => {
+        console.log("Popup geöffnet");
         const fetchSunTimes = async () => {
             try {
                 const response = await fetch ('http://127.0.0.1:8000/sun', {
@@ -81,7 +82,7 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
         if (clickPosition) {
             fetchSunTimes();
         }
-    }, [clickPosition]);
+    };
 
     return (
         <div className="App">
@@ -96,7 +97,7 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                 minZoom={8}
             >
                 {activeItems[2] && (
-                    <div style={{ position: 'absolute', height: 'auto', width: '100%', zIndex: 1000 }}>
+                    <div style={{ position: 'absolute', height: 'auto', width: '100%', zIndex: 1150 }}>
                         <Symbologie />
                     </div>
                 )}
@@ -134,11 +135,7 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                 <MapClickHandler setClickPosition={setClickPosition} />
 
                 {clickPosition && (
-<<<<<<< Updated upstream
-                    <Marker position={clickPosition} icon={MarkerIcon}> 
-=======
-                    <Marker position={clickPosition} icon={MarkerIcon}>
->>>>>>> Stashed changes
+                    <Marker position={clickPosition} icon={MarkerIcon} eventHandlers={{ click: handleMarkerClick }}>
                         <Popup className="popupCustom" borderRadius={0}>
                             <PopupContent
                             sunTimes={sunTimes} 
@@ -150,7 +147,7 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
 
                 <ZoomControl position="bottomleft" />
             </MapContainer>
-            <div style={{ position: 'absolute', bottom: '2px', right: 0, transform: 'translateY(-50%)', zIndex: 1000 }}>
+            <div style={{ position: 'absolute', bottom: '2px', right: 0, transform: 'translateY(-50%)', zIndex: 1100 }}>
                 <IconButton
                     onClick={handleMoonOpen}
                     sx={{
@@ -169,7 +166,7 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                     />
                 </IconButton>
             </div>
-            <div style={{ position: 'absolute', top: '15px', left: '30px', zIndex: 1000 }}>
+            <div style={{ position: 'absolute', top: '15px', left: '30px', zIndex: 1200 }}>
                 <IconButton
                 color="black"
                 aria-label="open drawer"
@@ -188,7 +185,7 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                 <MenuIcon/>
             </IconButton>     
             </div>
-            <div style={{ position: 'absolute', top: '15px', right: '30px', zIndex: 1000 }}>
+            <div style={{ position: 'absolute', top: '15px', right: '30px', zIndex: 1200 }}>
                 <img
                 src={Logo}
                 alt="Logo"

@@ -37,6 +37,7 @@ const CustomDrawer = styled(Drawer)(({ theme }) => ({
     justifyContent: 'flex-end',
     alignItems: 'stretch',
     marginTop: `calc(100vh - ${drawerHeight}px - 20px)`,
+    zIndex: 1100,
   },
 }));
 

@@ -1,5 +1,7 @@
 import React from 'react';
+import {MapContainer, TileLayer, Marker} from "react-leaflet";
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from'@mui/material';
+import MarkerIcon from '../PopUp/MarkerIcon.js';
 
 export default function FormDialog({ open, handleClose, clickPosition, lv95Coords, setShowSuccessSnackbar }) {
 
@@ -47,6 +49,23 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
         }}
       >
         <DialogTitle fontWeight="bold" variant="h6">Ort überwachen</DialogTitle>
+        <MapContainer
+          center={clickPosition}
+          zoom={16}
+          dragging={false}
+          scrollWheelZoom={false}
+          zoomControl={false}
+          style={{width: '100% - 10px', height: '300px', margin: '5px'}}
+        >
+          <TileLayer
+            transparent={true}
+            url="https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg"
+          />
+          <Marker
+            position={clickPosition}
+            icon={MarkerIcon}
+          />
+        </MapContainer>
         <DialogContent>
           Standortkoordinaten:
           <br/>
