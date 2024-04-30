@@ -135,7 +135,7 @@ def openweather_hour(lat: float, long: float, days:int):
     	"latitude": lat,
     	"longitude": long,
     	#"current": ["cloud_cover"],
-    	"hourly": ["weather_code", "cloud_cover", "cloud_cover_low", "cloud_cover_mid", "cloud_cover_high", "visibility"],
+    	"hourly": ["weather_code", "cloud_cover", "cloud_cover_low", "cloud_cover_mid", "cloud_cover_high"],
     	# "daily": ["weather_code", "sunrise", "sunset"],
     	"timezone": "Europe/Berlin",
     	"forecast_days": days,
@@ -153,26 +153,49 @@ def openweather_hour(lat: float, long: float, days:int):
     hourly_cloud_cover_low = hourly.Variables(2).ValuesAsNumpy()
     hourly_cloud_cover_mid = hourly.Variables(3).ValuesAsNumpy()
     hourly_cloud_cover_high = hourly.Variables(4).ValuesAsNumpy()
-    hourly_visibility = hourly.Variables(5).ValuesAsNumpy()
+    #hourly_visibility = hourly.Variables(5).ValuesAsNumpy()
     
     hourly_weather = np.vectorize(weather_codes_de.get)(hourly_weather_code)# Array erstellen das Wetter-codes mit den Codes der aktuellen Stunde matcht
 
+    # hourly_data = {"date": pd.date_range(
+    # 	start = pd.to_datetime(hourly.Time(), unit = "s", utc = True),
+    # 	end = pd.to_datetime(hourly.TimeEnd(), unit = "s", utc = True),
+    # 	freq = pd.Timedelta(seconds = hourly.Interval()),
+    # 	inclusive = "left"
+    # )}
+
     hourly_data = {"date": pd.date_range(
-    	start = pd.to_datetime(hourly.Time(), unit = "s", utc = True),
-    	end = pd.to_datetime(hourly.TimeEnd(), unit = "s", utc = True),
+    	start = pd.to_datetime(hourly.Time(), unit = "s", utc = False),
+    	end = pd.to_datetime(hourly.TimeEnd(), unit = "s", utc = False),
     	freq = pd.Timedelta(seconds = hourly.Interval()),
     	inclusive = "left"
     )}
 
-    hourly_data["weather_code"] = hourly_weather_code
+    # hourly_data["weather_code"] = hourly_weather_code
     hourly_data["weather"] = hourly_weather
     hourly_data["cloud_cover"] = hourly_cloud_cover
     hourly_data["cloud_cover_low"] = hourly_cloud_cover_low
     hourly_data["cloud_cover_mid"] = hourly_cloud_cover_mid
     hourly_data["cloud_cover_high"] = hourly_cloud_cover_high
-    hourly_data["visibility"] = hourly_visibility
+    # hourly_data["visibility"] = hourly_visibility
 
-    return pd.DataFrame(data = hourly_data)
+    df = pd.DataFrame(data= hourly_data)
+    df['date'] = pd.to_datetime(df['date'])
+    current_time = datetime.now()
+    df_current = df[df['date'] >= current_time] #DF Filtern nach aktueller Zeit
+    nach_5 = datetime.combine(current_time.date() + timedelta(days=1), datetime.strptime('06:00', '%H:%M').time())
+    filtered_df = df_current[df_current['date'] < nach_5] #Filter für nach 5 Uhr am Morgen
+    
+    new_column_names = {
+        #'date': 'Datum / Zeit',
+        'weather': 'Wetter',
+        'cloud_cover': 'Wolkenbedeckung',
+        'cloud_cover_low': 'Wolkenbedeckung tief',
+        'cloud_cover_mid': 'Wolkenbedeckung mittel',
+        'cloud_cover_high': 'Wolkenbedeckung hoch'
+    }
+    filtered_df = filtered_df.rename(columns=new_column_names)
+    return pd.DataFrame(filtered_df)
 
 # Sonnen-Berechnungen-----------------------------------------------------------------------------------------
 
@@ -207,20 +230,20 @@ class SunSetRise:
         date = str(self.today)
         command = ["tppss", "day", "-m", self.dem, "-j", date, "-p", self.position]
         res = subprocess.check_output(command, universal_newlines=True)
-        return res.split('\n')[3].split(' ')[-1][:-6]
+        return res.split('\n')[3].split(' ')[-1][:-9] # -9 für Wert ohne Sekunden, sonst -6
     
     def sunrise_dem(self):
         date = str(self.today + timedelta(days=1))
         command = ["tppss", "day", "-m", self.dem, "-j", date, "-p", self.position]
         res = subprocess.check_output(command, universal_newlines=True)
-        return res.split('\n')[3].split(' ')[2][:-6]
+        return res.split('\n')[3].split(' ')[2][:-9] # -9 für Wert ohne Sekunden, sonst -6
     
     def sunset_globe(self):
         sunset = self.observer.next_setting(ephem.Sun(), start=self.today)
         sunset_str = str(ephem.localtime(sunset))
-        return sunset_str.split(' ')[1][:-7]
+        return sunset_str.split(' ')[1][:-10] # -10 für Wert ohne Sekunden, sonst -7
 
     def sunrise_globe(self):
         sunrise = self.observer.next_rising(ephem.Sun(), start=self.today)
         sunrise_str = str(ephem.localtime(sunrise))
-        return sunrise_str.split(' ')[1][:-7]
+        return sunrise_str.split(' ')[1][:-10] # -10 für Wert ohne Sekunden, sonst -7

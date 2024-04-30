@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -6,6 +7,7 @@ import yaml
 import os
 import starryeyes as se
 from IPython.display import HTML
+from datetime import datetime
 
 from fastapi import Request
 import json
@@ -21,6 +23,9 @@ emailSubject = "Bin öppis am Probiere. -Fredi"
 logo_path = f'{PROJ_ROOT}/backend/img/email-banner.png'
 abdeckung_path = f'{PROJ_ROOT}/backend/img/abdeckung.jpg'
 #------------------------------------------------------------------------------------------------------
+
+#Variabel Geländemodell
+DEM = 'img/59_DEM.tiff'
 
 # Config-File laden
 with open(config_file, 'r') as f:
@@ -41,6 +46,7 @@ app.add_middleware(
 class InputData(BaseModel):
     data: str
 
+# API für Bestätigungsemail---------------------------------------------------------------------
 @app.post("/email")
 async def email(request: Request):
     data = await request.body()
@@ -55,8 +61,9 @@ async def email(request: Request):
     n = float(data_json["northing"])
     email_recipient = data_json["email"]
 
-    cloud = se.openweather_hour(lat, long, 1) # Meteo-API abfragen
-    cloud_html = cloud.head(11).to_html() # wandelt Pandas-Tabelle in html-tabelle um
+    cloud = se.openweather_hour(lat, long, 2) # Meteo-API abfragen
+
+    cloud_html = cloud.to_html() # wandelt Pandas-Tabelle in html-tabelle um
 
     # Umwandeln der Bilder in base64-string
     logo_64 = se.img2base64(logo_path)
@@ -88,10 +95,52 @@ async def email(request: Request):
 
     return {"message": "Input received and printed in terminal"}
 
+# API für Sonnenunter/aufgang---------------------------------------------------------------------
 @app.post("/sun")
-async def sun(data: InputData):
-    print("Input erhalten:")
-    pass
+async def sun(request: Request):
+    try:
+        # Daten von Request verarbeiten
+        data = await request.body()
+        data_str = data.decode("utf-8")
+        data_json = json.loads(data_str)
+        lat = data_json['latitude']
+        long = data_json['longitude']
+        position = f"{lat},{long}"
+        print("Input erhalten: ", data_json)
+
+        #Wetter-API abfragen
+        # df = se.openweather_hour(lat=lat,long=long,days=2)
+
+        # print(df)
+
+        # Sonnenstand berechnen
+        sunsetrise = se.SunSetRise(position=position, dem=DEM)
+        sunset_globe = sunsetrise.sunset_globe()
+
+        #Berechnung Sonnenuntergang Wolkenbedeckung
+        # zeit_dt = datetime.strptime(sunset_globe, '%H:%M').time() #Wandelt Strinng in Datetime um
+        # timestamp = datetime.combine(datetime.now().date(), zeit_dt) #Timestamp für Filter in dataframe
+        # rounded_timestamp = timestamp.replace(minute=0, second=0) #Rundet Timestamp zur letzten vollen STunde
+        # filtered_df = df[df[1] == rounded_timestamp] #Wetter-dataframe filtern
+
+        # if filtered_df.empty:
+        #     sunset_cloud = "Berechnung nicht möglich."
+        # else:
+        #     sunset_cloud = filtered_df.iloc[0,2]
+
+        sun_data = {
+            "sunset_dem": sunsetrise.sunset_dem(),
+            "sunrise_dem": sunsetrise.sunrise_dem(),
+            "sunset_globe": sunset_globe,
+            "sunrise_globe": sunsetrise.sunrise_globe(),
+            # "sunset_cloud": sunset_cloud
+        }
+        return JSONResponse(content=sun_data)
+
+    except Exception as e:
+        print("Error im Daten prozessieren:", e)
+        return JSONResponse(content={"message": "Error im Daten prozessieren"}, status_code=500)
+    
 
 @app.post("/email2") # API zum Debuggen
 async def email2(request: Request):
