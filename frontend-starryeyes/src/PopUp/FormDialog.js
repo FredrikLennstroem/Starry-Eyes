@@ -1,5 +1,5 @@
 import React from 'react';
-import {MapContainer, TileLayer, Marker} from "react-leaflet";
+import {MapContainer, WMSTileLayer, Marker} from "react-leaflet";
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from'@mui/material';
 import MarkerIcon from '../PopUp/MarkerIcon.js';
 
@@ -57,25 +57,23 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
           zoomControl={false}
           style={{width: '100% - 10px', height: '300px', margin: '5px'}}
         >
-          <TileLayer
+          <WMSTileLayer
+            layers="ch.swisstopo.swisstlm3d-karte-farbe"
+            url="https://wms.geo.admin.ch/?"
+            format="image/png"
             transparent={true}
-            url="https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg"
+            tileSize={512}
           />
           <Marker
             position={clickPosition}
             icon={MarkerIcon}
           />
         </MapContainer>
+        <DialogContentText fontSize= '12px' marginLeft= '5px'>
+          E/N: {lv95Coords ? parseFloat(lv95Coords.easting).toFixed(3) : 'Loading...'}
+          /{lv95Coords ? parseFloat(lv95Coords.northing).toFixed(3) : 'Loading...'}
+        </DialogContentText>
         <DialogContent>
-          Standortkoordinaten:
-          <br/>
-          <DialogContentText>
-            Easting: {lv95Coords ? parseFloat(lv95Coords.easting).toFixed(3) : 'Loading...'}
-          </DialogContentText>
-          <DialogContentText>
-            Northing: {lv95Coords ? parseFloat(lv95Coords.northing).toFixed(3) : 'Loading...'}
-          </DialogContentText>
-          <br/>
           Um diesen Standort über Nacht zu überwachen, geben Sie bitte Ihre E-Mail-Adresse ein.
           <TextField
             autoFocus

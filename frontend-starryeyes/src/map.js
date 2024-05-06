@@ -1,4 +1,4 @@
-import {MapContainer, WMSTileLayer, TileLayer, Marker, Popup, ZoomControl, useMapEvents} from "react-leaflet";
+import {MapContainer, WMSTileLayer, Marker, Popup, ZoomControl, useMapEvents} from "react-leaflet";
 import './App.css';
 import React, {useState} from 'react';
 import PopupContent from './PopUp/Popup.js';
@@ -21,10 +21,10 @@ function MapClickHandler({ setClickPosition }) {
 }
 
 function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, MenuOpen }) {
-    const [clickPosition, setClickPosition] = useState([47.535, 7.642]);
+    const [clickPosition, setClickPosition] = useState({ lat: 47.535, lng: 7.642 });
     const bounds = [
-        [45.659168946713827, 5.8358140744676303], // Südwestliche Grenze
-        [47.869910020393519, 10.979311848153316]  // Nordöstliche Grenze
+        [44.659168946713827, 4.8358140744676303], // Südwestliche Grenze
+        [48.869910020393519, 11.979311848153316]  // Nordöstliche Grenze
     ];
     const [showSuccessSnackbar, setShowSuccessSnackbar] = useState(false); // Anzeige für erfolgreiches abonnieren
     const handleMoonOpen = () => {
@@ -50,7 +50,6 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
     });
 
     const handleMarkerClick = () => {
-        console.log("Popup geöffnet");
         const fetchSunTimes = async () => {
             try {
                 const response = await fetch ('http://127.0.0.1:8000/sun', {
@@ -89,11 +88,11 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
             <MapContainer
                 className="map-container"
                 center={[47.535, 7.642]}
-                zoom={8}
+                zoom={14}
                 scrollWheelZoom={true}
                 zoomControl={false}
                 maxBounds={bounds}
-                maxBoundsViscosity={1.0}
+                maxBoundsViscosity={1}
                 minZoom={8}
             >
                 {activeItems[2] && (
@@ -116,20 +115,31 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
 
                 {activeItems[1] && (
                     <WMSTileLayer
+                        layers="ch.swisstopo.swisstlm3d-karte-grau"
+                        url="https://wms.geo.admin.ch/?"
+                        format="image/png"
+                        transparent={false}
+                        tileSize={512}
+                    />             
+                )} 
+
+                {activeItems[1] && (
+                    <WMSTileLayer
                         layers="StarryEyes:Lichtverschmutzung_CH_2024"
-                        url="http://localhost:8080/geoserver/StarryEyes/wms"
+                         url="http://localhost:8080/geoserver/StarryEyes/wms"
                         format="image/png"
                         transparent={true}
                         tileSize={512}
                         styles="Lichtverschmutzung"
-                    />              
+                    />           
                 )} 
-
-                <TileLayer
-                    transparent={true}
-                    attribution='&copy; <a href="https://www.geo.admin.ch/">swisstopo</a>'
-                    url="https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg"
-                    // url="https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.swisstlm3d-karte-farbe.3d/default/current/3857/{z}/{x}/{y}.jpeg"
+                
+                <WMSTileLayer
+                    layers="ch.swisstopo.swisstlm3d-karte-farbe"
+                    url="https://wms.geo.admin.ch/?"
+                    format="image/png"
+                    transparent={false}
+                    tileSize={512}
                 />
 
                 <MapClickHandler setClickPosition={setClickPosition} />

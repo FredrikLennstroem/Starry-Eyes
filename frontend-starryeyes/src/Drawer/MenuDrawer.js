@@ -48,9 +48,6 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
 
   const handleDrawerClose = () => {
     setMenuOpen(false);
-    const updatedActiveItems = [...activeItems];
-    updatedActiveItems[2] = false;
-    setActiveItems(updatedActiveItems);
   };
 
   const handleCheckboxChange = (index) => {
@@ -157,8 +154,8 @@ export default function PersistentDrawerLeft({activeItems, setActiveItems, slide
             <ListItemText primary="Lichtverschmutzung" />
           </ListItem>
             {activeItems[1] &&
-            <ListItem style={{padding: '0px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginLeft: '60px'}}>
-              <Typography fontWeight= "bold" marginBottom= "5px">Legende</Typography>
+            <ListItem style={{width: '179px', padding: '0px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginLeft: '60px', marginBottom: '5px'}}>
+              <Typography fontWeight= "bold" marginBottom= "5px" >Legende</Typography>
               <img src="http://localhost:8080/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&LAYER=StarryEyes:Lichtverschmutzung_CH_2024&legend_options=fontName:Arial;fontSize:15;dx:10" alt="Legend" style={{ width: 'auto', height: '100px' }} />
             </ListItem>} 
           <Divider />
