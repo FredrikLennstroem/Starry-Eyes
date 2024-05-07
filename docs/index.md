@@ -2,7 +2,7 @@
 
 # StarryEyes
 
-Projektwebseite von *StarryEyes*. Das App enthält eine Server und eine Client Umgebung.
+Projektwebseite von *StarryEyes*. Die App enthält eine Server und eine Client Umgebung.
 - Server: FastAPI, Geoserver
 - Client: React + Leaflet
 
@@ -11,16 +11,16 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
 ![StarryEyes Startseite Screenshot](images/Startseite.png)
 
 ## Inhaltsverzeichnis
-- [Die App](#beschrieb)
-- [Architektur](#architektur)
-    - [Backend](#backend)
-    - [Frontend](#frontend)   
+- [Die App](#beschrieb)   
 - [Anwendung](#funktionen)
     - [Hintergrundkarte](#karte)
     - [Layer](#layer)
     - [Mondphasen](#mond)
     - [Popup](#popup)
 - [Video](#video)
+- [Architektur](#architektur)
+    - [Backend](#backend)
+    - [Frontend](#frontend)
 - [Incoming Features](#features)
 - [Contribution](#contribution)
 
@@ -29,28 +29,10 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
 
 Die App ermöglicht die Planung von Sternen- und Sonnenaufgangs-/untergangsfotos. Nutzer können mit integrierten Lichtverschmutzungs- und Schattenkarten den idealen Fotostandort wählen. Die App bietet Zugriff auf aktuelle Wetterdaten über eine API (z.B. Wolkenabdeckung). Mit der Überwachungsfunktion können Nutzer per Email über das optimale Zeitfenster für das Foto am ausgewählten Standort informiert werden. Zur weiteren Unterstützung der Planung sind die aktuellen Mondphasen graphisch dargestellt.
 
-## Architektur
-<a id=archtitektur></a>
-
-### Backend
-<a id=backend></a>
-
-#### API
-Um aktuelle Wetterinformationen anzeigen zu können wird eine Wetter-API benötigt. Dazu wird die API von Open-Meteo verwendet:
-
-[https://open-meteo.com/](https://open-meteo.com/)
-
-Es werden die Wolkenabdeckungen auf tiefer, mittlerer und hoher Höhe bezogen, sowie das aktuelle Wetter (z.B. "Regen").
-
-#### Berechnung Sonnenstand
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
-#### Email Benachrichtigung
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
-### Frontend
-<a id=frontend></a>
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+## Installation
+<a id=installation></a>
+Installation der APP erfolgt mit der Anleitung im github repository:
+[FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLennstroem/Starry-Eyes)
 
 ## Anwendung
 <a id=funktionen></a>
@@ -72,31 +54,55 @@ Es werden die Wolkenabdeckungen auf tiefer, mittlerer und hoher Höhe bezogen, s
 
 ### Popup
 <a id=popup>
-- Beschrieb Popup
-- Button
+Wird auf die Positionsnadel geklickt, zeigt ein Popup Informationen zum gewählten Standort an:
 
-#### Detailkarte
-Detailkarte
+- Sonnenzeiten
+    - Sonnenuntergang / -aufgang Gelände
+    - Sonnenuntergang / -aufgang Horizont
+- Wolkenabdeckung in %
+    - Tag
+    - Nacht
 
-#### Sonnenstand
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
-#### Wolkenabdeckung
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
-#### Standort beobachten
-Bei der Navigation wird ein Ziel aus einer Liste ausgewählt. Der Weg zum Ziel wird danach hervorgehoben. Unterhalb der Karte ist eine chronologische Auflistung der Pisten und Anla- gen welche auf der Route genutzt wird. Die Ziele in der Liste haben jeweils zusätzlich zum Namen ein Piktogramm, welches einfach erkennen lässt, ob es sich um eine Anlage, Parkplatz oder ein Restaurant handelt.
+Wenn ein Standort von Interesse ist, kann er über Nacht überwacht werden. Durch Klicken auf "ORT ÜBERWACHEN" öffnet sich ein Eingabefenster, in dem eine E-Mail-Adresse für Benachrichtigungen eingegeben werden kann. Nach Eingabe der E-Mail-Adresse wird eine Bestätigung an diese Adresse gesendet. Diese Bestätigung enthält aktuelle Wetterinformationen und ein Hemisphärenbild des Standorts. Diese Funktion ist nur für eine Nacht aktiv.
+![StarryEyes Ort überwachen](images/Ueberwachen.png)
 
 ## Video
 <a id=video></a>
 
 Video
 
+## Architektur
+<a id=archtitektur></a>
+
+### Backend
+<a id=backend></a>
+
+#### API
+Um aktuelle Wetterinformationen anzeigen zu können wird eine Wetter-API benötigt. Dazu wird die API von Open-Meteo verwendet:
+
+[https://open-meteo.com/](https://open-meteo.com/)
+
+Es werden die Wolkenabdeckungen auf tiefer, mittlerer und hoher Höhe bezogen, sowie das aktuelle Wetter (z.B. "Regen").
+
+#### Berechnung Sonnenstand
+Der Sonnenstand wird auf zwei verschiedene Arten berechnet:
+- Theoretisch: Sonnenuntergang/-aufgang hinter dem Horizont. Dazu wird die 'Pyephem'-Bibliothek von Brandon Rhodes verwendet: [Pyephem](https://github.com/brandon-rhodes/pyephem)
+- Im Gelände: Sonnenuntergang/-aufgang hinter dem Gelände. Dies wird mit der 'tppss'-Bibliothek von gvellut berechnet: [tppss](https://github.com/gvellut/tppss)
+
+Diese beiden Methoden sind im Backend in einer Funktion verbaut die im Frontend als Rest-API aufgerufen werden kann.
+
+#### Email Benachrichtigung
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+### Frontend
+<a id=frontend></a>
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
 ## Upcoming Features
 <a id=features></a>
 
 ### Panoramabild
-![StarryEyes Startseite Screenshot](images/Hemisphärenbild.png)
+![StarryEyes Konzept Hemisphärenbild](images/Hemisphärenbild.png)
 
 ## Contribution
 <a id=contribution></a>
