@@ -2,7 +2,7 @@
 
 # StarryEyes
 
-Projektwebseite von *StarryEyes*. Das App enthält eine Server und eine Client Umgebung.
+Projektwebseite von *StarryEyes*. Die App enthält eine Server und eine Client Umgebung.
 - Server: FastAPI, Geoserver
 - Client: React + Leaflet
 
@@ -17,10 +17,10 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
     - [Layer](#layer)
     - [Mondphasen](#mond)
     - [Popup](#popup)
+- [Video](#video)
 - [Architektur](#architektur)
     - [Backend](#backend)
     - [Frontend](#frontend)
-- [Video](#video)
 - [Incoming Features](#features)
 - [Contribution](#contribution)
 
@@ -28,6 +28,11 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
 <a id=beschrieb></a>
 
 Die App ermöglicht die Planung von Sternen- und Sonnenaufgangs-/untergangsfotos. Nutzer können mit integrierten Lichtverschmutzungs- und Schattenkarten den idealen Fotostandort wählen. Die App bietet Zugriff auf aktuelle Wetterdaten über eine API (z.B. Wolkenabdeckung). Mit der Überwachungsfunktion können Nutzer per Email über das optimale Zeitfenster für das Foto am ausgewählten Standort informiert werden. Zur weiteren Unterstützung der Planung sind die aktuellen Mondphasen graphisch dargestellt.
+
+## Installation
+<a id=installation></a>
+Installation der APP erfolgt mit der Anleitung im github repository:
+[FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLennstroem/Starry-Eyes)
 
 ## Anwendung
 <a id=funktionen></a>
