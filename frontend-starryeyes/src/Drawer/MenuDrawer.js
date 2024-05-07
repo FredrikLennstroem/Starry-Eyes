@@ -44,7 +44,7 @@ function roundToQuarterHour(date) {
   return new Date(Math.ceil(date.getTime() / quarterHour) * quarterHour);
 }
 
-export default function PersistentDrawerLeft({activeItems, setActiveItems, sliderValue, setSliderValue, MenuOpen, setMenuOpen}) {
+export default function MenuDrawer({activeItems, setActiveItems, sliderValue, setSliderValue, MenuOpen, setMenuOpen}) {
 
   const handleDrawerClose = () => {
     setMenuOpen(false);

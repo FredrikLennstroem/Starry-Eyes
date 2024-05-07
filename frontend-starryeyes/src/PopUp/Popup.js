@@ -29,7 +29,7 @@ function PopupContent({ clickPosition, showSuccessSnackbar, setShowSuccessSnackb
     return (
         <div>
             <Typography fontWeight= "bold" variant="h6">
-                Aktuelle Infos
+                Standortinfos
             </Typography>
                 <Box className="IconBox">
                     <img src={SunsetTerrain} alt="SunsetTerrain" title={'Sonnenuntergang Gelände'} style={{ width: '40px', height: '30px' }}/>

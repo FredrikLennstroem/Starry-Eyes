@@ -1,6 +1,6 @@
-import React from 'react';
+import {React, useState} from 'react';
 import { styled } from '@mui/material/styles';
-import { Box, Drawer, CssBaseline, IconButton, List, Typography, Divider } from '@mui/material';
+import { Box, Drawer, IconButton, List, Typography, Divider } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Moon, Hemisphere } from "lunarphase-js";
 import NewMoon from '../Images/Moon/Moon_1_New.png';
@@ -11,9 +11,10 @@ import Full from '../Images/Moon/Moon_5_Full.png';
 import WaningGibbous from '../Images/Moon/Moon_6_Waning_Gibbous.png';
 import LastQuarter from '../Images/Moon/Moon_7_Last_Quarter.png';
 import WaningCrescent from '../Images/Moon/Moon_8_Waning_Crescent.png';
+import MondMenu from '../Images/Icons/MondMenu.png';
 
 const drawerWidth = 140;
-const drawerHeight = 495;
+const drawerHeight = 455;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -36,13 +37,16 @@ const CustomDrawer = styled(Drawer)(({ theme }) => ({
     flexDirection: 'column',
     justifyContent: 'flex-end',
     alignItems: 'stretch',
-    marginTop: `calc(100vh - ${drawerHeight}px - 20px)`,
+    marginTop: `calc((100vh - ${drawerHeight}px)/2)`,
     zIndex: 1100,
   },
 }));
 
-export default function PersistentDrawerRight({ MoonOpen, setMoonOpen }) {
-
+export default function MoonDrawer() {
+  const [MoonOpen, setMoonOpen] = useState(false);
+  const handleMoonOpen = () => {
+    setMoonOpen(true);
+  };
   const handleMoonClose = () => {
     setMoonOpen(false);
   };
@@ -64,59 +68,58 @@ export default function PersistentDrawerRight({ MoonOpen, setMoonOpen }) {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <CustomDrawer
-        variant="persistent"
-        anchor="right"
-        open={MoonOpen}
-      >
-        <Typography 
-          fontWeight="bold"
-          variant="h6"
-          sx={{
-            padding: '3px 3px'
-          }}
-          >Mondphasen
+      <CustomDrawer variant="persistent" anchor="right" open={MoonOpen}>
+        <Typography variant="h6" fontWeight="bold" sx={{padding: '3px 3px'}}>
+          Mondphasen
         </Typography>
-        <Divider />
+        <Divider/>
         <List sx={{ width: '100%', padding: 0 }}>
-          <Typography>Heute</Typography>
+          <Typography>
+            Heute
+          </Typography>
           <Box sx={{ padding: '3px 10px' }}>
-            <img
-              src={moonImages[todayPhase]}
-              alt="Moonphase"
-              title={`Heute: ${todayPhase}`}
-              style={{ width: '100px', height: '100px' }}
-            />
+            <img src={moonImages[todayPhase]} alt="Mondphase Heute" title={`Heute: ${todayPhase}`} style={{ width: '100px', height: '100px' }}/>
           </Box>
-          <Divider />
-          <Typography>Morgen</Typography>
+          <Divider/>
+          <Typography>
+            Morgen
+          </Typography>
           <Box sx={{ padding: '3px 10px' }}>
-          <img
-            src={moonImages[tomorrowPhase]}
-            alt="Moonphase"
-            title={`Morgen: ${tomorrowPhase}`}
-            style={{ width: '100px', height: '100px' }}
-          />
+            <img src={moonImages[tomorrowPhase]} alt="Mondphase Morgen" title={`Morgen: ${tomorrowPhase}`} style={{ width: '100px', height: '100px' }}/>
           </Box>
-          <Divider />
-          <Typography>Übermorgen</Typography>
+          <Divider/>
+          <Typography>
+            Übermorgen
+          </Typography>
           <Box sx={{ padding: '3px 10px' }}>
-            <img
-              src={moonImages[dayAfterTomorrowPhase]}
-              alt="Moonphase"
-              title={`Übermorgen: ${dayAfterTomorrowPhase}`}
-              style={{ width: '100px', height: '100px' }}
-            />
+            <img src={moonImages[dayAfterTomorrowPhase]} alt="Mondphase Übermorgen" title={`Übermorgen: ${dayAfterTomorrowPhase}`} style={{ width: '100px', height: '100px' }}/>
           </Box>
-        </List>
-        <Divider />
-        <IconButton title= "Ausblenden" onClick={handleMoonClose}>
-          <ChevronRightIcon />
-        </IconButton>
+        </List>        
       </CustomDrawer>
       <Main open={MoonOpen}>
       </Main>
+      <div style={{ position: 'absolute', top: `calc(50% - 10px)`, right: 0, zIndex: 1099 }}>
+        <IconButton
+          title="Mondphasen"
+          onClick={handleMoonOpen}
+          sx={{
+            padding: 0.5,
+            marginRight: 2,
+            ...(MoonOpen && { display: 'none' }),
+            backgroundColor: "#334854",
+            '&:hover': {
+              backgroundColor: "#667784",
+              cursor: "pointer"}
+        }}>
+          <img src={MondMenu} alt="Logo" style={{ width: '50px', height: 'auto' }}/>
+        </IconButton>
+      </div>
+      <div
+        style={{ borderRadius: '50%', position: 'absolute', top: '50%', right: MoonOpen ? '142px' : '-40px', zIndex: 1050, transition: 'right 0.23s linear'}}>
+        <IconButton title="Ausblenden" onClick={handleMoonClose} sx={{color: "white", backgroundColor: "#334854", '&:hover': {backgroundColor: "#667784"}}}>
+          <ChevronRightIcon />
+        </IconButton>
+      </div>
     </Box>
   );
 }

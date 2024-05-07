@@ -46,34 +46,36 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
         PaperProps={{
           component: 'form',
           onSubmit: handleSubmit,
+          style: {borderRadius: '0px'}
         }}
       >
         <DialogTitle fontWeight="bold" variant="h6">Ort überwachen</DialogTitle>
-        <MapContainer
-          center={clickPosition}
-          zoom={16}
-          dragging={false}
-          scrollWheelZoom={false}
-          zoomControl={false}
-          style={{width: '100% - 10px', height: '300px', margin: '5px'}}
-        >
-          <WMSTileLayer
-            layers="ch.swisstopo.swisstlm3d-karte-farbe"
-            url="https://wms.geo.admin.ch/?"
-            format="image/png"
-            transparent={true}
-            tileSize={512}
-          />
-          <Marker
-            position={clickPosition}
-            icon={MarkerIcon}
-          />
-        </MapContainer>
-        <DialogContentText fontSize= '12px' marginLeft= '5px'>
-          E/N: {lv95Coords ? parseFloat(lv95Coords.easting).toFixed(3) : 'Loading...'}
-          /{lv95Coords ? parseFloat(lv95Coords.northing).toFixed(3) : 'Loading...'}
-        </DialogContentText>
         <DialogContent>
+          <MapContainer
+            center={clickPosition}
+            zoom={16}
+            dragging={false}
+            scrollWheelZoom={false}
+            zoomControl={false}
+            style={{width: '100% - 10px', height: '300px'}}
+          >
+            <WMSTileLayer
+              layers="ch.swisstopo.swisstlm3d-karte-farbe"
+              url="https://wms.geo.admin.ch/?"
+              attribution= '&copy; <a href="https://www.swisstopo.ch/copyright">Swisstopo</a>'
+              format="image/png"
+              transparent={true}
+              tileSize={512}
+            />
+            <Marker
+              position={clickPosition}
+              icon={MarkerIcon}
+            />
+          </MapContainer>
+          <DialogContentText fontSize= '12px'>
+            E/N: {lv95Coords ? parseFloat(lv95Coords.easting).toFixed(3) : 'Loading...'}
+            /{lv95Coords ? parseFloat(lv95Coords.northing).toFixed(3) : 'Loading...'}
+          </DialogContentText>
           Um diesen Standort über Nacht zu überwachen, geben Sie bitte Ihre E-Mail-Adresse ein.
           <TextField
             autoFocus

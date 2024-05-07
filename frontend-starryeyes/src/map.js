@@ -1,14 +1,14 @@
-import {MapContainer, WMSTileLayer, TileLayer, Marker, Popup, ZoomControl, useMapEvents, useMap} from "react-leaflet";
+import {MapContainer, WMSTileLayer, TileLayer, Marker, Popup, ZoomControl, useMapEvents, ScaleControl} from "react-leaflet";
 import './App.css';
-import React, {useState} from 'react';
+import {React, useState} from 'react';
 import PopupContent from './PopUp/Popup.js';
 import MarkerIcon from './PopUp/MarkerIcon.js';
 import SuccessSnackbar from './SuccessSnackbar.js';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Logo from './Images/StarryEyes_Logo_1.png';
-import MondMenu from './Images/Icons/MondMenu.png';
 import Symbologie from "./Symbologie.js";
+import InfoBox from "./InfoBox.js";
 
 function MapClickHandler({ setClickPosition }) {
     useMapEvents({
@@ -19,26 +19,26 @@ function MapClickHandler({ setClickPosition }) {
     return null;
 }
 
-function MapZoomHandler({ setZoomLevel }) {
-    useMapEvents({
-        zoom(e) {
-            setZoomLevel(e.zoom);
-        }
-    })
-    return null;
+function MapZoomHandler({setZoomLevel}) {
+    const mapEvents = useMapEvents({
+        zoomend: () => {
+            setZoomLevel(mapEvents.getZoom());
+        },
+    });
+    return null
 }
 
-function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, MenuOpen }) {
-    const [zoomLevel, setZoomLevel] = useState(15);
-    const [clickPosition, setClickPosition] = useState({ lat: 47.535, lng: 7.642 });
+function App({ activeItems, sliderValue, setMenuOpen, MenuOpen }) {
+    const [zoomLevel, setZoomLevel] = useState(9);
+    const [clickPosition, setClickPosition] = useState({ lat: 46.801, lng: 8.227 });
+    const [infoClose, setInfoClose] = useState(true);
+
     const bounds = [
         [44.659168946713827, 4.8358140744676303], // Südwestliche Grenze
         [48.869910020393519, 11.979311848153316]  // Nordöstliche Grenze
     ];
     const [showSuccessSnackbar, setShowSuccessSnackbar] = useState(false); // Anzeige für erfolgreiches abonnieren
-    const handleMoonOpen = () => {
-        setMoonOpen(true);
-    };
+
     const handleDrawerOpen = () => {
         setMenuOpen(true);
     };
@@ -90,20 +90,23 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
         if (clickPosition) {
             fetchSunTimes();
         }
-    };
+    };  
 
     return (
         <div className="App">
+            {localStorage.getItem('hideInfo') === 'true' && infoClose && (
+                <InfoBox setInfoClose={setInfoClose} />
+            )}
             <MapContainer
                 className="map-container"
-                center={[47.535, 7.642]}
-                zoom={10}
+                center={clickPosition}
+                zoom={zoomLevel}
                 scrollWheelZoom={true}
                 zoomControl={false}
                 maxBounds={bounds}
                 maxBoundsViscosity={1}
-                minZoom={8}
-
+                minZoom={9}
+                zoomSnap={1}
             >
                 {activeItems[2] && (
                     <div style={{ position: 'absolute', height: 'auto', width: '100%', zIndex: 1150 }}>
@@ -120,6 +123,7 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                         transparent={true}
                         tileSize={512}
                         styles="Schatten"
+                        zIndex={900}
                     />
                 )}
 
@@ -130,6 +134,7 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                         format="image/png"
                         transparent={false}
                         tileSize={512}
+                        zIndex={700}
                     />             
                 )} 
 
@@ -141,22 +146,26 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                         transparent={true}
                         tileSize={512}
                         styles="Lichtverschmutzung"
+                        zIndex={800}
                     />           
                 )} 
                 
-                {(zoomLevel >= 13) && (
+                {(zoomLevel >= 14) && (
                     <WMSTileLayer
                         layers="ch.swisstopo.swisstlm3d-karte-farbe"
                         url="https://wms.geo.admin.ch/?"
                         format="image/png"
                         transparent={false}
                         tileSize={512}
+                        attribution= '&copy; <a href="https://www.swisstopo.ch/copyright">Swisstopo</a>'
+                        zIndex={500}
                     />
                 )}
-                {(zoomLevel < 13) && (
+                {(zoomLevel < 16) && (
                     <TileLayer
-                        url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
-                        attribution= '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                        url="https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg"
+                        attribution= '&copy; <a href="https://www.swisstopo.ch/copyright">Swisstopo</a>'
+                        zIndex={600}
                     />
                 )}
 
@@ -173,31 +182,13 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                         </Popup>
                     </Marker>
                 )}
-
-                <ZoomControl position="bottomleft" />
+               
+                <ScaleControl imperial={false} maxWidth={130}/>
+                <ZoomControl position="bottomleft"/>
             </MapContainer>
-            <div style={{ position: 'absolute', bottom: '2px', right: 0, transform: 'translateY(-50%)', zIndex: 1100 }}>
-                <IconButton
-                    onClick={handleMoonOpen}
-                    sx={{
-                      padding: 0.5,
-                      marginRight: 2,
-                      ...(MoonOpen && { display: 'none' }),
-                      backgroundColor: "#334854",
-                      '&:hover': {
-                        backgroundColor: "#667784",
-                        cursor: "pointer"}
-                    }}>
-                    <img
-                        src={MondMenu}
-                        alt="Logo"
-                        style={{ width: '50px', height: 'auto' }}
-                    />
-                </IconButton>
-            </div>
             <div style={{ position: 'absolute', top: '15px', left: '30px', zIndex: 1200 }}>
                 <IconButton
-                color="black"
+                title="Menu"
                 aria-label="open drawer"
                 onClick={handleDrawerOpen}
                 edge="start"
@@ -219,8 +210,10 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                 src={Logo}
                 alt="Logo"
                 style={{ width: '150px', height: '50px' }}
+                onClick={() => localStorage.setItem('hideInfo', 'true')} //Easteregg um den Infobalken wieder sichtbar zu schalten
                 />
             </div>
+            
             <SuccessSnackbar open={showSuccessSnackbar} /> 
         </div>
     );
