@@ -16,12 +16,12 @@ import json
 PROJ_ROOT = 'C:/_Schule/FHNW/6/GIS/Projekt/Test_api'
 
 #Config-File
-config_file = f'{PROJ_ROOT}/backend/config.yaml'
+config_file = 'config.yaml'
 
 #Email Variabeln---------------------------------------------------------------------------------------
 emailSubject = "Bin öppis am Probiere. -Fredi"
-logo_path = f'{PROJ_ROOT}/backend/img/email-banner.png'
-abdeckung_path = f'{PROJ_ROOT}/backend/img/abdeckung.jpg'
+logo_path = 'img/email-banner.png'
+abdeckung_path = 'img/abdeckung.jpg'
 #------------------------------------------------------------------------------------------------------
 
 #Variabel Geländemodell
