@@ -1,4 +1,4 @@
-import {MapContainer, WMSTileLayer, Marker, Popup, ZoomControl, useMapEvents} from "react-leaflet";
+import {MapContainer, WMSTileLayer, TileLayer, Marker, Popup, ZoomControl, useMapEvents, useMap} from "react-leaflet";
 import './App.css';
 import React, {useState} from 'react';
 import PopupContent from './PopUp/Popup.js';
@@ -16,11 +16,20 @@ function MapClickHandler({ setClickPosition }) {
             setClickPosition(e.latlng);
         }
     });
+    return null;
+}
 
+function MapZoomHandler({ setZoomLevel }) {
+    useMapEvents({
+        zoom(e) {
+            setZoomLevel(e.zoom);
+        }
+    })
     return null;
 }
 
 function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, MenuOpen }) {
+    const [zoomLevel, setZoomLevel] = useState(15);
     const [clickPosition, setClickPosition] = useState({ lat: 47.535, lng: 7.642 });
     const bounds = [
         [44.659168946713827, 4.8358140744676303], // Südwestliche Grenze
@@ -33,7 +42,7 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
     const handleDrawerOpen = () => {
         setMenuOpen(true);
     };
-
+    
     const formatSliderValue = (value) => {
         const hours = Math.floor(value / 60);
         const minutes = value % 60;
@@ -88,12 +97,13 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
             <MapContainer
                 className="map-container"
                 center={[47.535, 7.642]}
-                zoom={14}
+                zoom={10}
                 scrollWheelZoom={true}
                 zoomControl={false}
                 maxBounds={bounds}
                 maxBoundsViscosity={1}
                 minZoom={8}
+
             >
                 {activeItems[2] && (
                     <div style={{ position: 'absolute', height: 'auto', width: '100%', zIndex: 1150 }}>
@@ -126,7 +136,7 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                 {activeItems[1] && (
                     <WMSTileLayer
                         layers="StarryEyes:Lichtverschmutzung_CH_2024"
-                         url="http://localhost:8080/geoserver/StarryEyes/wms"
+                        url="http://localhost:8080/geoserver/StarryEyes/wms"
                         format="image/png"
                         transparent={true}
                         tileSize={512}
@@ -134,14 +144,23 @@ function App({ activeItems, sliderValue, setMoonOpen, MoonOpen, setMenuOpen, Men
                     />           
                 )} 
                 
-                <WMSTileLayer
-                    layers="ch.swisstopo.swisstlm3d-karte-farbe"
-                    url="https://wms.geo.admin.ch/?"
-                    format="image/png"
-                    transparent={false}
-                    tileSize={512}
-                />
+                {(zoomLevel >= 13) && (
+                    <WMSTileLayer
+                        layers="ch.swisstopo.swisstlm3d-karte-farbe"
+                        url="https://wms.geo.admin.ch/?"
+                        format="image/png"
+                        transparent={false}
+                        tileSize={512}
+                    />
+                )}
+                {(zoomLevel < 13) && (
+                    <TileLayer
+                        url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+                        attribution= '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                    />
+                )}
 
+                <MapZoomHandler setZoomLevel={setZoomLevel} />
                 <MapClickHandler setClickPosition={setClickPosition} />
 
                 {clickPosition && (
