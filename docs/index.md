@@ -64,7 +64,7 @@ Wird auf die Positionsnadel geklickt, zeigt ein Popup Informationen zum gewählt
     - Nacht
 
 Wenn ein Standort von Interesse ist, kann er über Nacht überwacht werden. Durch Klicken auf "ORT ÜBERWACHEN" öffnet sich ein Eingabefenster, in dem eine E-Mail-Adresse für Benachrichtigungen eingegeben werden kann. Nach Eingabe der E-Mail-Adresse wird eine Bestätigung an diese Adresse gesendet. Diese Bestätigung enthält aktuelle Wetterinformationen und ein Hemisphärenbild des Standorts. Diese Funktion ist nur für eine Nacht aktiv.
-
+![StarryEyes Ort überwachen](images/Ueberwachen.png)
 
 ## Video
 <a id=video></a>
@@ -85,7 +85,11 @@ Um aktuelle Wetterinformationen anzeigen zu können wird eine Wetter-API benöti
 Es werden die Wolkenabdeckungen auf tiefer, mittlerer und hoher Höhe bezogen, sowie das aktuelle Wetter (z.B. "Regen").
 
 #### Berechnung Sonnenstand
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+Der Sonnenstand wird auf zwei verschiedene Arten berechnet:
+- Theoretisch: Sonnenuntergang/-aufgang hinter dem Horizont. Dazu wird die 'Pyephem'-Bibliothek von Brandon Rhodes verwendet: [Pyephem](https://github.com/brandon-rhodes/pyephem)
+- Im Gelände: Sonnenuntergang/-aufgang hinter dem Gelände. Dies wird mit der 'tppss'-Bibliothek von gvellut berechnet: [tppss](https://github.com/gvellut/tppss)
+
+Diese beiden Methoden sind im Backend in einer Funktion verbaut die im Frontend als Rest-API aufgerufen werden kann.
 
 #### Email Benachrichtigung
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -98,7 +102,7 @@ Es werden die Wolkenabdeckungen auf tiefer, mittlerer und hoher Höhe bezogen, s
 <a id=features></a>
 
 ### Panoramabild
-![StarryEyes Startseite Screenshot](images/Hemisphärenbild.png)
+![StarryEyes Konzept Hemisphärenbild](images/Hemisphärenbild.png)
 
 ## Contribution
 <a id=contribution></a>
