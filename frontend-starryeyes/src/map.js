@@ -97,95 +97,85 @@ function App({ activeItems, sliderValue, setMenuOpen, MenuOpen }) {
             {localStorage.getItem('hideInfo') === 'true' && infoClose && (
                 <InfoBox setInfoClose={setInfoClose} />
             )}
-            <MapContainer
-                className="map-container"
-                center={clickPosition}
-                zoom={zoomLevel}
-                scrollWheelZoom={true}
-                zoomControl={false}
-                maxBounds={bounds}
-                maxBoundsViscosity={1}
-                minZoom={9}
-                zoomSnap={1}
-            >
-                {activeItems[2] && (
-                    <div style={{ position: 'absolute', height: 'auto', width: '100%', zIndex: 1150 }}>
-                        <Symbologie />
-                    </div>
-                )}
+            {!activeItems[2] && (
+                <MapContainer
+                    className="map-container"
+                    center={clickPosition}
+                    zoom={zoomLevel}
+                    scrollWheelZoom={activeItems[2] ? false : true}
+                    zoomControl={false}
+                    maxBounds={bounds}
+                    maxBoundsViscosity={1}
+                    minZoom={9}
+                    zoomSnap={1}
+                >
+                    {activeItems[0] && (
+                        <WMSTileLayer
+                            key={`StarryEyes:hillshade_${formatSliderValue(sliderValue)}`}
+                            layers={`StarryEyes:hillshade_${formatSliderValue(sliderValue)}`}
+                            url="http://localhost:8080/geoserver/StarryEyes/wms"
+                            format="image/png"
+                            transparent={true}
+                            tileSize={512}
+                            styles="Schatten"
+                            zIndex={900}
+                        />
+                    )}
 
-                {activeItems[0] && (
-                    <WMSTileLayer
-                        key={`StarryEyes:hillshade_${formatSliderValue(sliderValue)}`}
-                        layers={`StarryEyes:hillshade_${formatSliderValue(sliderValue)}`}
-                        url="http://localhost:8080/geoserver/StarryEyes/wms"
-                        format="image/png"
-                        transparent={true}
-                        tileSize={512}
-                        styles="Schatten"
-                        zIndex={900}
-                    />
-                )}
+                    {activeItems[1] && (
+                        <WMSTileLayer
+                            layers="StarryEyes:Lichtverschmutzung_CH_2024"
+                            url="http://localhost:8080/geoserver/StarryEyes/wms"
+                            format="image/png"
+                            transparent={true}
+                            tileSize={512}
+                            styles="Lichtverschmutzung"
+                            zIndex={800}
+                        />           
+                    )} 
+                    
+                    {(zoomLevel >= 14) && (
+                        <WMSTileLayer
+                            layers="ch.swisstopo.swisstlm3d-karte-farbe"
+                            url="https://wms.geo.admin.ch/?"
+                            format="image/png"
+                            transparent={false}
+                            tileSize={512}
+                            attribution= '&copy; <a href="https://www.swisstopo.ch/copyright">Swisstopo</a>'
+                            zIndex={500}
+                        />
+                    )}
+                    {(zoomLevel < 16) && (
+                        <TileLayer
+                            url="https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg"
+                            attribution= '&copy; <a href="https://www.swisstopo.ch/copyright">Swisstopo</a>'
+                            zIndex={600}
+                        />
+                    )}
 
-                {activeItems[1] && (
-                    <WMSTileLayer
-                        layers="ch.swisstopo.swisstlm3d-karte-grau"
-                        url="https://wms.geo.admin.ch/?"
-                        format="image/png"
-                        transparent={false}
-                        tileSize={512}
-                        zIndex={700}
-                    />             
-                )} 
+                    <MapZoomHandler setZoomLevel={setZoomLevel} />
+                    <MapClickHandler setClickPosition={setClickPosition} />
 
-                {activeItems[1] && (
-                    <WMSTileLayer
-                        layers="StarryEyes:Lichtverschmutzung_CH_2024"
-                        url="http://localhost:8080/geoserver/StarryEyes/wms"
-                        format="image/png"
-                        transparent={true}
-                        tileSize={512}
-                        styles="Lichtverschmutzung"
-                        zIndex={800}
-                    />           
-                )} 
+                    {clickPosition && (
+                        <Marker position={clickPosition} icon={MarkerIcon} eventHandlers={{ click: handleMarkerClick }}>
+                            <Popup className="popupCustom" borderRadius={0}>
+                                <PopupContent
+                                sunTimes={sunTimes} 
+                                clickPosition={clickPosition}
+                                setShowSuccessSnackbar={setShowSuccessSnackbar}/>
+                            </Popup>
+                        </Marker>
+                    )}
                 
-                {(zoomLevel >= 14) && (
-                    <WMSTileLayer
-                        layers="ch.swisstopo.swisstlm3d-karte-farbe"
-                        url="https://wms.geo.admin.ch/?"
-                        format="image/png"
-                        transparent={false}
-                        tileSize={512}
-                        attribution= '&copy; <a href="https://www.swisstopo.ch/copyright">Swisstopo</a>'
-                        zIndex={500}
-                    />
-                )}
-                {(zoomLevel < 16) && (
-                    <TileLayer
-                        url="https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg"
-                        attribution= '&copy; <a href="https://www.swisstopo.ch/copyright">Swisstopo</a>'
-                        zIndex={600}
-                    />
-                )}
-
-                <MapZoomHandler setZoomLevel={setZoomLevel} />
-                <MapClickHandler setClickPosition={setClickPosition} />
-
-                {clickPosition && (
-                    <Marker position={clickPosition} icon={MarkerIcon} eventHandlers={{ click: handleMarkerClick }}>
-                        <Popup className="popupCustom" borderRadius={0}>
-                            <PopupContent
-                            sunTimes={sunTimes} 
-                            clickPosition={clickPosition}
-                            setShowSuccessSnackbar={setShowSuccessSnackbar}/>
-                        </Popup>
-                    </Marker>
-                )}
-               
-                <ScaleControl imperial={false} maxWidth={130}/>
-                <ZoomControl position="bottomleft"/>
-            </MapContainer>
+                    <ScaleControl imperial={false} maxWidth={130}/>
+                    <ZoomControl position="bottomleft"/>
+                </MapContainer>
+            )}
+            {activeItems[2] && (
+                <div style={{ position: 'absolute', height: 'auto', width: '100%', zIndex: 1150 }}>
+                    <Symbologie MenuOpen={MenuOpen}/>
+                </div>
+            )}
             <div style={{ position: 'absolute', top: '15px', left: '30px', zIndex: 1200 }}>
                 <IconButton
                 title="Menu"

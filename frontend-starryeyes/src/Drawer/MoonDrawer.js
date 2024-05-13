@@ -66,6 +66,17 @@ export default function MoonDrawer() {
     'Waning Crescent': WaningCrescent
   };
 
+  const textPhase = {
+    'New': 'Neumond',
+    'Waxing Crescent': 'Zunehmende Mondsichel',
+    'First Quarter': 'Erstes Viertel',
+    'Waxing Gibbous': 'Zunehmender Mond',
+    'Full': 'Vollmond',
+    'Waning Gibbous': 'Abnehmender Mond',
+    'Last Quarter': 'Letztes Viertel',
+    'Waning Crescent': 'Abnehmende Mondsichel'
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CustomDrawer variant="persistent" anchor="right" open={MoonOpen}>
@@ -78,21 +89,21 @@ export default function MoonDrawer() {
             Heute
           </Typography>
           <Box sx={{ padding: '3px 10px' }}>
-            <img src={moonImages[todayPhase]} alt="Mondphase Heute" title={`Heute: ${todayPhase}`} style={{ width: '100px', height: '100px' }}/>
+            <img src={moonImages[todayPhase]} alt="Mondphase Heute" title={`Heute: ${textPhase[todayPhase]}`} style={{ width: '100px', height: '100px' }}/>
           </Box>
           <Divider/>
           <Typography>
             Morgen
           </Typography>
           <Box sx={{ padding: '3px 10px' }}>
-            <img src={moonImages[tomorrowPhase]} alt="Mondphase Morgen" title={`Morgen: ${tomorrowPhase}`} style={{ width: '100px', height: '100px' }}/>
+            <img src={moonImages[tomorrowPhase]} alt="Mondphase Morgen" title={`Morgen: ${textPhase[tomorrowPhase]}`} style={{ width: '100px', height: '100px' }}/>
           </Box>
           <Divider/>
           <Typography>
             Übermorgen
           </Typography>
           <Box sx={{ padding: '3px 10px' }}>
-            <img src={moonImages[dayAfterTomorrowPhase]} alt="Mondphase Übermorgen" title={`Übermorgen: ${dayAfterTomorrowPhase}`} style={{ width: '100px', height: '100px' }}/>
+            <img src={moonImages[dayAfterTomorrowPhase]} alt="Mondphase Übermorgen" title={`Übermorgen: ${textPhase[dayAfterTomorrowPhase]}`} style={{ width: '100px', height: '100px' }}/>
           </Box>
         </List>        
       </CustomDrawer>

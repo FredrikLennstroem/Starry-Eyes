@@ -1,19 +1,11 @@
 import {React, useState} from 'react';
 import './App.css';
-import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import IconButton from '@mui/material/IconButton';
+import {Button, Dialog, DialogTitle, DialogContent, DialogContentText, IconButton, Typography, Checkbox} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import Typography from '@mui/material/Typography';
-import CheckBox from '@mui/material/Checkbox';
 
 function InfoBox({setInfoClose}) {
     const [checkboxCheck, setCheckboxCheck] = useState(false);
-    const [open, setOpen] = useState(true);
+    const [open] = useState(true);
 
     const handleClose = () => {
         setInfoClose(false);
@@ -31,7 +23,7 @@ function InfoBox({setInfoClose}) {
 
     return (
         <Dialog open={open} onClose={handleClose} PaperProps={{style: {borderRadius: '0px'},component: 'form'}}>
-            <DialogTitle>
+            <DialogTitle style={{paddingBottom: 0}}>
                 Willkommen bei StarryEyes
             </DialogTitle>
             <IconButton
@@ -47,28 +39,33 @@ function InfoBox({setInfoClose}) {
                 <CloseIcon/>
             </IconButton>
             <DialogContent>
-                <Typography >
-                    Infotext zur App. Dieser wird beim Öffnen angezeigt. Bestätigen der Checkbox speichert den Entscheid, diesen Hinweis nicht mehr anzuzeigen.
+                <Typography style={{ lineHeight: '1.4', paddingBottom: 10}}>
+                Positionieren Sie den Marker auf der interaktiven Karte und klicken Sie darauf, um aktuelle Informationen zum Sonnenaufgang und -untergang sowie der Sichtbarkeit der Sterne in der Nacht zu erhalten.<br/>
+                Nutzen Sie die Möglichkeit, weitere Informationen und stündliche Updates während der Nacht per Mail von uns zu erhalten.<br style={{ marginBottom: '10px' }}/>
+                Auf unserer Seite finden sie noch weitere Informationen zur Lichtverschmutzung, dem Schattenwurf und der aktuellen Mondphase - am rechten Rand und im Layermenü oben links.
                 </Typography>
-                <CheckBox className='Checkbox' onChange={handleCheckboxChange}>
-                    Diesen Hinweis zukünftig nicht mehr anzeigen
-                </CheckBox>
-                <Button
-                    type="submit"
-                    variant="contained"
-                    onClick={handleClose}
-                    sx={{
-                    color: "white",
-                    padding: '4px 10px',
-                    fontSize: '0.8rem',
-                    borderRadius: "0%",
-                    backgroundColor: "#334854",
-                    '&:hover': {
-                        backgroundColor: "#667784"
-                        }
-                    }}
-                    >Schliessen
-                </Button>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <Checkbox className='Checkbox' onChange={handleCheckboxChange}/>
+                        <DialogContentText>Hinweis nicht mehr anzeigen</DialogContentText>
+                    </div>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        onClick={handleClose}
+                        sx={{
+                        color: "white",
+                        padding: '4px 10px',
+                        fontSize: '0.8rem',
+                        borderRadius: "0%",
+                        backgroundColor: "#334854",
+                        '&:hover': {
+                            backgroundColor: "#667784"
+                            }
+                        }}
+                        >Schliessen
+                    </Button>
+                </div>
             </DialogContent>
         </Dialog>
     );
