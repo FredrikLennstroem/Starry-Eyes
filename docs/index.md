@@ -14,6 +14,7 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
 - [Die App](#beschrieb)   
 - [Anwendung](#funktionen)
     - [Video](#video)
+    - [Willkommenstext](#willkommenstext)
     - [Hintergrundkarte](#karte)
     - [Layer](#layer)
     - [Mondphasen](#mond)
@@ -42,19 +43,28 @@ Installation der APP erfolgt mit der Anleitung im github repository:
 
 Video incoming
 
+### Willkommenstext
+<a id=willkommenstext></a>
+
+Beim ersten Öffnen der App erhält man eine kurze Erklärung eingeblendet (siehe Abbildung). Durch bestätigen der Checkbox wird diese dem Nutzenden beim erneuten zugreifen auf die App nicht mehr angezeigt. Zu Testzwecken kann dieser Entscheid durch klicken auf das StarryEyes Logo rückgängig gemacht werden.
+
 ### Hintergrundkarte
 <a id=karte></a>
 
-- Im Hintergrund sind zwei unterschiedliche Karten der Swisstopo, je nach Zoomstufe. Bis Zoomlevel 15 ist die farbige Pixelkarte sichtbar. Diese bietet dem Nutzenden gute Anhaltspunkte um sich zu orientieren. Ab Zoomlevel 16 wird dannn die swissTLM-Map (farbig) dargestellt. Diese ist vorallem für den Massstabsbereich 1:10'000 - 1:5'000 geeignet und zeigt eine exaktere Darstellung des Geländes. So ist es möglich, den gewünschten Standort exakter abzusetzen.
+Im Hintergrund sind zwei unterschiedliche Karten der Swisstopo, je nach Zoomstufe. Bis Zoomlevel 15 ist die farbige Pixelkarte sichtbar. Diese bietet dem Nutzenden gute Anhaltspunkte sich zu orientieren. Ab Zoomlevel 16 wird dannn die swissTLM-Map (farbig) dargestellt. Diese ist hauptsächlich für den Massstabsbereich 1:10'000 - 1:5'000 geeignet und zeigt eine genauere Darstellung des Geländes. So ist es möglich, den gewünschten Standort exakter abzusetzen.
 
-### Layer auswählen
+### Layer
 <a id=layer></a>
-- Lichtverschmutzungskarte
-- Schattenkarte
+
+Das Menuicon Oben Links bietet die Möglichkeit, folgende zusätzliche Layer einzublenden:
+- Schattenkarte: Sie zeigt den Schattenwurf des jeweiligen Tages im Viertelstundentakt. Die Zeit kann über einen Slider bestimmt werden.
+- Lichtverschmutzungskarte: Sie zeigt die Lichtverschmutzung in vier verschiedenen Klassen (keine, wenig, hohe oder starke Lichtverschmutzung) über die ganze Schweiz.
+- Symbolerklärungen: Hier wird eine neue Seite eingeblendet, die alle verwendeten Symbole kurz erklärt.
 
 ### Mondphasen
 <a id=mond></a>
-- 3 Mondphasen
+
+Am rechten Rand findet sich ein Mondsymbol. Dieses öffnet die Information zu den Mondphasen der kommenden drei Nächte. Die Erklärung zu den Mondphasensymbolen und der Link zur verwendeten Klassierung, findet der Nutzende in der [Symbolerklärung](#layer).
 
 ### Popup
 <a id=popup>
@@ -63,7 +73,7 @@ Wird auf die Positionsnadel geklickt, zeigt ein Popup Informationen zum gewählt
 - Sonnenzeiten
     - Sonnenuntergang / -aufgang Gelände
     - Sonnenuntergang / -aufgang Horizont
-- Wolkenabdeckung in %
+- Wolkenabdeckung in Prozent
     - Tag
     - Nacht
 
@@ -103,6 +113,12 @@ Beschrieb Geoserver
 
 - Ordnerstruktur und Aufbau
 - Design
+ - Rückmeldung für erfolgreiches Abonieren, was wird abgefangen?
+ - Darstellung und Klassierung der Lichtverschmutzung
+ - Farbkonzept
+ - Symbolkonzept
+ - MuiKonzept
+ - Hovertexte und Alternativtexte von Icons und Buttons
 
 ## Upcoming Features
 <a id=features></a>
