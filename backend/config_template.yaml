@@ -1,0 +1,7 @@
+
+SMTP_SERVER: smtp.gmail.com
+SMTP_PORT: 587 # richtigen Port angeben
+GMAIL_USERNAME: example@gmail.com
+GMAIL_PASSWORD: exam plee xamp leex
+
+
