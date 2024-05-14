@@ -145,8 +145,8 @@ Die Daten der Lichtverschmutzung wurden als Tiff von [Lightpollutionmap.info](ht
 
 #### Farb- und Symbolkonzept
 
-Die Farbe <code style="color: #FFHHAA">`#334854`</code> wurde in der ganzen App als Hauptakzentfarbe verwendet und tritt immer wieder auf. Der dunkle Grau-Ton mit Blaustich soll die ganze Seite farblich umrahmen.
-Als Sekundärfarbe wurde dann noch ein etwas hellerer Grau-Blau-Ton `#667784` gewählt. Dieser wurde verwendet um das Hovern auf Buttons und Icons darzustellen und so dem Nutzenden ein Feedback zu geben.
+Die Farbe <span style="color:#334854">#334854</span> wurde in der ganzen App als Hauptakzentfarbe verwendet und tritt immer wieder auf. Der dunkle Grau-Ton mit Blaustich soll die ganze Seite farblich umrahmen.
+Als Sekundärfarbe wurde dann noch ein etwas hellerer Grau-Blau-Ton <span style="color:#FF0000">#667784</span> gewählt. Dieser wurde verwendet um das Hovern auf Buttons und Icons darzustellen und so dem Nutzenden ein Feedback zu geben.
 
 ![Designkonzept](images/Design_Konzept.png)
 
@@ -158,6 +158,9 @@ Alle verwendeten Symbole wurden selbst designt, sodass ein konsistentes Erschein
 
 Icons, Symbole und Bilder wurden mit Hovertexten versehen, die dem Nutzenden eine schnelle und kurze Erklärung dazu abgeben. Wo möglich wurde zudem ein Alternativtext vergeben. Dieser wird angezeigt, wenn ein Element nicht geladen werden kann oder er wird erkannt, wenn die Seite mit einem Leseprogramm vorgelesen wird.
 
+#### Feedbackfeatures
+
+Es ist wichtig dem Nutzenden Rückmeldungen auf seine interaktionen zu geben. So wurde darauf geachtet, dass die erfolgreiche Übermittlung der Emailadresse abgefangen wird und ein kurzes Feedback auslöst, welches nach kurzer Zeit wieder verschwindet. Auch das Abwarten
 
  - Rückmeldung für erfolgreiches Abonnieren und das laden der Daten, was wird abgefangen?
 
@@ -182,6 +185,5 @@ Icons, Symbole und Bilder wurden mit Hovertexten versehen, die dem Nutzenden ein
 - Alex Burà, GitHub: [alexbura](https://github.com/alexbura)
 - Fredrik Lennström, GitHub: [FredrikLennstroem](https://github.com/FredrikLennstroem)
 - Silas Haab, GitHub: [SilasHaab](https://github.com/SilasHaab)
-
 
 [Zurück nach oben](#start)
