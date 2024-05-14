@@ -52,7 +52,7 @@ Video incoming
 ### Willkommenstext
 <a id=willkommenstext></a>
 
-Beim ersten Öffnen der App erhält man eine kurze Erklärung eingeblendet (siehe Abbildung). Durch bestätigen der Checkbox wird diese dem Nutzenden beim erneuten zugreifen auf die App nicht mehr angezeigt. Zu Testzwecken kann dieser Entscheid durch klicken auf das StarryEyes Logo rückgängig gemacht werden.
+Beim ersten Öffnen der App erhält man eine kurze Erklärung eingeblendet. Durch bestätigen der Checkbox wird diese dem Nutzenden beim erneuten zugreifen auf die App nicht mehr angezeigt. Zu Testzwecken kann dieser Entscheid durch klicken auf das StarryEyes Logo rückgängig gemacht werden.
 
 ### Hintergrundkarte
 <a id=karte></a>
@@ -119,6 +119,7 @@ Diese beiden Methoden sind im Backend in einer Funktion verbaut die im Frontend 
 ## Architektur Frontend
 <a id=frontend></a>
 
+
 ### Ordnerstruktur
 <a id=ordnerstruktur></a>
 
@@ -132,27 +133,47 @@ Die Mondphasen werden mit dem npm Modul [lunarphase-js](https://www.npmjs.com/pa
 ### Design
 <a id=design></a>
 
- - Rückmeldung für erfolgreiches Abonieren, was wird abgefangen?
- - Darstellung und Klassierung der Lichtverschmutzung
- - Farbkonzept
- - Symbolkonzept
- - MuiKonzept
- - Hovertexte und Alternativtexte von Icons und Buttons
+#### Lichtverschmutzungskarte
+
+![Lichtverschmutzung](images/Design_Lichtverschmutzung.png)
+
+Die Daten der Lichtverschmutzung wurden als Tiff von [Lightpollutionmap.info](https://www.lightpollutionmap.info/) bezogen. Diese werden jährlich aktualisiert. Die Werte reichen von 0 bis xx magnitude/arcsec<sup>2</sup> welche die Flächenhelligkeit beschreibt. Diese Werte können in Klassen aufgeteilt werden, welche die Sichtbarkeit der Sterne beschreiben ([Bortle Dark Sky Scale](https://www.handprint.com/ASTRO/bortle.html)). Aufgrund dieser Einschätzung haben wir uns entschieden vier für den Nutzenden unserere App relevante Klassen zu erstellen:
+- <0.5: keine Lichtverschmutzung
+- 0.5-1: wenig Lichtverschmutzung
+- 1-9:  hohe Lichtverschmutzung
+- \>9:  starke Lichtverschmutzung
+
+#### Farb- und Symbolkonzept
+
+Die Farbe `#334854` wurde in der ganzen App als Hauptakzentfarbe verwendet und tritt immer wieder auf. Der dunkle Grau-Ton mit Blaustich soll die ganze Seite farblich umrahmen.
+Als Sekundärfarbe wurde dann noch ein etwas hellerer Grau-Blau-Ton `#667784` gewählt. Dieser wurde verwendet um das Hovern auf Buttons und Icons darzustellen und so dem Nutzenden ein Feedback zu geben.
+
+![Designkonzept](images/Design_Konzept.png)
+
+Buttons, Checkboxen, Icons, etc. stammen alle aus der [MUI-Bibliothek](https://mui.com/) und wurden entsprechend dem Farbkonzept angepasst. So konnte einfach eine einheitliche Seite aufgebaut werden. Die Elemente wurden mit Ecken und ohne Abrundungen versehen. Auch so entstand ein gleichmässiges Erscheinungsbild.
+
+![Symbolerklärungen](images/Design_Symbolerklärungen.png)
+
+Alle verwendeten Symbole wurden selbst designt, sodass ein konsistentes Erscheinungsbild entsteht. Es wurde darauf geachtet, dass sie ins Farbkonzept passen und dass sie möglichst intuitiv zu verstehen sind. 
+
+Icons, Symbole und Bilder wurden mit Hovertexten versehen, die dem Nutzenden eine schnelle und kurze Erklärung dazu abgeben. Wo möglich wurde zudem ein Alternativtext vergeben. Dieser wird angezeigt, wenn ein Element nicht geladen werden kann oder er wird erkannt, wenn die Seite mit einem Leseprogramm vorgelesen wird.
+
+
+ - Rückmeldung für erfolgreiches Abonnieren und das laden der Daten, was wird abgefangen?
 
 ## Upcoming Features
 <a id=features></a>
 
-- [x] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
+- [x] Berechnung der Wolkenabdeckung in Prozent
+- [ ] Standortinformationen über Nacht
 - [ ] Berücksichtigung der Lichtverschmutzung zur Einschätzung der Sternensichtbarkeit
-- [ ] Suchfunktion gemäss MockUp
+- [ ] Live Hemisphärenbild
+- [ ] Standort Suchfunktion
 - [ ] Luftbilder als zusätzlichen Layer
-- [ ] Live Hemisphärenbild mit Sternenbilder?
 - [ ] Live Positionserfassung
 - [ ] Mobileversion
 
-### Panoramabild
+### Hemisphörenbild
 ![StarryEyes Konzept Hemisphärenbild](images/Hemisphärenbild.png)
 
 ## Contribution
