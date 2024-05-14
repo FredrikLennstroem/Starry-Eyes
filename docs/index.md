@@ -68,8 +68,8 @@ Am rechten Rand findet sich ein Mondsymbol. Dieses öffnet die Information zu de
 
 ### Popup
 <a id=popup>
-Wird auf die Positionsnadel geklickt, zeigt ein Popup Informationen zum gewählten Standort an:
 
+Wird auf die Positionsnadel geklickt, zeigt ein Popup Informationen zum gewählten Standort an:
 - Sonnenzeiten
     - Sonnenuntergang / -aufgang Gelände
     - Sonnenuntergang / -aufgang Horizont
