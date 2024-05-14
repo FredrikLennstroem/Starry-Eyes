@@ -101,6 +101,10 @@ Diese beiden Methoden sind im Backend in einer Funktion verbaut die im Frontend 
 ## Upcoming Features
 <a id=features></a>
 
+- [x] #739
+- [ ] https://github.com/octo-org/octo-repo/issues/740
+- [ ] Add delight to the experience when all tasks are complete :tada:
+
 ### Panoramabild
 ![StarryEyes Konzept Hemisphärenbild](images/Hemisphärenbild.png)
 
