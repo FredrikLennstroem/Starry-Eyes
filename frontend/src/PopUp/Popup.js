@@ -17,7 +17,6 @@ function PopupContent({ clickPosition, showSuccessSnackbar, setShowSuccessSnackb
     const handleAbonnierenClick = () => {
         convertCoordinatesToLV95(clickPosition.lng, clickPosition.lat)
             .then(data => {
-                console.log('Result:', data);
                 setLv95Coords(data);
                 setDialogOpen(true); 
             })
@@ -57,15 +56,27 @@ function PopupContent({ clickPosition, showSuccessSnackbar, setShowSuccessSnackb
                 </Box>
                 <Box className="IconBox">
                     <img src={SunriseTerrain} alt="SunriseTerrain" title={'Sonnenaufgang Gelände'} style={{ width: '40px', height: '30px' }}/>
-                    <div style={{ width: '40px', textAlign: 'right' }}>{sunTimes.sunriseTerrain}</div>
+                    {sunTimes.sunriseTerrain === "hh:mm" ? (
+                        <CircularProgress size= '25px' sx={{color:"#334854"}}/>
+                    ) : (
+                        <div style={{ width: '40px', textAlign: 'right' }}>{sunTimes.sunriseTerrain}</div>
+                    )}
                 </Box>
                 <Box className="IconBox">
                     <img src={SunVisibility} alt="SunVisibility" title={'Sichtbarkeit Sonne'} style={{ width: '30px', height: '30px', marginLeft: '5px', marginRight: '5px'  }}/>
-                    <div style={{ width: '40px', textAlign: 'right' }}>{sunTimes.sunsetCloud} %</div>
+                    {sunTimes.sunsetCloud === "--" ? (
+                        <CircularProgress size= '25px' sx={{color:"#334854"}}/>
+                    ) : (
+                        <div style={{ width: '40px', textAlign: 'right' }}>{sunTimes.sunsetCloud}%</div>
+                    )}
                 </Box>
                 <Box className="IconBox">
                     <img src={StarVisibility} alt="StarVisibility" title={'Sichtbarkeit Sterne'} style={{ width: '30px', height: '30px', marginLeft: '5px', marginRight: '5px'  }}/>
-                    <div style={{ width: '40px', textAlign: 'right' }}>{sunTimes.starCloud} %</div>
+                    {sunTimes.starCloud === "--" ? (
+                        <CircularProgress size= '25px' sx={{color:"#334854"}}/>
+                    ) : (
+                        <div style={{ width: '40px', textAlign: 'right' }}>{sunTimes.starCloud}%</div>
+                    )}
                 </Box>
             <br/> 
             <Box textAlign={'center'}>

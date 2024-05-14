@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {MapContainer, WMSTileLayer, Marker} from "react-leaflet";
-import { Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from'@mui/material';
+import {Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, CircularProgress} from'@mui/material';
 import MarkerIcon from '../PopUp/MarkerIcon.js';
 
 export default function FormDialog({ open, handleClose, clickPosition, lv95Coords, setShowSuccessSnackbar }) {
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
     const formData = new FormData(event.target);
     const formJson = Object.fromEntries(formData.entries());
     try {
@@ -35,6 +37,8 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
       }
     } catch (error) {
       console.error('Error subscribing:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -125,18 +129,24 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
           <Button
             type="submit"
             variant="contained"
+            disabled={loading}
               sx={{
               color: "white",
               padding: '4px 10px',
               fontSize: '0.8rem',
               borderRadius: "0%",
               backgroundColor: "#334854",
+              position: 'relative',
               '&:hover': {
+                backgroundColor: "#667784"
+                },
+              '&:disabled': {
+                color: "#334854",
                 backgroundColor: "#667784"
                 }
               }}
-            >Bestätigen
-            </Button>
+          >Bestätigen{loading ? <CircularProgress size={24} sx={{position: 'absolute', color: "white"}} /> : ''}
+          </Button>
         </DialogActions>
       </Dialog>
     </>

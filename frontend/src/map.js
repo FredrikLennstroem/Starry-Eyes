@@ -10,10 +10,18 @@ import Logo from './Images/StarryEyes_Logo_1.png';
 import Symbologie from "./Symbologie.js";
 import InfoBox from "./InfoBox.js";
 
-function MapClickHandler({ setClickPosition }) {
+function MapClickHandler({ setClickPosition, setSunTimes }) {
     useMapEvents({
         click(e) {
             setClickPosition(e.latlng);
+            setSunTimes({
+                sunsetTerrain: 'hh:mm',
+                sunsetHorizon: 'hh:mm',
+                sunriseHorizon: 'hh:mm',
+                sunriseTerrain: 'hh:mm',
+                sunsetCloud: '--',
+                starCloud: '--'
+        })
         }
     });
     return null;
@@ -34,10 +42,10 @@ function App({ activeItems, sliderValue, setMenuOpen, MenuOpen }) {
     const [infoClose, setInfoClose] = useState(true);
 
     const bounds = [
-        [44.659168946713827, 4.8358140744676303], // Südwestliche Grenze
-        [48.869910020393519, 11.979311848153316]  // Nordöstliche Grenze
+        [44.659168946713827, 4.8358140744676303],
+        [48.869910020393519, 11.979311848153316]
     ];
-    const [showSuccessSnackbar, setShowSuccessSnackbar] = useState(false); // Anzeige für erfolgreiches abonnieren
+    const [showSuccessSnackbar, setShowSuccessSnackbar] = useState(false);
 
     const handleDrawerOpen = () => {
         setMenuOpen(true);
@@ -76,7 +84,6 @@ function App({ activeItems, sliderValue, setMenuOpen, MenuOpen }) {
                     throw new Error('Network response was not ok')
                 }
                 const data = await response.json();
-                console.log('Response data:', data)
                 setSunTimes({
                     sunsetTerrain: data.sunset_dem,
                     sunsetHorizon: data.sunset_globe,
@@ -156,7 +163,7 @@ function App({ activeItems, sliderValue, setMenuOpen, MenuOpen }) {
                     )}
 
                     <MapZoomHandler setZoomLevel={setZoomLevel} />
-                    <MapClickHandler setClickPosition={setClickPosition} />
+                    <MapClickHandler setClickPosition={setClickPosition} setSunTimes={setSunTimes}/>
 
                     {clickPosition && (
                         <Marker position={clickPosition} icon={MarkerIcon} eventHandlers={{ click: handleMarkerClick }}>
