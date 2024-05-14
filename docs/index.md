@@ -19,8 +19,9 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
     - [Layer](#layer)
     - [Mondphasen](#mond)
     - [Popup](#popup)
-- [Architektur](#architektur)
+- [Architektur Backend](#backend)
     - [Backend](#backend)
+- [Architektur Frontend](#frontend)
     - [Frontend](#frontend)
 - [Incoming Features](#features)
 - [Contribution](#contribution)
@@ -80,34 +81,31 @@ Wird auf die Positionsnadel geklickt, zeigt ein Popup Informationen zum gewählt
 Wenn ein Standort von Interesse ist, kann er über Nacht überwacht werden. Durch Klicken auf "ORT ÜBERWACHEN" öffnet sich ein Eingabefenster, in dem eine E-Mail-Adresse für Benachrichtigungen eingegeben werden kann. Nach Eingabe der E-Mail-Adresse wird eine Bestätigung an diese Adresse gesendet. Diese Bestätigung enthält aktuelle Wetterinformationen und ein Hemisphärenbild des Standorts. Diese Funktion ist nur für eine Nacht aktiv.
 ![StarryEyes Ort überwachen](images/Ueberwachen.png)
 
-## Architektur
-<a id=archtitektur></a>
-
-### Backend
+## Architektur Backend
 <a id=backend></a>
 
-#### API
+### API
 Um aktuelle Wetterinformationen anzeigen zu können wird eine Wetter-API benötigt. Dazu wird die API von Open-Meteo verwendet:
 
 [https://open-meteo.com/](https://open-meteo.com/)
 
 Es werden die Wolkenabdeckungen auf tiefer, mittlerer und hoher Höhe bezogen, sowie das aktuelle Wetter (z.B. "Regen").
 
-#### Berechnung Sonnenstand
+### Berechnung Sonnenstand
 Der Sonnenstand wird auf zwei verschiedene Arten berechnet:
 - Theoretisch: Sonnenuntergang/-aufgang hinter dem Horizont. Dazu wird die 'Pyephem'-Bibliothek von Brandon Rhodes verwendet: [Pyephem](https://github.com/brandon-rhodes/pyephem)
 - Im Gelände: Sonnenuntergang/-aufgang hinter dem Gelände. Dies wird mit der 'tppss'-Bibliothek von gvellut berechnet: [tppss](https://github.com/gvellut/tppss)
 
 Diese beiden Methoden sind im Backend in einer Funktion verbaut die im Frontend als Rest-API aufgerufen werden kann.
 
-#### Email Benachrichtigung
+### Email Benachrichtigung
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-#### Geoserver
+### Geoserver
 
 Beschrieb Geoserver
 
-### Frontend
+## Architektur Frontend
 <a id=frontend></a>
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
