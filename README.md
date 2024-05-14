@@ -56,27 +56,27 @@ conda activate starryeyes
 pip install -r requirements.txt
 ```
 2. Die App benötigt eine Email-Adresse um Bestätigungsemails versenden zu können.
-Die Credentials (Adresse & Passwort) zu der E-MAil sind in einer lokalen config-Datei gespeichert. Aus Sicherheitsgründen ist nur eine Vorlage zu dieser Datei abgelegt. Die  Vorlage ist hier abgelegt: `backend/config_template`. 
+Die Credentials (Adresse & Passwort) zu der E-MAil sind in einer lokalen config-Datei gespeichert. Aus Sicherheitsgründen ist nur eine Vorlage zu dieser Datei abgelegt. Die  Vorlage ist hier abgelegt: `backend/config_template.yaml`. 
 
-- Für die Credentials der Starry-Eyes Email bitte [FredrikLennstroem](https://github.com/FredrikLennstroem) kontaktieren.
-
-- Falls ein eigene Email verwendet werden soll, geht dies am einfachsten mit GMAIL. Die nachfolgenden Links helfen da weiter:
+    - Für die Credentials der Starry-Eyes Email bitte [FredrikLennstroem](https://github.com/FredrikLennstroem) kontaktieren.
     
-    Generelle Vorgehensweise: [Sending An Email Using Python](https://bc-robotics.com/tutorials/sending-email-using-python-raspberry-pi/)
+    - Falls ein eigene Email verwendet werden soll, geht dies am einfachsten mit GMAIL. Die nachfolgenden Links helfen da weiter:
+        
+        Generelle Vorgehensweise: [Sending An Email Using Python](https://bc-robotics.com/tutorials/sending-email-using-python-raspberry-pi/)
+        
+        Detailliertere Vorgehensweise für IMAP-Konfiguration: [Configure for Google Workplace with Two Factor Authentication (2FA)](https://help.warmupinbox.com/en/articles/4934806-configure-for-google-workplace-with-two-factor-authentication-2fa)
     
-    Detailliertere Vorgehensweise für IMAP-Konfiguration: [Configure for Google Workplace with Two Factor Authentication (2FA)](https://help.warmupinbox.com/en/articles/4934806-configure-for-google-workplace-with-two-factor-authentication-2fa)
-
-    Anschliessend die Yaml-Datei mit dem eigenen GMAIL_USERNAME und GMAIL_PASSWORD ergänzen. Das GMAIL_PASSWORD ist das generierte "APP-Password" von GMAIL und *nicht* das Passwort für den Google-Account.
-
-    Aufbau von Yaml-datei:
-    ```yaml
-    SMTP_SERVER: smtp.gmail.com
-    SMTP_PORT: 587 # richtigen Port angeben
-    GMAIL_USERNAME: example@gmail.com
-    GMAIL_PASSWORD: exam plee xamp leex
-    ```
-
-    In der Datei `backend/main.py` die Variabel *config_file* anpassen mit Pfad zur korrekten Datei.
+        Anschliessend die Yaml-Datei mit dem eigenen GMAIL_USERNAME und GMAIL_PASSWORD ergänzen. Das GMAIL_PASSWORD ist das generierte "APP-Password" von GMAIL und *nicht* das Passwort für den Google-Account.
+    
+        Aufbau von Yaml-datei:
+        ```yaml
+        SMTP_SERVER: smtp.gmail.com
+        SMTP_PORT: 587 # richtigen Port angeben
+        GMAIL_USERNAME: example@gmail.com
+        GMAIL_PASSWORD: exam plee xamp leex
+        ```
+    
+        In der Datei `backend/main.py` die Variabel *config_file* anpassen mit Pfad zur korrekten Datei.
 
 3. Backend starten mit *uvicorn*
 
