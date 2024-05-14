@@ -60,7 +60,9 @@ Die Credentials (Adresse & Passwort) zu der E-MAil sind in einer lokalen config-
 - Für die Credentials der Starry-Eyes Email bitte [FredrikLennstroem](https://github.com/FredrikLennstroem) kontaktieren.
 
 - Falls ein eigene Email verwendet werden soll, geht dies am einfachsten mit GMAIL. Die nachfolgenden Links helfen da weiter:
-    Generelle Vorgehensweise: [Sending An Email USing Python](https://bc-robotics.com/tutorials/sending-email-using-python-raspberry-pi/)
+    
+    Generelle Vorgehensweise: [Sending An Email Using Python](https://bc-robotics.com/tutorials/sending-email-using-python-raspberry-pi/)
+    
     Detailliertere Vorgehensweise für IMAP-Konfiguration: [Configure for Google Workplace with Two Factor Authentication (2FA)](https://help.warmupinbox.com/en/articles/4934806-configure-for-google-workplace-with-two-factor-authentication-2fa)
 
     Anschliessend die Yaml-Datei mit dem eigenen GMAIL_USERNAME und GMAIL_PASSWORD ergänzen. Das GMAIL_PASSWORD ist das generierte "APP-Password" von GMAIL und *nicht* das Passwort für den Google-Account.
