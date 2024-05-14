@@ -12,11 +12,8 @@ from datetime import datetime
 from fastapi import Request
 import json
 
-
-PROJ_ROOT = 'C:/_Schule/FHNW/6/GIS/Projekt/Test_api'
-
 #Config-File
-config_file = 'config.yaml'
+config_file = 'config_backend.yaml'
 
 #Email Variabeln---------------------------------------------------------------------------------------
 emailSubject = "Bin öppis am Probiere. -Fredi"
