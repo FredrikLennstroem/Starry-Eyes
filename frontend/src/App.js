@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
 import MenuDrawer from './Drawer/MenuDrawer.js';
-import Map from './Map.js';
+import Map from './map.js';
 import MoonDrawer from './Drawer/MoonDrawer.js';
 
 function roundToQuarterHour(date) {

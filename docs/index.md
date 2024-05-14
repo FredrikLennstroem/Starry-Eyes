@@ -20,9 +20,14 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
     - [Mondphasen](#mond)
     - [Popup](#popup)
 - [Architektur Backend](#backend)
-    - [Backend](#backend)
+    - [API](#api)
+    - [Berechnung Sonnenstand](#sonnenstand)
+    - [Email Benachrichtigung](#email)
+    - [Geoserver](#geoserver)
 - [Architektur Frontend](#frontend)
-    - [Frontend](#frontend)
+    - [Ordnerstruktur](#ordnerstruktur)
+    - [Berechnung Mondphasen](#berechnungmond)
+    - [Design](#design)
 - [Incoming Features](#features)
 - [Contribution](#contribution)
 
@@ -85,13 +90,16 @@ Wenn ein Standort von Interesse ist, kann er über Nacht überwacht werden. Durc
 <a id=backend></a>
 
 ### API
-Um aktuelle Wetterinformationen anzeigen zu können wird eine Wetter-API benötigt. Dazu wird die API von Open-Meteo verwendet:
+<a id=api></a>
 
+Um aktuelle Wetterinformationen anzeigen zu können wird eine Wetter-API benötigt. Dazu wird die API von Open-Meteo verwendet:
 [https://open-meteo.com/](https://open-meteo.com/)
 
 Es werden die Wolkenabdeckungen auf tiefer, mittlerer und hoher Höhe bezogen, sowie das aktuelle Wetter (z.B. "Regen").
 
 ### Berechnung Sonnenstand
+<a id=sonnenstand></a>
+
 Der Sonnenstand wird auf zwei verschiedene Arten berechnet:
 - Theoretisch: Sonnenuntergang/-aufgang hinter dem Horizont. Dazu wird die 'Pyephem'-Bibliothek von Brandon Rhodes verwendet: [Pyephem](https://github.com/brandon-rhodes/pyephem)
 - Im Gelände: Sonnenuntergang/-aufgang hinter dem Gelände. Dies wird mit der 'tppss'-Bibliothek von gvellut berechnet: [tppss](https://github.com/gvellut/tppss)
@@ -99,18 +107,31 @@ Der Sonnenstand wird auf zwei verschiedene Arten berechnet:
 Diese beiden Methoden sind im Backend in einer Funktion verbaut die im Frontend als Rest-API aufgerufen werden kann.
 
 ### Email Benachrichtigung
+<a id=email></a>
+
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 ### Geoserver
+<a id=geoserver></a>
 
-Beschrieb Geoserver
+Über einen lokal aufgesetzten Geoserver werden die zwei einblendbaren Layer publiziert und im Frontend dann als WMS dargestellt. Die Lichtverschmutzung ist eine einzelne GeoTiff Datei, während der Schattenlayer aus 96 GeoTiff Dateien besteht. Diese werden aus einem Orderverzeichnis bezogen und jeweils in der Nacht für den folgenden Tag neu gerechnet. Die Darstellung der Layer wird via *.sld-Datei auf dem Geoserver importiert und als zusätzlicher Parameter vom Frontend bezogen.
 
 ## Architektur Frontend
 <a id=frontend></a>
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-- Ordnerstruktur und Aufbau
-- Design
+### Ordnerstruktur
+<a id=ordnerstruktur></a>
+
+Soll scheinbar eher ins ReadMe, falls es dem Nutzenden hilft, sich schnell im Code zurecht zu finden. Kapitelname: Filestructure
+
+### Berechnung Mondphasen
+<a id=berechnungmond></a>
+
+Die Mondphasen werden mit dem npm Modul [lunarphase-js](https://www.npmjs.com/package/lunarphase-js) berechnet. Die Einteilung in die acht Mondphasen wurde ebenfalls daraus übernommen.
+
+### Design
+<a id=design></a>
+
  - Rückmeldung für erfolgreiches Abonieren, was wird abgefangen?
  - Darstellung und Klassierung der Lichtverschmutzung
  - Farbkonzept
