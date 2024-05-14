@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../App.css';
-import { Typography, Button, Box } from '@mui/material';
+import { Typography, Button, Box, CircularProgress } from '@mui/material';
 import FormDialog from './FormDialog.js';
 import SunsetTerrain from '../Images/Icons/Sonnenuntergang_Gelände.png';
 import SunsetHorizon from '../Images/Icons/Sonnenuntergang_Horizont.png';
@@ -33,15 +33,27 @@ function PopupContent({ clickPosition, showSuccessSnackbar, setShowSuccessSnackb
             </Typography>
                 <Box className="IconBox">
                     <img src={SunsetTerrain} alt="SunsetTerrain" title={'Sonnenuntergang Gelände'} style={{ width: '40px', height: '30px' }}/>
-                    <div style={{ width: '40px', textAlign: 'right' }}>{sunTimes.sunsetTerrain}</div>
+                    {sunTimes.sunsetTerrain === "hh:mm" ? (
+                        <CircularProgress size= '25px' sx={{color:"#334854"}}/>
+                    ) : (
+                        <div style={{ width: '40px', textAlign: 'right' }}>{sunTimes.sunsetTerrain}</div> 
+                    )}
                 </Box>
                 <Box className="IconBox">
                     <img src={SunsetHorizon} alt="SunsetHorizon" title={'Sonnenuntergang Horizont'} style={{ width: '40px', height: '30px' }}/>
-                    <div style={{ width: '40px', textAlign: 'right' }}>{sunTimes.sunsetHorizon}</div>
+                    {sunTimes.sunsetHorizon === "hh:mm" ? (
+                        <CircularProgress size= '25px' sx={{color:"#334854"}}/>
+                    ) : (
+                        <div style={{ width: '40px', textAlign: 'right' }}>{sunTimes.sunsetHorizon}</div>
+                    )}
                 </Box>
                 <Box className="IconBox">
                     <img src={SunriseHorizon} alt="SunriseHorizon" title={'Sonnenaufgang Horizont'} style={{ width: '40px', height: '30px' }}/>
-                    <div style={{ width: '40px', textAlign: 'right' }}>{sunTimes.sunriseHorizon}</div>
+                    {sunTimes.sunriseHorizon === "hh:mm" ? (
+                        <CircularProgress size= '25px' sx={{color:"#334854"}}/>
+                    ) : (
+                        <div style={{ width: '40px', textAlign: 'right' }}>{sunTimes.sunriseHorizon}</div>
+                    )}
                 </Box>
                 <Box className="IconBox">
                     <img src={SunriseTerrain} alt="SunriseTerrain" title={'Sonnenaufgang Gelände'} style={{ width: '40px', height: '30px' }}/>
