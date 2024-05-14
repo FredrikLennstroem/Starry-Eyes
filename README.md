@@ -41,6 +41,7 @@ npm install
 # npm start ist in package.json definiert
 npm start
 ```
+### Ordnerstruktur Frontend
 
 ## Backend installieren
 ### API und Email-service
@@ -57,7 +58,7 @@ conda activate starryeyes
 # Packages mit pip installieren:
 pip install -r requirements.txt
 ```
-**2. Einrichten von E-Mail-Dienst** 
+**2. Einrichten vom E-Mail-Dienst** 
 
 Die App benötigt eine Email-Adresse um Bestätigungsemails versenden zu können.
 Die Credentials (Adresse & Passwort) zu der E-MAil sind in einer lokalen config-Datei gespeichert. Aus Sicherheitsgründen ist nur eine Vorlage zu dieser Datei abgelegt. Die  Vorlage ist hier abgelegt: `backend/config_template.yaml`. 
@@ -69,6 +70,7 @@ Die Credentials (Adresse & Passwort) zu der E-MAil sind in einer lokalen config-
 
     **Detailliertere Vorgehensweise für die IMAP-Konfiguration:** [Configure for Google Workplace with Two Factor Authentication (2FA)](https://help.warmupinbox.com/en/articles/4934806-configure-for-google-workplace-with-two-factor-authentication-2fa)
 - Anschliessend die Yaml-Datei mit dem eigenen GMAIL_USERNAME und GMAIL_PASSWORD ergänzen. Das GMAIL_PASSWORD ist das generierte "APP-Password" von Gmail und *nicht* das Passwort für den Google-Account.
+
     **Aufbau von der Yaml-Datei:**
     ```yaml
     SMTP_SERVER: smtp.gmail.com
@@ -88,3 +90,5 @@ conda activate starryeyes
 uvicorn main:app --reload
 ```
 ### Geoserver
+
+### Ordnerstruktur Backend
