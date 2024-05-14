@@ -1,5 +1,5 @@
-# Starry-Eyes
-Server Client Projekt für eine Geodateninfrastruktur Webportal im Rahmen des Moduls 4230
+# StarryEyes
+Server Client Projekt für eine Geodateninfrastruktur Webportal im Rahmen des Moduls 4230.
 
 - **Frontend:** React.js, Leaflet und MUI
 - **Backend:** FastAPI, GeoServer
@@ -29,7 +29,7 @@ git clone https://github.com/FredrikLennstroem/Starry-Eyes.git
 Füge die Git web URL `https://github.com/FredrikLennstroem/Starry-Eyes.git` ein und bestätige die Eingabe mit Enter. Wähle einen Ordner in welchen das Repository *geklont* werden soll.
 
 ## Frontend installieren
-Öffne ein Terminal (Command Prompt in VS Code) und wechsle in den *client* Ordner in diesem Projekt
+Öffne ein Terminal (Command Prompt in VS Code) und wechsle in den *frontend* Ordner in diesem Projekt:
 
 ``` shell
 cd frontend
@@ -91,4 +91,14 @@ uvicorn main:app --reload
 ```
 ### Geoserver
 
-### Ordnerstruktur Backend
+### Struktur Backend
+- ./backend
+    - /db_handling
+        - Pythonscripts zum Handling von Datenbanken
+        - Zukünftig: Handler-script für "Ort Überwachen"
+    - /img
+        - Resourcen für das Backend (Bilder im Email)
+    - /`starryeyes.py`
+        - Funktionen für das Backend und API
+    - /`main.py`
+        - API-Script
