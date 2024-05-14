@@ -13,11 +13,11 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
 ## Inhaltsverzeichnis
 - [Die App](#beschrieb)   
 - [Anwendung](#funktionen)
+    - [Video](#video)
     - [Hintergrundkarte](#karte)
     - [Layer](#layer)
     - [Mondphasen](#mond)
     - [Popup](#popup)
-- [Video](#video)
 - [Architektur](#architektur)
     - [Backend](#backend)
     - [Frontend](#frontend)
@@ -37,11 +37,15 @@ Installation der APP erfolgt mit der Anleitung im github repository:
 ## Anwendung
 <a id=funktionen></a>
 
+### Video
+<a id=video></a>
+
+Video incoming
+
 ### Hintergrundkarte
 <a id=karte></a>
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-- Hintergrundkarte Im Hintergrund ist die Winterlandeskarte der Swisstopo (Bundesamt für Landestopografie swisstopo, 2024a.)
+- Im Hintergrund sind zwei unterschiedliche Karten der Swisstopo, je nach Zoomstufe. Bis Zoomlevel 15 ist die farbige Pixelkarte sichtbar. Diese bietet dem Nutzenden gute Anhaltspunkte um sich zu orientieren. Ab Zoomlevel 16 wird dannn die swissTLM-Map (farbig) dargestellt. Diese ist vorallem für den Massstabsbereich 1:10'000 - 1:5'000 geeignet und zeigt eine exaktere Darstellung des Geländes. So ist es möglich, den gewünschten Standort exakter abzusetzen.
 
 ### Layer auswählen
 <a id=layer></a>
@@ -66,11 +70,6 @@ Wird auf die Positionsnadel geklickt, zeigt ein Popup Informationen zum gewählt
 Wenn ein Standort von Interesse ist, kann er über Nacht überwacht werden. Durch Klicken auf "ORT ÜBERWACHEN" öffnet sich ein Eingabefenster, in dem eine E-Mail-Adresse für Benachrichtigungen eingegeben werden kann. Nach Eingabe der E-Mail-Adresse wird eine Bestätigung an diese Adresse gesendet. Diese Bestätigung enthält aktuelle Wetterinformationen und ein Hemisphärenbild des Standorts. Diese Funktion ist nur für eine Nacht aktiv.
 ![StarryEyes Ort überwachen](images/Ueberwachen.png)
 
-## Video
-<a id=video></a>
-
-Video
-
 ## Architektur
 <a id=archtitektur></a>
 
@@ -94,16 +93,29 @@ Diese beiden Methoden sind im Backend in einer Funktion verbaut die im Frontend 
 #### Email Benachrichtigung
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
+#### Geoserver
+
+Beschrieb Geoserver
+
 ### Frontend
 <a id=frontend></a>
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
+- Ordnerstruktur und Aufbau
+- Design
+
 ## Upcoming Features
 <a id=features></a>
 
-- [x] #739
-- [ ] https://github.com/octo-org/octo-repo/issues/740
-- [ ] Add delight to the experience when all tasks are complete :tada:
+- [x] Feature 1
+- [ ] Feature 2
+- [ ] Feature 3
+- [ ] Berücksichtigung der Lichtverschmutzung zur Einschätzung der Sternensichtbarkeit
+- [ ] Suchfunktion gemäss MockUp
+- [ ] Luftbilder als zusätzlichen Layer
+- [ ] Live Hemisphärenbild mit Sternenbilder?
+- [ ] Live Positionserfassung
+- [ ] Mobileversion
 
 ### Panoramabild
 ![StarryEyes Konzept Hemisphärenbild](images/Hemisphärenbild.png)
