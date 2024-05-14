@@ -47,12 +47,12 @@ Installation der APP erfolgt mit der Anleitung im github repository:
 ### Video
 <a id=video></a>
 
-Video incoming
+Das Video gibt Ihnen eine kurzen Einblick in die Funktionalität dieser App:
 
 ### Willkommenstext
 <a id=willkommenstext></a>
 
-Beim ersten Öffnen der App erhält man eine kurze Erklärung eingeblendet (siehe Abbildung). Durch bestätigen der Checkbox wird diese dem Nutzenden beim erneuten zugreifen auf die App nicht mehr angezeigt. Zu Testzwecken kann dieser Entscheid durch klicken auf das StarryEyes Logo rückgängig gemacht werden.
+Beim ersten Öffnen der App erhält man eine kurze Erklärung eingeblendet. Durch bestätigen der Checkbox wird diese dem Nutzenden beim erneuten zugreifen auf die App nicht mehr angezeigt. Zu Testzwecken kann dieser Entscheid durch klicken auf das StarryEyes Logo rückgängig gemacht werden.
 
 ### Hintergrundkarte
 <a id=karte></a>
@@ -119,6 +119,7 @@ Diese beiden Methoden sind im Backend in einer Funktion verbaut die im Frontend 
 ## Architektur Frontend
 <a id=frontend></a>
 
+
 ### Ordnerstruktur
 <a id=ordnerstruktur></a>
 
@@ -132,27 +133,50 @@ Die Mondphasen werden mit dem npm Modul [lunarphase-js](https://www.npmjs.com/pa
 ### Design
 <a id=design></a>
 
- - Rückmeldung für erfolgreiches Abonieren, was wird abgefangen?
- - Darstellung und Klassierung der Lichtverschmutzung
- - Farbkonzept
- - Symbolkonzept
- - MuiKonzept
- - Hovertexte und Alternativtexte von Icons und Buttons
+#### Lichtverschmutzungskarte
+
+![Lichtverschmutzung](images/Design_Lichtverschmutzung.png)
+
+Die Daten der Lichtverschmutzung wurden als Tiff von [Lightpollutionmap.info](https://www.lightpollutionmap.info/) bezogen. Diese werden jährlich aktualisiert. Die Werte reichen von 0 bis xx magnitude/arcsec<sup>2</sup> welche die Flächenhelligkeit beschreibt. Diese Werte können in Klassen aufgeteilt werden, welche die Sichtbarkeit der Sterne beschreiben ([Bortle Dark Sky Scale](https://www.handprint.com/ASTRO/bortle.html)). Aufgrund dieser Einschätzung haben wir uns entschieden vier für den Nutzenden unserere App relevante Klassen zu erstellen:
+- <0.5:&ensp;&nbsp;keine Lichtverschmutzung
+- 0.5-1:&ensp;wenig Lichtverschmutzung
+- 1-9:&emsp;&nbsp;hohe Lichtverschmutzung
+- \>9:&emsp;&ensp;starke Lichtverschmutzung
+
+#### Farb- und Symbolkonzept
+
+Die Farbe <span style="color:#334854">#334854</span> wurde in der ganzen App als Hauptakzentfarbe verwendet und tritt immer wieder auf. Der dunkle Grau-Ton mit Blaustich soll die ganze Seite farblich umrahmen.
+Als Sekundärfarbe wurde dann noch ein etwas hellerer Grau-Blau-Ton <span style="color:#667784">#667784</span> gewählt. Dieser wurde verwendet um das Hovern auf Buttons und Icons darzustellen und so dem Nutzenden ein Feedback zu geben.
+
+![Designkonzept](images/Design_Konzept.png)
+
+Buttons, Checkboxen, Icons, etc. stammen alle aus der [MUI-Bibliothek](https://mui.com/) und wurden entsprechend dem Farbkonzept angepasst. So konnte einfach eine einheitliche Seite aufgebaut werden. Die Elemente wurden mit Ecken und ohne Abrundungen versehen. Auch so entstand ein gleichmässiges Erscheinungsbild.
+
+![Symbolerklärungen](images/Design_Symbolerklärungen.png)
+
+Alle verwendeten Symbole wurden selbst designt, sodass ein konsistentes Erscheinungsbild entsteht. Es wurde darauf geachtet, dass sie ins Farbkonzept passen und dass sie möglichst intuitiv zu verstehen sind. 
+
+Icons, Symbole und Bilder wurden mit Hovertexten versehen, die dem Nutzenden eine schnelle und kurze Erklärung dazu abgeben. Wo möglich wurde zudem ein Alternativtext vergeben. Dieser wird angezeigt, wenn ein Element nicht geladen werden kann oder er wird erkannt, wenn die Seite mit einem Leseprogramm vorgelesen wird.
+
+#### Feedbackfeatures
+
+Es ist wichtig dem Nutzenden Rückmeldungen auf seine interaktionen zu geben. So wurde darauf geachtet, dass die erfolgreiche Übermittlung der Emailadresse abgefangen wird und ein kurzes Feedback auslöst, welches nach kurzer Zeit wieder verschwindet.
+Auch das Abwarten der Übermittlung wird mit einem Ladekreis auf dem Button dargestellt.
+Beim Abfragen der Standortinformation im PopUp des Markes kann es auch einige Sekunden dauern, bis die API die aktuellen Daten abgerufen hat. Auch diese Zeit wurde mit einem Ladekreis überbrückt.
 
 ## Upcoming Features
 <a id=features></a>
 
-- [x] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-- [ ] Berücksichtigung der Lichtverschmutzung zur Einschätzung der Sternensichtbarkeit
-- [ ] Suchfunktion gemäss MockUp
-- [ ] Luftbilder als zusätzlichen Layer
-- [ ] Live Hemisphärenbild mit Sternenbilder?
-- [ ] Live Positionserfassung
-- [ ] Mobileversion
+[x] Berechnung der Wolkenabdeckung in Prozent
+[ ] Standortinformationen über Nacht
+[ ] Berücksichtigung der Lichtverschmutzung zur Einschätzung der Sternensichtbarkeit
+[ ] Live Hemisphärenbild
+[ ] Standort Suchfunktion
+[ ] Luftbilder als zusätzlichen Layer
+[ ] Live Positionserfassung
+[ ] Mobileversion
 
-### Panoramabild
+### Hemisphärenbild
 ![StarryEyes Konzept Hemisphärenbild](images/Hemisphärenbild.png)
 
 ## Contribution
@@ -161,6 +185,5 @@ Die Mondphasen werden mit dem npm Modul [lunarphase-js](https://www.npmjs.com/pa
 - Alex Burà, GitHub: [alexbura](https://github.com/alexbura)
 - Fredrik Lennström, GitHub: [FredrikLennstroem](https://github.com/FredrikLennstroem)
 - Silas Haab, GitHub: [SilasHaab](https://github.com/SilasHaab)
-
 
 [Zurück nach oben](#start)
