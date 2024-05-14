@@ -55,7 +55,8 @@ function App({ activeItems, sliderValue, setMenuOpen, MenuOpen }) {
         sunsetHorizon: 'hh:mm',
         sunriseHorizon: 'hh:mm',
         sunriseTerrain: 'hh:mm',
-        sunsetCloud: '--'
+        sunsetCloud: '--',
+        starCloud: '--'
     });
 
     const handleMarkerClick = () => {
