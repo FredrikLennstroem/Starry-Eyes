@@ -1,4 +1,4 @@
-# FS24_GIS
+# Starry-Eyes
 Server Client Projekt für eine Geodateninfrastruktur Webportal im Rahmen des Moduls 4230
 
 - **Frontend:** React.js, Leaflet und MUI
@@ -6,7 +6,7 @@ Server Client Projekt für eine Geodateninfrastruktur Webportal im Rahmen des Mo
 
 GitHub Pages: https://fredriklennstroem.github.io/Starry-Eyes/
 
-Getestet mit Node version 18.18.0, leaflet 1.9.4, python 3.9
+Getestet mit Node version 18.18.0 und Python 3.9
 
 ## Requirements
 
@@ -32,7 +32,7 @@ Füge die Git web URL `https://github.com/FredrikLennstroem/Starry-Eyes.git` ein
 Öffne ein Terminal (Command Prompt in VS Code) und wechsle in den *client* Ordner in diesem Projekt
 
 ``` shell
-cd client
+cd frontend
 # aktiviere node.js (falls nvm genutzt wird) 
 # nvm use 18.18.0
 # install all the node.js dependencies
@@ -47,12 +47,13 @@ npm start
 1. Im Terminal zum *backend* Ordner wechseln und dort mit der `requirements.txt` Datei eine virtuelle Python-Umgebung aufsetzen:
 
 ```shell
-# Requirements
 cd backend
-# Füge conda-forge den als Channel in conda hinzu, da sonst nicht alle Pakete installiert werden können.
-conda config --add channels conda-forge
-# Erstelle ein neues Conda Environment und füge die Python Packges requirements.txt hinzu, requirements.txt befindet sich im Ordner server/app
-conda create --name starryeyes python=3.9 --file requirements.txt
+# Erstelle ein neues Conda Environment:
+conda create --name starryeyes python=3.9 -y
+# Environment aktivieren:
+conda activate starryeyes 
+# Packages mit pip installieren:
+pip install -r requirements.txt
 ```
 2. Die App benötigt eine Email-Adresse um Bestätigungsemails versenden zu können.
 Die Credentials (Adresse & Passwort) zu der E-MAil sind in einer lokalen config-Datei gespeichert. Aus Sicherheitsgründen ist nur eine Vorlage zu dieser Datei abgelegt. Die  Vorlage ist hier abgelegt: `backend/config_template`. 
@@ -67,12 +68,15 @@ Die Credentials (Adresse & Passwort) zu der E-MAil sind in einer lokalen config-
 
     Anschliessend die Yaml-Datei mit dem eigenen GMAIL_USERNAME und GMAIL_PASSWORD ergänzen. Das GMAIL_PASSWORD ist das generierte "APP-Password" von GMAIL und *nicht* das Passwort für den Google-Account.
 
-```yaml
-SMTP_SERVER: smtp.gmail.com
-SMTP_PORT: 587 # richtigen Port angeben
-GMAIL_USERNAME: example@gmail.com
-GMAIL_PASSWORD: exam plee xamp leex
-```
+    Aufbau von Yaml-datei:
+    ```yaml
+    SMTP_SERVER: smtp.gmail.com
+    SMTP_PORT: 587 # richtigen Port angeben
+    GMAIL_USERNAME: example@gmail.com
+    GMAIL_PASSWORD: exam plee xamp leex
+    ```
+
+    In der Datei `backend/main.py` die Variabel *config_file* anpassen mit Pfad zur korrekten Datei.
 
 3. Backend starten mit *uvicorn*
 
