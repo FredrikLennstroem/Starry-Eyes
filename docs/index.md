@@ -146,7 +146,7 @@ Die Daten der Lichtverschmutzung wurden als Tiff von [Lightpollutionmap.info](ht
 #### Farb- und Symbolkonzept
 
 Die Farbe <span style="color:#334854">#334854</span> wurde in der ganzen App als Hauptakzentfarbe verwendet und tritt immer wieder auf. Der dunkle Grau-Ton mit Blaustich soll die ganze Seite farblich umrahmen.
-Als Sekundärfarbe wurde dann noch ein etwas hellerer Grau-Blau-Ton <span style="color:#FF0000">#667784</span> gewählt. Dieser wurde verwendet um das Hovern auf Buttons und Icons darzustellen und so dem Nutzenden ein Feedback zu geben.
+Als Sekundärfarbe wurde dann noch ein etwas hellerer Grau-Blau-Ton <span style="color:#667784">#667784</span> gewählt. Dieser wurde verwendet um das Hovern auf Buttons und Icons darzustellen und so dem Nutzenden ein Feedback zu geben.
 
 ![Designkonzept](images/Design_Konzept.png)
 
@@ -160,9 +160,9 @@ Icons, Symbole und Bilder wurden mit Hovertexten versehen, die dem Nutzenden ein
 
 #### Feedbackfeatures
 
-Es ist wichtig dem Nutzenden Rückmeldungen auf seine interaktionen zu geben. So wurde darauf geachtet, dass die erfolgreiche Übermittlung der Emailadresse abgefangen wird und ein kurzes Feedback auslöst, welches nach kurzer Zeit wieder verschwindet. Auch das Abwarten
-
- - Rückmeldung für erfolgreiches Abonnieren und das laden der Daten, was wird abgefangen?
+Es ist wichtig dem Nutzenden Rückmeldungen auf seine interaktionen zu geben. So wurde darauf geachtet, dass die erfolgreiche Übermittlung der Emailadresse abgefangen wird und ein kurzes Feedback auslöst, welches nach kurzer Zeit wieder verschwindet.
+Auch das Abwarten der Übermittlung wird mit einem Ladekreis auf dem Button dargestellt.
+Beim Abfragen der Standortinformation im PopUp des Markes kann es auch einige Sekunden dauern, bis die API die aktuellen Daten abgerufen hat. Auch diese Zeit wurde mit einem Ladekreis überbrückt.
 
 ## Upcoming Features
 <a id=features></a>
