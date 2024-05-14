@@ -16,7 +16,7 @@ import json
 config_file = 'config_backend.yaml'
 
 #Email Variabeln---------------------------------------------------------------------------------------
-emailSubject = "Bin öppis am Probiere. -Fredi"
+emailSubject = "Standortüberwachung Starry-Eyes"
 logo_path = 'img/email-banner.png'
 abdeckung_path = 'img/abdeckung.jpg'
 #------------------------------------------------------------------------------------------------------
