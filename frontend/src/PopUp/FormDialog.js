@@ -80,7 +80,7 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
             E/N: {lv95Coords ? parseFloat(lv95Coords.easting).toFixed(3) : 'Loading...'}
             /{lv95Coords ? parseFloat(lv95Coords.northing).toFixed(3) : 'Loading...'}
           </DialogContentText>
-          Um diesen Standort über Nacht zu überwachen, geben Sie bitte Ihre E-Mail-Adresse ein.
+          Um detaillierte Informationen über diesen Standort zu erhalten und diesen während der Nacht zu überwachen, geben Sie bitte Ihre Email-Adresse ein. Die Email-Adresse wird am folgenden Tag wieder gelöscht.
           <TextField
             autoFocus
             required

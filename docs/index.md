@@ -19,6 +19,7 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
     - [Layer](#layer)
     - [Mondphasen](#mond)
     - [Popup](#popup)
+    - [Standort überwachen](#standortueberwachen)
 - [Architektur Backend](#backend)
     - [API](#api)
     - [Berechnung Sonnenstand](#sonnenstand)
@@ -27,7 +28,9 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
 - [Architektur Frontend](#frontend)
     - [Ordnerstruktur](#ordnerstruktur)
     - [Berechnung Mondphasen](#berechnungmond)
-    - [Design](#design)
+    - [Lichtverschmutzungskarte](#lichtverschmutzungskarte)
+    - [Farb- und Symbolkonzept](#farbsymbolkonzept)
+    - [Feedback Features](#feedback-features)
 - [Incoming Features](#features)
 - [Contribution](#contribution)
 
@@ -54,6 +57,8 @@ Das Video gibt Ihnen eine kurzen Einblick in die Funktionalität dieser App:
 
 Beim ersten Öffnen der App erhält man eine kurze Erklärung eingeblendet. Durch bestätigen der Checkbox wird diese dem Nutzenden beim erneuten zugreifen auf die App nicht mehr angezeigt. Zu Testzwecken kann dieser Entscheid durch klicken auf das StarryEyes Logo rückgängig gemacht werden.
 
+![Willkommenstext](images/Anwendung_Willkommen.png)
+
 ### Hintergrundkarte
 <a id=karte></a>
 
@@ -72,8 +77,11 @@ Das Menuicon Oben Links bietet die Möglichkeit, folgende zusätzliche Layer ein
 
 Am rechten Rand findet sich ein Mondsymbol. Dieses öffnet die Information zu den Mondphasen der kommenden drei Nächte. Die Erklärung zu den Mondphasensymbolen und der Link zur verwendeten Klassierung, findet der Nutzende in der [Symbolerklärung](#layer).
 
+![Mondphasen](images/Anwendung_Mondphase.png)
+
+
 ### Popup
-<a id=popup>
+<a id=popup></a>
 
 Wird auf die Positionsnadel geklickt, zeigt ein Popup Informationen zum gewählten Standort an:
 - Sonnenzeiten
@@ -83,8 +91,14 @@ Wird auf die Positionsnadel geklickt, zeigt ein Popup Informationen zum gewählt
     - Tag
     - Nacht
 
+![Popup](images/Anwendung_Popup.png)
+
+### Standort überwachen
+<a id=standortueberwachen></a>
+
 Wenn ein Standort von Interesse ist, kann er über Nacht überwacht werden. Durch Klicken auf "ORT ÜBERWACHEN" öffnet sich ein Eingabefenster, in dem eine E-Mail-Adresse für Benachrichtigungen eingegeben werden kann. Nach Eingabe der E-Mail-Adresse wird eine Bestätigung an diese Adresse gesendet. Diese Bestätigung enthält aktuelle Wetterinformationen und ein Hemisphärenbild des Standorts. Diese Funktion ist nur für eine Nacht aktiv.
-![StarryEyes Ort überwachen](images/Ueberwachen.png)
+
+![Standort überwachen](images/Anwendung_Ueberwachen.png)
 
 ## Architektur Backend
 <a id=backend></a>
@@ -130,10 +144,8 @@ Soll scheinbar eher ins ReadMe, falls es dem Nutzenden hilft, sich schnell im Co
 
 Die Mondphasen werden mit dem npm Modul [lunarphase-js](https://www.npmjs.com/package/lunarphase-js) berechnet. Die Einteilung in die acht Mondphasen wurde ebenfalls daraus übernommen.
 
-### Design
-<a id=design></a>
-
-#### Lichtverschmutzungskarte
+### Lichtverschmutzungskarte
+<a id=lichtverschmutzungskarte></a>
 
 ![Lichtverschmutzung](images/Design_Lichtverschmutzung.png)
 
@@ -143,7 +155,8 @@ Die Daten der Lichtverschmutzung wurden als Tiff von [Lightpollutionmap.info](ht
 - 1-9:&emsp;&nbsp;hohe Lichtverschmutzung
 - \>9:&emsp;&ensp;starke Lichtverschmutzung
 
-#### Farb- und Symbolkonzept
+### Farb- und Symbolkonzept
+<a id=farbsymbolkonzept></a>
 
 Die Farbe <span style="color:#334854">#334854</span> wurde in der ganzen App als Hauptakzentfarbe verwendet und tritt immer wieder auf. Der dunkle Grau-Ton mit Blaustich soll die ganze Seite farblich umrahmen.
 Als Sekundärfarbe wurde dann noch ein etwas hellerer Grau-Blau-Ton <span style="color:#667784">#667784</span> gewählt. Dieser wurde verwendet um das Hovern auf Buttons und Icons darzustellen und so dem Nutzenden ein Feedback zu geben.
@@ -154,21 +167,23 @@ Buttons, Checkboxen, Icons, etc. stammen alle aus der [MUI-Bibliothek](https://m
 
 ![Symbolerklärungen](images/Design_Symbolerklärungen.png)
 
-Alle verwendeten Symbole wurden selbst designt, sodass ein konsistentes Erscheinungsbild entsteht. Es wurde darauf geachtet, dass sie ins Farbkonzept passen und dass sie möglichst intuitiv zu verstehen sind. 
+Alle verwendeten Symbole wurden selbst designt, sodass ein konsistentes Erscheinungsbild entsteht. Es wurde darauf geachtet, dass sie ins Farbkonzept passen und dass sie möglichst intuitiv zu verstehen sind.
 
 Icons, Symbole und Bilder wurden mit Hovertexten versehen, die dem Nutzenden eine schnelle und kurze Erklärung dazu abgeben. Wo möglich wurde zudem ein Alternativtext vergeben. Dieser wird angezeigt, wenn ein Element nicht geladen werden kann oder er wird erkannt, wenn die Seite mit einem Leseprogramm vorgelesen wird.
 
-#### Feedbackfeatures
+### Feedback Features
+<a id=feedbackfeatures></a>
 
-Es ist wichtig dem Nutzenden Rückmeldungen auf seine interaktionen zu geben. So wurde darauf geachtet, dass die erfolgreiche Übermittlung der Emailadresse abgefangen wird und ein kurzes Feedback auslöst, welches nach kurzer Zeit wieder verschwindet.
-Auch das Abwarten der Übermittlung wird mit einem Ladekreis auf dem Button dargestellt.
-Beim Abfragen der Standortinformation im PopUp des Markes kann es auch einige Sekunden dauern, bis die API die aktuellen Daten abgerufen hat. Auch diese Zeit wurde mit einem Ladekreis überbrückt.
+![Feedback Features](images/Design_Feedback.png)
+
+Beim Abfragen der Standortinformation im PopUp des Markes kann es einige Sekunden dauern, bis die API die aktuellen Daten abgerufen hat. Diese Zeit wurde mit Ladekreisen überbrückt. </br>
+Es ist wichtig dem Nutzenden Rückmeldungen auf seine Interaktionen zu geben. Also wurde das Abwarten der Übermittlung der Emailadresse mit einem Ladekreis auf dem Button dargestellt.Die erfolgreiche Übermittlung wurde ebenfalls abgefangen um ein kurzes Feedback auszulösen, welches nach kurzer Zeit wieder verschwindet.
 
 ## Upcoming Features
 <a id=features></a>
 
 - [x] Berechnung der Wolkenabdeckung in Prozent
-- [ ] Standortinformationen über Nacht
+- [ ] Standortinformationen über Nacht überwachen
 - [ ] Berücksichtigung der Lichtverschmutzung zur Einschätzung der Sternensichtbarkeit
 - [ ] Live Hemisphärenbild
 - [ ] Standort Suchfunktion
