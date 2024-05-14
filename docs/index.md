@@ -47,7 +47,7 @@ Installation der APP erfolgt mit der Anleitung im github repository:
 ### Video
 <a id=video></a>
 
-Video incoming
+Das Video gibt Ihnen eine kurzen Einblick in die Funktionalität dieser App:
 
 ### Willkommenstext
 <a id=willkommenstext></a>
@@ -138,14 +138,14 @@ Die Mondphasen werden mit dem npm Modul [lunarphase-js](https://www.npmjs.com/pa
 ![Lichtverschmutzung](images/Design_Lichtverschmutzung.png)
 
 Die Daten der Lichtverschmutzung wurden als Tiff von [Lightpollutionmap.info](https://www.lightpollutionmap.info/) bezogen. Diese werden jährlich aktualisiert. Die Werte reichen von 0 bis xx magnitude/arcsec<sup>2</sup> welche die Flächenhelligkeit beschreibt. Diese Werte können in Klassen aufgeteilt werden, welche die Sichtbarkeit der Sterne beschreiben ([Bortle Dark Sky Scale](https://www.handprint.com/ASTRO/bortle.html)). Aufgrund dieser Einschätzung haben wir uns entschieden vier für den Nutzenden unserere App relevante Klassen zu erstellen:
-- <0.5: keine Lichtverschmutzung
-- 0.5-1: wenig Lichtverschmutzung
-- 1-9:  hohe Lichtverschmutzung
-- \>9:  starke Lichtverschmutzung
+- <0.5:&ensp;&nbsp;keine Lichtverschmutzung
+- 0.5-1:&ensp;wenig Lichtverschmutzung
+- 1-9:&emsp;&nbsp;hohe Lichtverschmutzung
+- \>9:&emsp;&ensp;starke Lichtverschmutzung
 
 #### Farb- und Symbolkonzept
 
-Die Farbe `#334854` wurde in der ganzen App als Hauptakzentfarbe verwendet und tritt immer wieder auf. Der dunkle Grau-Ton mit Blaustich soll die ganze Seite farblich umrahmen.
+Die Farbe <span style="color:#334854">`#334854`</span> wurde in der ganzen App als Hauptakzentfarbe verwendet und tritt immer wieder auf. Der dunkle Grau-Ton mit Blaustich soll die ganze Seite farblich umrahmen.
 Als Sekundärfarbe wurde dann noch ein etwas hellerer Grau-Blau-Ton `#667784` gewählt. Dieser wurde verwendet um das Hovern auf Buttons und Icons darzustellen und so dem Nutzenden ein Feedback zu geben.
 
 ![Designkonzept](images/Design_Konzept.png)
