@@ -81,6 +81,9 @@ async def email(request: Request):
         cloud_html=cloud_html
         )
 
+    ort = str((lat,long))
+    se.aboDB(email=email_recipient, ort=ort) #DB einfüllen mit ABO-Daten
+
     #EMAIL schicken
     se.send_email(sender=config['GMAIL_USERNAME'],
                         pw=config['GMAIL_PASSWORD'],
