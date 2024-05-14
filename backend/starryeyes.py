@@ -4,6 +4,7 @@ Funktionen Starry-Eyes Backend.
 from datetime import datetime, timedelta
 import subprocess
 import ephem
+import sqlite3
 
 # import für Email
 import smtplib
@@ -247,3 +248,15 @@ class SunSetRise:
         sunrise = self.observer.next_rising(ephem.Sun(), start=self.today)
         sunrise_str = str(ephem.localtime(sunrise))
         return sunrise_str.split(' ')[1][:-10] # -10 für Wert ohne Sekunden, sonst -7
+    
+# Erstellen von DB--------------------------------------------------------------------------------------------
+
+def aboDB(email, ort):
+    conn = sqlite3.connect('abo.db')
+    cursor = conn.cursor()
+    cursor.execute('''CREATE TABLE IF NOT EXISTS abo (
+               abo_id INTEGER PRIMARY KEY AUTOINCREMENT,
+               email TEXT NOT NULL,
+               ort TEXT)''')
+    cursor.execute('INSERT INTO abo (email, ort) VALUES (?,?)', (str(email), str(ort)))
+    conn.commit()

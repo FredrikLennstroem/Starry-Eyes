@@ -81,7 +81,8 @@ function App({ activeItems, sliderValue, setMenuOpen, MenuOpen }) {
                     sunsetHorizon: data.sunset_globe,
                     sunriseHorizon: data.sunrise_globe,
                     sunriseTerrain: data.sunrise_dem,
-                    // sunsetCloud: data.sunset_cloud
+                    sunsetCloud: data.sunset_cloud,
+                    starCloud: data.star_cloud
                 });
             } catch (error) {
                 console.log('Error bei Sonnen-API-Abfrage:', error);

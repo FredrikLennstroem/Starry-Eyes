@@ -106,31 +106,33 @@ async def sun(request: Request):
         print("Input erhalten: ", data_json)
 
         #Wetter-API abfragen
-        # df = se.openweather_hour(lat=lat,long=long,days=2)
+        df = se.openweather_hour(lat=lat,long=long,days=2)
 
-        # print(df)
+        #Berechnung Sternenabdeckung durch Wolken
+        star_cloud = str(round(100 - df['Wolkenbedeckung'].mean(), None))
 
         # Sonnenstand berechnen
         sunsetrise = se.SunSetRise(position=position, dem=DEM)
         sunset_globe = sunsetrise.sunset_globe()
 
         #Berechnung Sonnenuntergang Wolkenbedeckung
-        # zeit_dt = datetime.strptime(sunset_globe, '%H:%M').time() #Wandelt Strinng in Datetime um
-        # timestamp = datetime.combine(datetime.now().date(), zeit_dt) #Timestamp für Filter in dataframe
-        # rounded_timestamp = timestamp.replace(minute=0, second=0) #Rundet Timestamp zur letzten vollen STunde
-        # filtered_df = df[df[1] == rounded_timestamp] #Wetter-dataframe filtern
+        zeit_dt = datetime.strptime(sunset_globe, '%H:%M').time() #Wandelt Strinng in Datetime um
+        timestamp = datetime.combine(datetime.now().date(), zeit_dt) #Timestamp für Filter in dataframe
+        rounded_timestamp = timestamp.replace(minute=0, second=0) #Rundet Timestamp zur letzten vollen Stunde
+        filtered_df = df[df['date'] == rounded_timestamp] #Wetter-dataframe filtern
 
-        # if filtered_df.empty:
-        #     sunset_cloud = "Berechnung nicht möglich."
-        # else:
-        #     sunset_cloud = filtered_df.iloc[0,2]
+        if filtered_df.empty:
+            sunset_cloud = "Berechnung nicht möglich."
+        else:
+            sunset_cloud = str(100 - round(filtered_df.iloc[0,2], None)) # von 100 subtrahieren für Kehrwert, sonst ist es Wolkenabdeckung
 
         sun_data = {
             "sunset_dem": sunsetrise.sunset_dem(),
             "sunrise_dem": sunsetrise.sunrise_dem(),
             "sunset_globe": sunset_globe,
             "sunrise_globe": sunsetrise.sunrise_globe(),
-            # "sunset_cloud": sunset_cloud
+            "sunset_cloud": sunset_cloud,
+            "star_cloud": star_cloud
         }
         return JSONResponse(content=sun_data)
 

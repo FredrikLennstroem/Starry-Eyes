@@ -53,7 +53,7 @@ function PopupContent({ clickPosition, showSuccessSnackbar, setShowSuccessSnackb
                 </Box>
                 <Box className="IconBox">
                     <img src={StarVisibility} alt="StarVisibility" title={'Sichtbarkeit Sterne'} style={{ width: '30px', height: '30px', marginLeft: '5px', marginRight: '5px'  }}/>
-                    <div style={{ width: '40px', textAlign: 'right' }}>100%</div>
+                    <div style={{ width: '40px', textAlign: 'right' }}>{sunTimes.starCloud} %</div>
                 </Box>
             <br/> 
             <Box textAlign={'center'}>
