@@ -129,7 +129,9 @@ Diese beiden Methoden sind im Backend in einer Funktion verbaut die im Frontend 
 ### Schatten Berechnung
 <a id=schatten></a>
 
-Die Idee ist, jeden Tag (in der Nacht) alle notwendigen Tiff-Dateien zu berechnen und zu erstellen, um den Verlauf der Schatten darstellen zu können. Es wird zuerst die sogenannte "Horizon Angle" berechnet und dann wird überprüft, ob die steilste Neigung grösser oder kleiner als die Sonnenhöhe (als Winkel gegeben). Die Berechnung der Sonnenposition erfolgt mit Hilfe des Moduls "suncalc" und die der "Horizon Angle" dank einer Funktion ("horizonangle") von Whitebox Geospatial (https://www.whiteboxgeo.com/).
+Die Idee ist, jeden Tag (in der Nacht) alle notwendigen Tiff-Dateien zu berechnen und zu erstellen, um den Verlauf der Schatten darstellen zu können. Es wird zuerst die sogenannte "Horizon Angle" berechnet und dann wird überprüft, ob die steilste Neigung grösser oder kleiner als die Sonnenhöhe ist.
+Die Berechnung der Sonnenposition erfolgt mit Hilfe des Moduls "suncalc" (https://pypi.org/project/suncalc/) und die der "Horizon Angle" dank einer Funktion ("horizonangle") von Whitebox Geospatial (https://www.whiteboxgeo.com/).
+Mit dem Schedule-Modul kann der Startzeitpunkt der Funktion programmiert werden.
 
 ### Geoserver
 <a id=geoserver></a>
