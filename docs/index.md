@@ -24,6 +24,7 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
     - [API](#api)
     - [Berechnung Sonnenstand](#sonnenstand)
     - [Email Benachrichtigung](#email)
+    - [Schatten Berechnung](#schatten)
     - [Geoserver](#geoserver)
 - [Architektur Frontend](#frontend)
     - [Mockup](#mockup)
@@ -124,6 +125,11 @@ Diese beiden Methoden sind im Backend in einer Funktion verbaut die im Frontend 
 <a id=email></a>
 
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+### Schatten Berechnung
+<a id=schatten></a>
+
+Die Idee ist, jeden Tag (in der Nacht) alle notwendigen Tiff-Dateien zu berechnen und zu erstellen, um den Verlauf der Schatten darstellen zu können. Es wird zuerst die sogenannte "Horizon Angle" berechnet und dann wird überprüft, ob die steilste Neigung grösser oder kleiner als die Sonnenhöhe (als Winkel gegeben). Die Berechnung der Sonnenposition erfolgt mit Hilfe des Moduls "suncalc" und die der "Horizon Angle" dank einer Funktion ("horizonangle") von Whitebox Geospatial (https://www.whiteboxgeo.com/).
 
 ### Geoserver
 <a id=geoserver></a>
