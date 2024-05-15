@@ -53,7 +53,7 @@ Installation der APP erfolgt mit der Anleitung im github repository:
 
 Das Video gibt Ihnen eine kurzen Einblick in die Funktionalität dieser App:
 
-![Video StarryEyes](images/StarryEyes_Video.mov)
+![Video StarryEyes](images/StarryEyes_Video.mp4)
 
 ### Willkommenstext
 <a id=willkommenstext></a>
