@@ -89,7 +89,62 @@ conda activate starryeyes
 # Server starten für API mit uvicorn
 uvicorn main:app --reload
 ```
-### Geoserver
+### Geoserver einrichten
+**1. Daten im Verzeichnis ablegen** 
+
+Die Daten für die beiden Layer (Schatten, Lichtverschmutzung) sind [herunterzuladen](https://fhnw365-my.sharepoint.com/:f:/g/personal/silas_haab_students_fhnw_ch/EibUxdGifKhJtWSAZaRFsWIB5uk-V8vwm6cRjY4dMMnRCQ?e=VIci45) und der ganze Ordner im Verzeichnis `GeoServer/data_dir/data` abzulegen. (Downloadlink nur via FHNW-Konto verfügbar)
+
+**2. Erweiterung importer installieren**
+
+Die Erweiterung Importer wird benötigt, um die alle Schattelayer miteinander hinzuzufügen. Sie kann gemäss der [Anleitung](https://docs.geoserver.org/main/en/user/extensions/importer/installing.html) installiert werden.
+
+Die heruntergeladenen Files müssen dann in folgendes Verzeichnis `GeoServer/webapps/geoserver/WEB-INF/lib` kopiert werden. Anschliessend muss der Geoserver neu gestartet werden.
+
+**3. Arbeitsbereich erstellen**
+
+Unter *Daten>Arbeitsbereiche* einen neuen Arbeitsbereich hinzufügen:<br/>
+Name: StarryEyes<br/>
+Namensraum URI: StarryEyes
+
+**4. Stile hinzufügen**
+
+Unter *Daten>Stile* die folgenden zwei Stile hinzufügen:
+
+- Lichtverschmutzung:<br/>
+ Name: Lichtverschmutzung<br/>
+ Arbeitsbereich: StarryEyes<br/>
+ Format: SLD<br/>
+ Stildatei hochladen: `Lichtverschmutzung.sld`
+
+- Schatten:<br/>
+ Name: Schatten<br/>
+ Arbeitsbereich: StarryEyes<br/>
+ Format: SLD<br/>
+ Stildatei hochladen: `Schatten.sld`
+
+**5. Lichtverschmutzungskarte hinzufügen**
+
+Unter *Daten>Datenspeicher* neuen Datenspeicher hinzufügen:
+
+- Rasterdatenquelle: GeoTIFF<br/>
+ - Arbeitsbereich: StarryEyes<br/>
+ - Name der Datenquelle: Lichtverschmutzung_CH<br/>
+ - URL: `Lichtverschmutzung_CH_2024.tif`
+
+Unter *Daten>Layer* neuen Layer hinzufügen und dort *StarryEyes:Lichtverschmutzung_CH* wählen und publizieren.<br/>
+Unter dem Reiter *Publizierung* den Layerstil *StarryEyes:Lichtverschmutzung* wählen und speichern.
+
+**6. Schattenkarte hinzufügen**
+
+Unter *Daten>Daten importieren*:<br/>
+- Datenquelle: Räumliche Datendateien
+- Datenquelle konfigurieren: *GeoServer/data_dir//data/starryeyes/Schatten*
+- Arbeitsbereich: StarryEyes
+- Datenspeicher: Neuen Datenspeicher anlegen -> Next
+
+Es werden alle Inhalte des Ordner in mehreren Seiten aufgelistet: über *Select: Alle* können alle Dateien pro Seite angewählt und importiert werden. Es sollen alle hillshade_hh_mm Dateien importiert werden. -> Next
+
+Unter *Daten>Stile* den Stil Schatten auswählen und unter Publishing bei allen importierten Layern auf diesen Stil als Default definieren.
 
 ### Struktur Backend
 - ./backend

@@ -54,8 +54,8 @@ function App({ activeItems, sliderValue, setMenuOpen, MenuOpen }) {
     const formatSliderValue = (value) => {
         const hours = Math.floor(value / 60);
         const minutes = value % 60;
-        console.log(`${hours}_${minutes.toString().padStart(2, '0')}`);
-        return `${hours}_${minutes.toString().padStart(2, '0')}`;
+        const formattedMinutes = minutes === 0 ? '0' : minutes.toString().padStart(2, '0');
+        return `${hours}_${formattedMinutes}`;
       };
 
     const [sunTimes, setSunTimes] = useState({
