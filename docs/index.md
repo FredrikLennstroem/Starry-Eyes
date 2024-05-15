@@ -26,7 +26,7 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
     - [Email Benachrichtigung](#email)
     - [Geoserver](#geoserver)
 - [Architektur Frontend](#frontend)
-    - [Ordnerstruktur](#ordnerstruktur)
+    - [Mockup](#mockup)
     - [Berechnung Mondphasen](#berechnungmond)
     - [Lichtverschmutzungskarte](#lichtverschmutzungskarte)
     - [Farb- und Symbolkonzept](#farbsymbolkonzept)
@@ -133,11 +133,18 @@ Diese beiden Methoden sind im Backend in einer Funktion verbaut die im Frontend 
 ## Architektur Frontend
 <a id=frontend></a>
 
+### Mock-Up
+<a id=mockup></a>
 
-### Ordnerstruktur
-<a id=ordnerstruktur></a>
+Das Mock-Up dient der ersten Überisicht über die App. Es zeigt den geplanten Aufbau und das ungefähre Aussehen und ist ein grosses Hilfsmittel beim Erstellen des Frontends.
 
-Soll scheinbar eher ins ReadMe, falls es dem Nutzenden hilft, sich schnell im Code zurecht zu finden. Kapitelname: Filestructure
+![Mockup_0](images/Mockup_0.png)
+
+![Mockup_1](images/Mockup_1.png)
+
+![Mockup_2](images/Mockup_2.png)
+
+![Mockup_3](images/Mockup_3.png)
 
 ### Berechnung Mondphasen
 <a id=berechnungmond></a>
@@ -182,15 +189,15 @@ Es ist wichtig dem Nutzenden Rückmeldungen auf seine Interaktionen zu geben. Al
 ## Upcoming Features
 <a id=features></a>
 
- [x] Berechnung der Wolkenabdeckung in Prozent
- [ ] Standortinformationen über Nacht überwachen
- [ ] Schnellers Rendering der Schattendaten
- [ ] Berücksichtigung der Lichtverschmutzung zur Einschätzung der Sternensichtbarkeit
- [ ] Live Hemisphärenbild
- [ ] Standort Suchfunktion
- [ ] Luftbilder als zusätzlichen Layer
- [ ] Live Positionserfassung
- [ ] Mobileversion
+- [x] Berechnung der Wolkenabdeckung in Prozent
+- [ ] Standortinformationen über Nacht überwachen
+- [ ] Schnellers Rendering der Schattendaten
+- [ ] Berücksichtigung der Lichtverschmutzung zur Einschätzung der Sternensichtbarkeit
+- [ ] Live Hemisphärenbild
+- [ ] Standort Suchfunktion
+- [ ] Luftbilder als zusätzlichen Layer
+- [ ] Live Positionserfassung
+- [ ] Mobileversion
 
 ### Hemisphärenbild
 ![StarryEyes Konzept Hemisphärenbild](images/Hemisphärenbild.png)
