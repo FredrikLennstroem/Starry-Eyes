@@ -38,44 +38,6 @@ npm install
 # node Projekt ausführen
 npm start
 ```
-### Ordnerstruktur Frontend
-
-- ./frontend
-    - /node_modules
-        - Alle installierten Module
-    - /public
-    - /src
-        - /`Index.js`
-        - /`Index.css`
-        - /`App.js`
-        - /`App.css`
-            - Definition von mehrfach verwendeten Stilen
-        - /`InfoBox.js`
-            - Infotext beim ersten Öffnen
-        - /`map.js`
-            - Karteninhalt
-        - /`SuccessSnackbar.js`
-            - Feedbackfeld Übermittlung E-Mail-Adresse
-        - /`Symbologie.js`
-            - Einblendbare Symbolerklärung
-        - /Drawer
-            - /`MenuDrawer.js`
-                - Einblendbares Layermenu links
-            - /`MoonDrawer.js`
-                - Einblendbare Mondphasen rechts
-        - /PopUp
-            - /`Popup.js`
-                - Inhalt des Marker PopUps
-            - /`FormDialog.js`
-                - Inhalt des Standortüberwachenfenster
-            - /`MarkerIcon.js`
-                - Markerstil
-            - /`TransformToLV95.js`
-                - Umrechung der Koordinaten in LV95
-        - /Images
-            - Alle im Frontend verwendeten Bilder
-    - /`package-lock.json`
-    - /`package.json`
 
 ## Backend installieren
 ### API und Email-service
@@ -180,7 +142,48 @@ Es werden alle Inhalte des Ordner in mehreren Seiten aufgelistet: über *Select:
 
 Unter *Daten>Stile* den Stil Schatten auswählen und unter Publishing bei allen importierten Layern auf diesen Stil als Default definieren.
 
-### Struktur Backend
+## Ordnerstruktur
+
+### Frontend
+
+- ./frontend
+    - /node_modules
+        - Alle installierten Module
+    - /public
+    - /src
+        - /`Index.js`
+        - /`Index.css`
+        - /`App.js`
+        - /`App.css`
+            - Definition von mehrfach verwendeten Stilen
+        - /`InfoBox.js`
+            - Infotext beim ersten Öffnen
+        - /`map.js`
+            - Karteninhalt
+        - /`SuccessSnackbar.js`
+            - Feedbackfeld Übermittlung E-Mail-Adresse
+        - /`Symbologie.js`
+            - Einblendbare Symbolerklärung
+        - /Drawer
+            - /`MenuDrawer.js`
+                - Einblendbares Layermenu links
+            - /`MoonDrawer.js`
+                - Einblendbare Mondphasen rechts
+        - /PopUp
+            - /`Popup.js`
+                - Inhalt des Marker PopUps
+            - /`FormDialog.js`
+                - Inhalt des Standortüberwachenfenster
+            - /`MarkerIcon.js`
+                - Markerstil
+            - /`TransformToLV95.js`
+                - Umrechung der Koordinaten in LV95
+        - /Images
+            - Alle im Frontend verwendeten Bilder
+    - /`package-lock.json`
+    - /`package.json`
+
+### Backend
 - ./backend
     - /db_handling
         - Pythonscripts zum Handling von Datenbanken

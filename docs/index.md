@@ -182,14 +182,15 @@ Es ist wichtig dem Nutzenden Rückmeldungen auf seine Interaktionen zu geben. Al
 ## Upcoming Features
 <a id=features></a>
 
-- [x] Berechnung der Wolkenabdeckung in Prozent
-- [ ] Standortinformationen über Nacht überwachen
-- [ ] Berücksichtigung der Lichtverschmutzung zur Einschätzung der Sternensichtbarkeit
-- [ ] Live Hemisphärenbild
-- [ ] Standort Suchfunktion
-- [ ] Luftbilder als zusätzlichen Layer
-- [ ] Live Positionserfassung
-- [ ] Mobileversion
+ [x] Berechnung der Wolkenabdeckung in Prozent
+ [ ] Standortinformationen über Nacht überwachen
+ [ ] Schnellers Rendering der Schattendaten
+ [ ] Berücksichtigung der Lichtverschmutzung zur Einschätzung der Sternensichtbarkeit
+ [ ] Live Hemisphärenbild
+ [ ] Standort Suchfunktion
+ [ ] Luftbilder als zusätzlichen Layer
+ [ ] Live Positionserfassung
+ [ ] Mobileversion
 
 ### Hemisphärenbild
 ![StarryEyes Konzept Hemisphärenbild](images/Hemisphärenbild.png)
