@@ -42,7 +42,7 @@ const Symbologie = ({ MenuOpen }) => {
           </Box>
           <Box className="IconBox">
             <img src={SunVisibility} alt="SunVisibility" style={{ width: '30px', height: '30px', marginLeft: '5px', marginRight: '5px' }} />
-            <Typography sx={{ paddingLeft: '15px', textAlign: 'left' }}>Wahrscheinlichkeit, dass die Sonne am Horizont sichtbar sein wird</Typography>
+            <Typography sx={{ paddingLeft: '15px', textAlign: 'left' }}>Wahrscheinlichkeit, dass der Sonnenuntergang sichtbar sein wird</Typography>
           </Box>
           <Box className="IconBox">
             <img src={StarVisibility} alt="StarVisibility" style={{ width: '30px', height: '30px', marginLeft: '5px', marginRight: '5px' }} />

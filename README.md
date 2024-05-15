@@ -33,15 +33,49 @@ Füge die Git web URL `https://github.com/FredrikLennstroem/Starry-Eyes.git` ein
 
 ``` shell
 cd frontend
-# aktiviere node.js (falls nvm genutzt wird) 
-# nvm use 18.18.0
 # install all the node.js dependencies
 npm install
 # node Projekt ausführen
-# npm start ist in package.json definiert
 npm start
 ```
 ### Ordnerstruktur Frontend
+
+- ./frontend
+    - /node_modules
+        - Alle installierten Module
+    - /public
+    - /src
+        - /`Index.js`
+        - /`Index.css`
+        - /`App.js`
+        - /`App.css`
+            - Definition von mehrfach verwendeten Stilen
+        - /`InfoBox.js`
+            - Infotext beim ersten Öffnen
+        - /`map.js`
+            - Karteninhalt
+        - /`SuccessSnackbar.js`
+            - Feedbackfeld Übermittlung E-Mail-Adresse
+        - /`Symbologie.js`
+            - Einblendbare Symbolerklärung
+        - /Drawer
+            - /`MenuDrawer.js`
+                - Einblendbares Layermenu links
+            - /`MoonDrawer.js`
+                - Einblendbare Mondphasen rechts
+        - /PopUp
+            - /`Popup.js`
+                - Inhalt des Marker PopUps
+            - /`FormDialog.js`
+                - Inhalt des Standortüberwachenfenster
+            - /`MarkerIcon.js`
+                - Markerstil
+            - /`TransformToLV95.js`
+                - Umrechung der Koordinaten in LV95
+        - /Images
+            - Alle im Frontend verwendeten Bilder
+    - /`package-lock.json`
+    - /`package.json`
 
 ## Backend installieren
 ### API und Email-service
@@ -92,13 +126,13 @@ uvicorn main:app --reload
 ### Geoserver einrichten
 **1. Daten im Verzeichnis ablegen** 
 
-Die Daten für die beiden Layer (Schatten, Lichtverschmutzung) sind [herunterzuladen](https://fhnw365-my.sharepoint.com/:f:/g/personal/silas_haab_students_fhnw_ch/EibUxdGifKhJtWSAZaRFsWIB5uk-V8vwm6cRjY4dMMnRCQ?e=VIci45) und der ganze Ordner im Verzeichnis `GeoServer/data_dir/data` abzulegen. (Downloadlink nur via FHNW-Konto verfügbar)
+Die Daten für die beiden Layer (Schatten, Lichtverschmutzung) sind [herunterzuladen](https://fhnw365-my.sharepoint.com/:f:/g/personal/silas_haab_students_fhnw_ch/EibUxdGifKhJtWSAZaRFsWIB5uk-V8vwm6cRjY4dMMnRCQ?e=VIci45) und der ganze Ordner im Verzeichnis `C:/GeoServer/data_dir/data` abzulegen. (Downloadlink nur via FHNW-Konto verfügbar)
 
 **2. Erweiterung importer installieren**
 
 Die Erweiterung Importer wird benötigt, um die alle Schattelayer miteinander hinzuzufügen. Sie kann gemäss der [Anleitung](https://docs.geoserver.org/main/en/user/extensions/importer/installing.html) installiert werden.
 
-Die heruntergeladenen Files müssen dann in folgendes Verzeichnis `GeoServer/webapps/geoserver/WEB-INF/lib` kopiert werden. Anschliessend muss der Geoserver neu gestartet werden.
+Die heruntergeladenen Files müssen dann in folgendes Verzeichnis `C:/GeoServer/webapps/geoserver/WEB-INF/lib` kopiert werden. Anschliessend muss der Geoserver neu gestartet werden.
 
 **3. Arbeitsbereich erstellen**
 
@@ -110,33 +144,33 @@ Namensraum URI: StarryEyes
 
 Unter *Daten>Stile* die folgenden zwei Stile hinzufügen:
 
-- Lichtverschmutzung:<br/>
- Name: Lichtverschmutzung<br/>
- Arbeitsbereich: StarryEyes<br/>
- Format: SLD<br/>
- Stildatei hochladen: `Lichtverschmutzung.sld`
+- Lichtverschmutzung:
+ Name: Lichtverschmutzung
+ Arbeitsbereich: StarryEyes
+ Format: SLD
+ Stildatei hochladen: `C:/GeoServer/data_dir/data/starryeyes/Lichtverschmutzung.sld`
 
-- Schatten:<br/>
- Name: Schatten<br/>
- Arbeitsbereich: StarryEyes<br/>
- Format: SLD<br/>
- Stildatei hochladen: `Schatten.sld`
+- Schatten:
+ Name: Schatten
+ Arbeitsbereich: StarryEyes
+ Format: SLD
+ Stildatei hochladen: `C:/GeoServer/data_dir/data/starryeyes/Schatten.sld`
 
 **5. Lichtverschmutzungskarte hinzufügen**
 
 Unter *Daten>Datenspeicher* neuen Datenspeicher hinzufügen:
 
-- Rasterdatenquelle: GeoTIFF<br/>
- - Arbeitsbereich: StarryEyes<br/>
- - Name der Datenquelle: Lichtverschmutzung_CH<br/>
- - URL: `Lichtverschmutzung_CH_2024.tif`
+- Rasterdatenquelle: GeoTIFF
+ - Arbeitsbereich: StarryEyes
+ - Name der Datenquelle: Lichtverschmutzung_CH
+ - URL: `C:/GeoServer/data_dir/data/starryeyes/Lichtverschmutzung_CH_2024.tif`
 
 Unter *Daten>Layer* neuen Layer hinzufügen und dort *StarryEyes:Lichtverschmutzung_CH* wählen und publizieren.<br/>
 Unter dem Reiter *Publizierung* den Layerstil *StarryEyes:Lichtverschmutzung* wählen und speichern.
 
 **6. Schattenkarte hinzufügen**
 
-Unter *Daten>Daten importieren*:<br/>
+Unter *Daten>Daten importieren*:
 - Datenquelle: Räumliche Datendateien
 - Datenquelle konfigurieren: *GeoServer/data_dir//data/starryeyes/Schatten*
 - Arbeitsbereich: StarryEyes
