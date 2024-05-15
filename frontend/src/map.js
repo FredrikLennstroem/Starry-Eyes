@@ -167,7 +167,7 @@ function App({ activeItems, sliderValue, setMenuOpen, MenuOpen }) {
 
                     {clickPosition && (
                         <Marker position={clickPosition} icon={MarkerIcon} eventHandlers={{ click: handleMarkerClick }}>
-                            <Popup className="popupCustom" borderRadius={0}>
+                            <Popup className="popupCustom" borderRadius={0} autoPan={false}>
                                 <PopupContent
                                 sunTimes={sunTimes} 
                                 clickPosition={clickPosition}

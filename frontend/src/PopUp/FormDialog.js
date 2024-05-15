@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import '../App.css';
 import {MapContainer, WMSTileLayer, Marker} from "react-leaflet";
-import {Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, CircularProgress} from'@mui/material';
+import {Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, CircularProgress, Checkbox} from'@mui/material';
 import MarkerIcon from '../PopUp/MarkerIcon.js';
 
 export default function FormDialog({ open, handleClose, clickPosition, lv95Coords, setShowSuccessSnackbar }) {
@@ -80,30 +81,36 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
             E/N: {lv95Coords ? parseFloat(lv95Coords.easting).toFixed(3) : 'Loading...'}
             /{lv95Coords ? parseFloat(lv95Coords.northing).toFixed(3) : 'Loading...'}
           </DialogContentText>
-          Um detaillierte Informationen über diesen Standort zu erhalten und diesen während der Nacht zu überwachen, geben Sie bitte Ihre Email-Adresse ein. Die Email-Adresse wird am folgenden Tag wieder gelöscht.
+          Um detaillierte Informationen über diesen Standort zu erhalten, geben Sie bitte Ihre E-Mail-Adresse ein.
+          <div style={{ position: 'relative' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+              <Checkbox className='Checkbox' style={{ marginTop: 4 }} disabled={true}/>
+              <DialogContentText style={{ padding: 0, paddingTop: 12, paddingLeft: 4 }}>
+                Durch bestätigen der Checkbox erhalten Sie stündliche Updates während der Nacht. Ihre E-Mail-Adresse wird am folgenden Tag wieder gelöscht.
+              </DialogContentText>
+            </div>
+            <div style={{ position: 'absolute', bottom: 0, left: 70, transform: 'rotate(-5deg)', transformOrigin: 'left bottom', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '25px', color: 'red' }}>
+              -- Funktion noch nicht verfügbar --
+            </div>
+          </div>
           <TextField
             autoFocus
             required
             margin="dense"
             id="name"
             name="email"
-            label="Email Adresse"
+            label="E-Mail-Adresse"
             type="email"
             fullWidth
             variant="standard"
+            InputLabelProps={{
+              style: {color: '#334854'}
+            }}
             sx={{
-              '& .MuiInputLabel-root': {
-                color: 'black'
-              },
-              '& .MuiInputBase-root': {
-                  color: '#334854',
-                  '&:before': {
-                      borderBottomColor: '#334854',
-                  },
-                  '&:after': {
-                      borderBottomColor: '#334854'
-                  },
-              },
+              '& .MuiInputBase-root': {color: 'black',
+                '&:before': {borderBottomColor: '#334854'},
+                '&:after': {borderBottomColor: '#334854'}
+              }
             }}
           />
         </DialogContent>

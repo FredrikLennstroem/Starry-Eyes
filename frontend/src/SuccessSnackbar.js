@@ -6,8 +6,8 @@ export default function SuccessSnackbar({ open }) {
     <Snackbar
       open={open}
       autoHideDuration={2000}
-      onClose={() => {}} // Platzhalterfunktion, da Snackbar automatisch verschwindet
-      message="Standort abonniert"
+      onClose={() => {}}
+      message="Emailadresse übermittelt"
       anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       TransitionComponent={Slide}
       ContentProps={{
