@@ -52,6 +52,8 @@ Installation der APP erfolgt mit der Anleitung im github repository:
 
 Das Video gibt Ihnen eine kurzen Einblick in die Funktionalität dieser App:
 
+![Video StarryEyes](images/StarryEyes_Video.mov)
+
 ### Willkommenstext
 <a id=willkommenstext></a>
 
@@ -156,7 +158,7 @@ Die Mondphasen werden mit dem npm Modul [lunarphase-js](https://www.npmjs.com/pa
 
 ![Lichtverschmutzung](images/Design_Lichtverschmutzung.png)
 
-Die Daten der Lichtverschmutzung wurden als Tiff von [Lightpollutionmap.info](https://www.lightpollutionmap.info/) bezogen. Diese werden jährlich aktualisiert. Die Werte reichen von 0 bis xx magnitude/arcsec<sup>2</sup> welche die Flächenhelligkeit beschreibt. Diese Werte können in Klassen aufgeteilt werden, welche die Sichtbarkeit der Sterne beschreiben ([Bortle Dark Sky Scale](https://www.handprint.com/ASTRO/bortle.html)). Aufgrund dieser Einschätzung haben wir uns entschieden vier für den Nutzenden unserere App relevante Klassen zu erstellen:
+Die Daten der Lichtverschmutzung wurden als Tiff von [Lightpollutionmap.info](https://www.lightpollutionmap.info/) bezogen. Diese werden jährlich aktualisiert. Die Werte reichen von 0 bis 75 magnitude/arcsec<sup>2</sup> welche die Flächenhelligkeit beschreibt. Diese Werte können in Klassen aufgeteilt werden, welche die Sichtbarkeit der Sterne beschreiben ([Bortle Dark Sky Scale](https://www.handprint.com/ASTRO/bortle.html)). Aufgrund dieser Einschätzung haben wir uns entschieden vier für den Nutzenden unserere App relevante Klassen zu erstellen:
 - <0.5:&ensp;&nbsp;keine Lichtverschmutzung
 - 0.5-1:&ensp;wenig Lichtverschmutzung
 - 1-9:&emsp;&nbsp;hohe Lichtverschmutzung
