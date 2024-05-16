@@ -229,9 +229,7 @@ Die Einschätzung der Sternensichtbarkeit in der Nacht bezieht sich auf die Wolk
 ### Hemisphärenbild
 <a id=feature_hemisphaerenbild></a>
 
-
-
-Live
+Dieses könnte mit der ersten Bestätigungsmail versendet werden. Es zeigt die Geländeabdeckung am Standort und visulisiert die Abdeckung des Himmels durch anliegendes Gelände.
 
 ![StarryEyes Konzept Hemisphärenbild](images/Hemisphärenbild.png)
 
