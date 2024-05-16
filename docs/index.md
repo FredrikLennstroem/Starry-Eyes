@@ -196,20 +196,43 @@ Icons, Symbole und Bilder wurden mit Hovertexten versehen, die dem Nutzenden ein
 Beim Abfragen der Standortinformation im PopUp des Markes kann es einige Sekunden dauern, bis die API die aktuellen Daten abgerufen hat. Diese Zeit wurde mit Ladekreisen überbrückt. <br/>
 Es ist wichtig dem Nutzenden Rückmeldungen auf seine Interaktionen zu geben. Also wurde das Abwarten der Übermittlung der Emailadresse mit einem Ladekreis auf dem Button dargestellt.Die erfolgreiche Übermittlung wurde ebenfalls abgefangen um ein kurzes Feedback auszulösen, welches nach kurzer Zeit wieder verschwindet.
 
-## Upcoming Features
+## Incoming Features
 <a id=features></a>
 
 - [x] Berechnung der Wolkenabdeckung in Prozent
-- [ ] Standortinformationen über Nacht überwachen
-- [ ] Schnellers Rendering der Schattendaten
-- [ ] Berücksichtigung der Lichtverschmutzung zur Einschätzung der Sternensichtbarkeit
-- [ ] Live Hemisphärenbild
-- [ ] Standort Suchfunktion
-- [ ] Luftbilder als zusätzlichen Layer
-- [ ] Live Positionserfassung
-- [ ] Mobileversion
+- [ ] [Standortinformationen über Nacht überwachen](#feature_nachtueberwachung)
+- [ ] [Schattenlayer als WMTS aufbereiten](#feature_schattenlayer)
+- [ ] [Berücksichtigung der Lichtverschmutzung zur Einschätzung der Sternensichtbarkeit](#feature_lichtverschmutzung)
+- [ ] [Hemisphärenbild](#feature_hemisphaerenbild)
+- [ ] Suchfunktion zur Navigation in der Karte
+- [ ] Geräteposition beziehen um Informationen am Livestandort anzuzeigen
+- [ ] Luftbilder als zusätzliche Hintergrundkarte
+
+
+### Standortinformationen über Nacht überwachen
+<a id=feature_nachtueberwachung></a>
+
+Diese Funktion ist im Frontend der App bereits implementiert und auch die Möglichkeit besteht bereits, die Emailadresse zu hinterlegen (Speicherung in einer SQLite Datenbank). Diese Funktion würde stündlich an alle E-Mail-Adressen in der Datenbank zum jeweiligen Standort aktuelle Wetterdaten senden. Die Datenbank würde von der Funktionn jeweils am Morgen gelöscht werden.
+
+![Funktion nicht verfügbar](images/Feature_Abo.png)
+
+### Schattenlayer als WMTS
+<a id=feature_schattenlayer></a>
+
+Aktuell dauert das Laden der einzelnen Schattenlayer zu lange. Die Daten könnten gekachelt zur Verfügung gestellt werden um diesen Layer performanter zu machen.
+
+### Berücksichtigung der Lichtverschmutzung
+<a id=feature_lichtverschmutzung></a>
+
+Die Einschätzung der Sternensichtbarkeit in der Nacht bezieht sich auf die Wolkenabdeckung am jeweiligen Standort. Die Lichtverschmutzung hat einen Einfluss auf die Sichtbarkeit, weshalb diese als Layer vorhanden ist. Sie sollte jedoch auch in diese Einschätzung einfliessen. Dafür müsste zum jeweiligen Standort der Pixelwert aus dem Tiff bezogen werden und eine geeignete Schätzung zusammen mit den Wetterdaten gemacht werden.
 
 ### Hemisphärenbild
+<a id=feature_hemisphaerenbild></a>
+
+
+
+Live
+
 ![StarryEyes Konzept Hemisphärenbild](images/Hemisphärenbild.png)
 
 ## Contribution
