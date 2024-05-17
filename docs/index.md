@@ -32,7 +32,7 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
     - [Lichtverschmutzungskarte](#lichtverschmutzungskarte)
     - [Farb- und Symbolkonzept](#farbsymbolkonzept)
     - [Feedback Features](#feedback-features)
-- [Incoming Features](#features)
+- [Upcoming Features](#features)
 - [Contribution](#contribution)
 
 ## Die App
@@ -126,13 +126,19 @@ Diese beiden Methoden sind im Backend in einer Funktion verbaut die im Frontend 
 ### Email Benachrichtigung
 <a id=email></a>
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+Die Email wird mit der Adresse noreply.starryeyes@gmail.com verschickt. Dazu wurde die IMAP-Funktion im Googlekonto aktiviert. Diese Funktion ermöglichte es, mit dem automatisch generierten Apppasswort, Emails mit Python verschicken zu können. Für den Inhalt, wurde eine HTML-Struktur geschrieben in der die aktuellen Informationen zum Standort eingefühgt werden. 
+
+Für das Hemisphärenbild ist aktuell noch ein Platzhalter drin (siehe [Upcoming Features](#features)).
+
+Wie die Sonnenstandberechnungen, werden die Emails mittels API im Backend verschickt. Damit die Email-Funktion läuft, werden die Zugriffsdaten des Emailkontos benötigt. Aktuell wird dass mittels einem YAML config file gelöst, welches nicht auf Github abgelegt ist. Sollte das Bedürfnis da sein, um die StarryEyes-email zu verwenden kann [Fredrik Lennström](https://github.com/FredrikLennstroem) kontaktiert werden. Zum Aufsetzen einer eigenen Email siehe die Anleitung im REDME des Github Repos [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLennstroem/Starry-Eyes).
+
+Betreffend Sicherheit ist dieser Ansatz natürlich nicht ideal. Er wurde aber gewählt weil er einfach ist und nur als Prototyp dienen soll.
 
 ### Schatten Berechnung
 <a id=schatten></a>
 
 Die Idee ist, jeden Tag (in der Nacht) alle notwendigen Tiff-Dateien zu berechnen und zu erstellen, um den Verlauf der Schatten darstellen zu können. Es wird zuerst die sogenannte "Horizon Angle" berechnet und dann wird überprüft, ob die steilste Neigung grösser oder kleiner als die Sonnenhöhe ist.
-Die Berechnung der Sonnenposition erfolgt mit Hilfe des Moduls "suncalc" (https://pypi.org/project/suncalc/) und die der "Horizon Angle" dank einer Funktion ("horizonangle") von Whitebox Geospatial (https://www.whiteboxgeo.com/).
+Die Berechnung der Sonnenposition erfolgt mit Hilfe des Moduls ["suncalc"](https://pypi.org/project/suncalc/) und die der "Horizon Angle" dank einer Funktion ("horizonangle") von [Whitebox Geospatial](https://www.whiteboxgeo.com/).
 Mit dem Schedule-Modul kann der Startzeitpunkt der Funktion programmiert werden.
 
 ### Geoserver
@@ -196,7 +202,7 @@ Icons, Symbole und Bilder wurden mit Hovertexten versehen, die dem Nutzenden ein
 Beim Abfragen der Standortinformation im PopUp des Markes kann es einige Sekunden dauern, bis die API die aktuellen Daten abgerufen hat. Diese Zeit wurde mit Ladekreisen überbrückt. <br/>
 Es ist wichtig dem Nutzenden Rückmeldungen auf seine Interaktionen zu geben. Also wurde das Abwarten der Übermittlung der Emailadresse mit einem Ladekreis auf dem Button dargestellt.Die erfolgreiche Übermittlung wurde ebenfalls abgefangen um ein kurzes Feedback auszulösen, welches nach kurzer Zeit wieder verschwindet.
 
-## Incoming Features
+## Upcoming Features
 <a id=features></a>
 
 - [x] Berechnung der Wolkenabdeckung in Prozent
@@ -204,6 +210,7 @@ Es ist wichtig dem Nutzenden Rückmeldungen auf seine Interaktionen zu geben. Al
 - [ ] [Schattenlayer als WMTS aufbereiten](#feature_schattenlayer)
 - [ ] [Berücksichtigung der Lichtverschmutzung zur Einschätzung der Sternensichtbarkeit](#feature_lichtverschmutzung)
 - [ ] [Hemisphärenbild](#feature_hemisphaerenbild)
+- [ ] [Emailstruktur verbessern und verschönern](#email-benachrichtigung)
 - [ ] Suchfunktion zur Navigation in der Karte
 - [ ] Geräteposition beziehen um Informationen am Livestandort anzuzeigen
 - [ ] Luftbilder als zusätzliche Hintergrundkarte
