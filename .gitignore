@@ -7,3 +7,4 @@ backend/sun.py
 backend/test.ipynb
 backend/test.db
 backend/abo.db
+backend/.chache.sqlite
