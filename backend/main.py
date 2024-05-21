@@ -21,6 +21,11 @@ logo_path = 'img/email-banner.png'
 abdeckung_path = 'img/abdeckung.jpg'
 #------------------------------------------------------------------------------------------------------
 
+#Build Pfad
+current_directory = os.getcwd()
+parent_directory = os.path.dirname(current_directory)
+build = parent_directory + '\\frontend\\build\\index.html'
+
 #Variabel Geländemodell
 DEM = 'img/59_DEM.tiff'
 
@@ -34,7 +39,7 @@ app = FastAPI()
 # Enable CORS -> ermöglicht es React und API auf verschiedenen server (ports) laufen zu lassen
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", 'http://192.168.1.128:3000'],  # Update with the origin of your React app
+    allow_origins=["*"],  # Update with the origin of your React app "http://localhost:3000", 'http://192.168.1.128:3000', build
     allow_credentials=True,
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
