@@ -142,6 +142,11 @@ Es werden alle Inhalte des Ordner in mehreren Seiten aufgelistet: über *Select:
 
 Unter *Daten>Stile* den Stil Schatten auswählen und unter Publishing bei allen importierten Layern auf diesen Stil als Default definieren.
 
+### Vorprozessierung
+**Schattenberechnung**
+
+Schatten werden lokal berechnet. Die Datei „schatten_loop.py“ prüft die Zeit alle 55 Sekunden und wenn die eingestellte Zeit erreicht ist, wird die Funktion ausgeführt und alle neuen TIFF-Dateien werden berechnet und gespeichert. Die Dateinamen bleiben immer gleich, sie werden also immer überschrieben. Dies ermöglicht es dem Geoserver, die Dateien zu finden und zu laden, auch wenn sie geändert und aktualisiert werden. Mit Hilfe des Geoservers kann eine personalisierte Darstellung eingestellt werden. In diesem Fall wird das Pixel, wenn es sich im Sonnenlicht befindet, transparent dargestellt. Liegt er dagegen im Schatten, wird er schwarz dargestellt (immer mit einer gewissen Transparenz, damit die darunter liegende Karte sichtbar ist).
+
 ## Ordnerstruktur
 
 ### Frontend
