@@ -138,7 +138,7 @@ Betreffend Sicherheit ist dieser Ansatz natürlich nicht ideal. Er wurde aber ge
 ### Schatten Berechnung
 <a id=schattenber></a>
 
-Die Idee ist, jeden Tag (in der Nacht) alle notwendigen Tiff-Dateien zu berechnen und zu erstellen, um den Verlauf der Schatten darstellen zu können. Eine Funktion wird verwendet, um eine Liste von Dictionaries zu erstellen. Jedes Dictionary enthält die Stunde, die Minute und die Position der Sonne zu dieser Zeit (Azimut und Höhe). Um die Position der Sonne berechnen zu können, wurde das Modul ["suncalc"](https://pypi.org/project/suncalc/) verwendet. Danach wird die sogenannte "Horizon Angle" berechnet und überprüft, ob die steilste Neigung  in Richtung der Sonne grösser oder kleiner als die Sonnenhöhe ist.
+Die Idee ist, jeden Tag (in der Nacht) alle notwendigen Tiff-Dateien zu berechnen und zu erstellen, um den Verlauf der Schatten darstellen zu können. Eine Funktion wird verwendet, um eine Liste von Dictionaries zu erstellen. Jedes Dictionary enthält die Stunde, die Minute und die Position der Sonne zu dieser Zeit (Azimut und Höhe). Um die Position der Sonne berechnen zu können, wurde das Modul ["suncalc"](https://pypi.org/project/suncalc/) verwendet. Dann wird auf der Grundlage des [DHM25-Höhenmodells](https://www.swisstopo.admin.ch/de/hoehenmodell-dhm25) der sogenannte "Horizon Angle" berechnet und überprüft, ob die steilste Neigung  in Richtung der Sonne grösser oder kleiner als die Sonnenhöhe ist.
 Die Berechnung der "Horizon Angle" erfolgt dank einer Funktion ("horizonangle") von [Whitebox Geospatial](https://www.whiteboxgeo.com/).
 Mit dem Schedule-Modul kann der Startzeitpunkt der Funktion programmiert werden, aber das wurde noch nicht implementiert.
 
