@@ -32,7 +32,7 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
     - [Lichtverschmutzungskarte](#lichtverschmutzungskarte)
     - [Farb- und Symbolkonzept](#farbsymbolkonzept)
     - [Feedback Features](#feedback-features)
-- [Incoming Features](#features)
+- [Upcoming Features](#features)
 - [Contribution](#contribution)
 
 ## Die App
@@ -52,6 +52,8 @@ Installation der APP erfolgt mit der Anleitung im github repository:
 <a id=video></a>
 
 Das Video gibt Ihnen eine kurzen Einblick in die Funktionalität dieser App:
+
+[![StarryEyes Video](images/StarryEyes_Video.png)](images/StarryEyes_Video.mp4)
 
 ### Willkommenstext
 <a id=willkommenstext></a>
@@ -124,13 +126,19 @@ Diese beiden Methoden sind im Backend in einer Funktion verbaut die im Frontend 
 ### Email Benachrichtigung
 <a id=email></a>
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+Die Email wird mit der Adresse noreply.starryeyes@gmail.com verschickt. Dazu wurde die IMAP-Funktion im Googlekonto aktiviert. Diese Funktion ermöglichte es, mit dem automatisch generierten Apppasswort, Emails mit Python verschicken zu können. Für den Inhalt, wurde eine HTML-Struktur geschrieben in der die aktuellen Informationen zum Standort eingefühgt werden. 
+
+Für das Hemisphärenbild ist aktuell noch ein Platzhalter drin (siehe [Upcoming Features](#features)).
+
+Wie die Sonnenstandberechnungen, werden die Emails mittels API im Backend verschickt. Damit die Email-Funktion läuft, werden die Zugriffsdaten des Emailkontos benötigt. Aktuell wird dass mittels einem YAML config file gelöst, welches nicht auf Github abgelegt ist. Sollte das Bedürfnis da sein, um die StarryEyes-email zu verwenden kann [Fredrik Lennström](https://github.com/FredrikLennstroem) kontaktiert werden. Zum Aufsetzen einer eigenen Email siehe die Anleitung im REDME des Github Repos [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLennstroem/Starry-Eyes).
+
+Betreffend Sicherheit ist dieser Ansatz natürlich nicht ideal. Er wurde aber gewählt weil er einfach ist und nur als Prototyp dienen soll.
 
 ### Schatten Berechnung
 <a id=schatten></a>
 
 Die Idee ist, jeden Tag (in der Nacht) alle notwendigen Tiff-Dateien zu berechnen und zu erstellen, um den Verlauf der Schatten darstellen zu können. Es wird zuerst die sogenannte "Horizon Angle" berechnet und dann wird überprüft, ob die steilste Neigung grösser oder kleiner als die Sonnenhöhe ist.
-Die Berechnung der Sonnenposition erfolgt mit Hilfe des Moduls "suncalc" (https://pypi.org/project/suncalc/) und die der "Horizon Angle" dank einer Funktion ("horizonangle") von Whitebox Geospatial (https://www.whiteboxgeo.com/).
+Die Berechnung der Sonnenposition erfolgt mit Hilfe des Moduls ["suncalc"](https://pypi.org/project/suncalc/) und die der "Horizon Angle" dank einer Funktion ("horizonangle") von [Whitebox Geospatial](https://www.whiteboxgeo.com/).
 Mit dem Schedule-Modul kann der Startzeitpunkt der Funktion programmiert werden.
 
 ### Geoserver
@@ -164,7 +172,7 @@ Die Mondphasen werden mit dem npm Modul [lunarphase-js](https://www.npmjs.com/pa
 
 ![Lichtverschmutzung](images/Design_Lichtverschmutzung.png)
 
-Die Daten der Lichtverschmutzung wurden als Tiff von [Lightpollutionmap.info](https://www.lightpollutionmap.info/) bezogen. Diese werden jährlich aktualisiert. Die Werte reichen von 0 bis xx magnitude/arcsec<sup>2</sup> welche die Flächenhelligkeit beschreibt. Diese Werte können in Klassen aufgeteilt werden, welche die Sichtbarkeit der Sterne beschreiben ([Bortle Dark Sky Scale](https://www.handprint.com/ASTRO/bortle.html)). Aufgrund dieser Einschätzung haben wir uns entschieden vier für den Nutzenden unserere App relevante Klassen zu erstellen:
+Die Daten der Lichtverschmutzung wurden als Tiff von [Lightpollutionmap.info](https://www.lightpollutionmap.info/) bezogen. Diese werden jährlich aktualisiert. Die Werte reichen von 0 bis 75 magnitude/arcsec<sup>2</sup> welche die Flächenhelligkeit beschreibt. Diese Werte können in Klassen aufgeteilt werden, welche die Sichtbarkeit der Sterne beschreiben ([Bortle Dark Sky Scale](https://www.handprint.com/ASTRO/bortle.html)). Aufgrund dieser Einschätzung haben wir uns entschieden vier für den Nutzenden unserere App relevante Klassen zu erstellen:
 - <0.5:&ensp;&nbsp;keine Lichtverschmutzung
 - 0.5-1:&ensp;wenig Lichtverschmutzung
 - 1-9:&emsp;&nbsp;hohe Lichtverschmutzung
@@ -198,16 +206,38 @@ Es ist wichtig dem Nutzenden Rückmeldungen auf seine Interaktionen zu geben. Al
 <a id=features></a>
 
 - [x] Berechnung der Wolkenabdeckung in Prozent
-- [ ] Standortinformationen über Nacht überwachen
-- [ ] Schnellers Rendering der Schattendaten
-- [ ] Berücksichtigung der Lichtverschmutzung zur Einschätzung der Sternensichtbarkeit
-- [ ] Live Hemisphärenbild
-- [ ] Standort Suchfunktion
-- [ ] Luftbilder als zusätzlichen Layer
-- [ ] Live Positionserfassung
-- [ ] Mobileversion
+- [ ] [Standortinformationen über Nacht überwachen](#feature_nachtueberwachung)
+- [ ] [Schattenlayer als WMTS aufbereiten](#feature_schattenlayer)
+- [ ] [Berücksichtigung der Lichtverschmutzung zur Einschätzung der Sternensichtbarkeit](#feature_lichtverschmutzung)
+- [ ] [Hemisphärenbild](#feature_hemisphaerenbild)
+- [ ] [Emailstruktur verbessern und verschönern](#email-benachrichtigung)
+- [ ] Suchfunktion zur Navigation in der Karte
+- [ ] Geräteposition beziehen um Informationen am Livestandort anzuzeigen
+- [ ] Luftbilder als zusätzliche Hintergrundkarte
+
+
+### Standortinformationen über Nacht überwachen
+<a id=feature_nachtueberwachung></a>
+
+Diese Funktion ist im Frontend der App bereits implementiert und auch die Möglichkeit besteht bereits, die Emailadresse zu hinterlegen (Speicherung in einer SQLite Datenbank). Diese Funktion würde stündlich an alle E-Mail-Adressen in der Datenbank zum jeweiligen Standort aktuelle Wetterdaten senden. Die Datenbank würde von der Funktionn jeweils am Morgen gelöscht werden.
+
+![Funktion nicht verfügbar](images/Feature_Abo.png)
+
+### Schattenlayer als WMTS
+<a id=feature_schattenlayer></a>
+
+Aktuell dauert das Laden der einzelnen Schattenlayer zu lange. Die Daten könnten gekachelt zur Verfügung gestellt werden um diesen Layer performanter zu machen.
+
+### Berücksichtigung der Lichtverschmutzung
+<a id=feature_lichtverschmutzung></a>
+
+Die Einschätzung der Sternensichtbarkeit in der Nacht bezieht sich auf die Wolkenabdeckung am jeweiligen Standort. Die Lichtverschmutzung hat einen Einfluss auf die Sichtbarkeit, weshalb diese als Layer vorhanden ist. Sie sollte jedoch auch in diese Einschätzung einfliessen. Dafür müsste zum jeweiligen Standort der Pixelwert aus dem Tiff bezogen werden und eine geeignete Schätzung zusammen mit den Wetterdaten gemacht werden.
 
 ### Hemisphärenbild
+<a id=feature_hemisphaerenbild></a>
+
+Dieses könnte mit der ersten Bestätigungsmail versendet werden. Es zeigt die Geländeabdeckung am Standort und visulisiert die Abdeckung des Himmels durch anliegendes Gelände.
+
 ![StarryEyes Konzept Hemisphärenbild](images/Hemisphärenbild.png)
 
 ## Contribution
