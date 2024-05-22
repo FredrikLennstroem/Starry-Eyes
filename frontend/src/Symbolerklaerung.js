@@ -1,3 +1,6 @@
+// Einblendbare Symbolerklärungen im Layermanager
+// Dieser Code wir in map.js importiert
+
 import React from 'react';
 import './App.css';
 import { Typography, Box } from '@mui/material';
@@ -16,7 +19,7 @@ import WaningGibbous from './Images/Moon/Moon_6_Waning_Gibbous.png';
 import LastQuarter from './Images/Moon/Moon_7_Last_Quarter.png';
 import WaningCrescent from './Images/Moon/Moon_8_Waning_Crescent.png';
 
-const Symbologie = ({ MenuOpen }) => {
+const Symbolerklaerung = ({ MenuOpen }) => {
   return (
     <div>
     <div style={{ background: 'white', height: '100vh', width: '100%' }}>
@@ -93,4 +96,4 @@ const Symbologie = ({ MenuOpen }) => {
   );
 };
 
-export default Symbologie;
+export default Symbolerklaerung;

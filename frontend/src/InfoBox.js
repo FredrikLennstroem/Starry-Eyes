@@ -1,11 +1,13 @@
+// Die InfoBox wird beim ersten Laden der App angezeigt
+// Dieser Code wir in map.js importiert
+
 import {React, useState} from 'react';
 import './App.css';
 import {Button, Dialog, DialogTitle, DialogContent, DialogContentText, IconButton, Typography, Checkbox} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 function InfoBox({setInfoClose}) {
-    const [checkboxCheck, setCheckboxCheck] = useState(false);
-    const [open] = useState(true);
+    const [checkboxCheck, setCheckboxCheck] = useState(false); // Checkbox Statusvariable
 
     const handleClose = () => {
         setInfoClose(false);
@@ -14,15 +16,14 @@ function InfoBox({setInfoClose}) {
         } else {
             localStorage.setItem('hideInfo', 'true');
         }
-        console.log(localStorage.getItem('hideInfo'))
-    };
+    }; // Funktion wird beim Schliessen der InfoBox ausgeführt, prüft den Status der Checkbox und ändert je nach Status die localStorage Variable
 
     const handleCheckboxChange = (event) => {
         setCheckboxCheck(event.target.checked);
-    };       
+    }; // Funktion zur Änderung der Checkbox Statusvariable
 
     return (
-        <Dialog open={open} onClose={handleClose} PaperProps={{style: {borderRadius: '0px'},component: 'form'}}>
+        <Dialog open={true} onClose={handleClose} PaperProps={{style: {borderRadius: '0px'}, component: 'form'}}>
             <DialogTitle style={{paddingBottom: 0}}>
                 Willkommen bei StarryEyes
             </DialogTitle>

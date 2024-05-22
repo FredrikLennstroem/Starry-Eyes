@@ -1,3 +1,6 @@
+// Definitin des Markericons
+// Dieses wird im MenuDrawer.js und im map.js verwendet
+
 import L from 'leaflet';
 import markerIconSVG from '../Images/marker.svg';
 

@@ -1,3 +1,6 @@
+// Dieser Code beinhaltet den ganzen Inhalt des Eingabefenster für die Standortüberwachung
+// Dieser Code wird in PopupContent.js importiert
+
 import React, { useState } from 'react';
 import '../App.css';
 import {MapContainer, WMSTileLayer, Marker} from "react-leaflet";
@@ -5,9 +8,9 @@ import {Button, TextField, Dialog, DialogActions, DialogContent, DialogContentTe
 import MarkerIcon from '../PopUp/MarkerIcon.js';
 
 export default function FormDialog({ open, handleClose, clickPosition, lv95Coords, setShowSuccessSnackbar }) {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); // Variable des Übermittlungsstatus der E-Mail-Adresse
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event) => { // Schnittstelle Frontend und Backend. Hier werden Angaben für das Versenden der E-Mail-Adresse übermittelt
     event.preventDefault();
     setLoading(true);
     const formData = new FormData(event.target);
@@ -18,7 +21,7 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
+        body: JSON.stringify({ // Inhalte der Post Anfrage
           email: formJson.email,
           latitude: clickPosition.lat.toFixed(6),
           longitude: clickPosition.lng.toFixed(6),
@@ -28,11 +31,11 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
       });
 
       if (response.ok) {
-        setShowSuccessSnackbar(true);
+        setShowSuccessSnackbar(true); // Anzeige der SuccessSnackbar bei erfolgreichen Übermittlung
         handleClose();
         setTimeout(() => {
           setShowSuccessSnackbar(false);
-        }, 2000);
+        }, 2000); // Anzeigedauer der Snackbar
       } else {
         console.error('Subscription failed');
       }
@@ -44,7 +47,6 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
   };
 
   return (
-    <>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -56,6 +58,7 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
       >
         <DialogTitle fontWeight="bold" variant="h6">Ort überwachen</DialogTitle>
         <DialogContent>
+          
           <MapContainer
             center={clickPosition}
             zoom={16}
@@ -77,11 +80,14 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
               icon={MarkerIcon}
             />
           </MapContainer>
+
           <DialogContentText fontSize= '12px'>
             E/N: {lv95Coords ? parseFloat(lv95Coords.easting).toFixed(3) : 'Loading...'}
             /{lv95Coords ? parseFloat(lv95Coords.northing).toFixed(3) : 'Loading...'}
           </DialogContentText>
+
           Um detaillierte Informationen über diesen Standort zu erhalten, geben Sie bitte Ihre E-Mail-Adresse ein.
+
           <div style={{ position: 'relative' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <Checkbox className='Checkbox' style={{ marginTop: 4 }} disabled={true}/>
@@ -156,6 +162,5 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
           </Button>
         </DialogActions>
       </Dialog>
-    </>
   );
 }
