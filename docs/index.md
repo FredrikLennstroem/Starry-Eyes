@@ -211,6 +211,8 @@ Es ist wichtig dem Nutzenden Rückmeldungen auf seine Interaktionen zu geben. Al
 ## Upcoming Features
 <a id=features></a>
 
+--> Reflektion einführen, alle vorhanden Feautures aufzeigen und alles grafisch darstellen.
+
 - [x] Berechnung der Wolkenabdeckung in Prozent
 - [ ] [Standortinformationen über Nacht überwachen](#feature_nachtueberwachung)
 - [ ] [Schattenlayer als WMTS aufbereiten](#feature_schattenlayer)

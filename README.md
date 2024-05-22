@@ -86,6 +86,9 @@ conda activate starryeyes
 uvicorn main:app --reload
 ```
 ### Geoserver einrichten
+
+Voraussetzung ist die [Installation](https://docs.geoserver.org/main/en/user/installation/index.html) des GeoServers.
+
 **1. Daten im Verzeichnis ablegen** 
 
 Die Daten für die beiden Layer (Schatten, Lichtverschmutzung) sind [herunterzuladen](https://fhnw365-my.sharepoint.com/:f:/g/personal/silas_haab_students_fhnw_ch/EibUxdGifKhJtWSAZaRFsWIB5uk-V8vwm6cRjY4dMMnRCQ?e=VIci45) und der ganze Ordner im Verzeichnis `C:/GeoServer/data_dir/data` abzulegen. (Downloadlink nur via FHNW-Konto verfügbar)
@@ -106,16 +109,16 @@ Namensraum URI: StarryEyes
 
 Unter *Daten>Stile* die folgenden zwei Stile hinzufügen:
 
-- Lichtverschmutzung:
- Name: Lichtverschmutzung
- Arbeitsbereich: StarryEyes
- Format: SLD
+- Lichtverschmutzung:<br/>
+ Name: Lichtverschmutzung<br/>
+ Arbeitsbereich: StarryEyes<br/>
+ Format: SLD<br/>
  Stildatei hochladen: `C:/GeoServer/data_dir/data/starryeyes/Lichtverschmutzung.sld`
 
-- Schatten:
- Name: Schatten
- Arbeitsbereich: StarryEyes
- Format: SLD
+- Schatten:<br/>
+ Name: Schatten<br/>
+ Arbeitsbereich: StarryEyes<br/>
+ Format: SLD<br/>
  Stildatei hochladen: `C:/GeoServer/data_dir/data/starryeyes/Schatten.sld`
 
 **5. Lichtverschmutzungskarte hinzufügen**
@@ -159,30 +162,19 @@ Schatten werden lokal berechnet. Die Datei „schatten_loop.py“ prüft die Zei
       - /`Index.js`
       - /`Index.css`
       - /`App.js`
-      - /`App.css`
-          - Definition von mehrfach verwendeten Stilen
-      - /`InfoBox.js`
-          - Infotext beim ersten Öffnen
-      - /`map.js`
-          - Karteninhalt
-      - /`SuccessSnackbar.js`
-          - Feedbackfeld Übermittlung E-Mail-Adresse
-      - /`Symbologie.js`
-          - Einblendbare Symbolerklärung
+      - /`App.css` Definition von mehrfach verwendeten Stilen
+      - /`InfoBox.js` Infotext beim ersten Öffnen
+      - /`map.js` Karteninhalt
+      - /`SuccessSnackbar.js` Feedbackfeld Übermittlung E-Mail-Adresse
+      - /`Symbolerklaerung.js` Einblendbare Symbolerklärung
       - /Drawer
-          - /`MenuDrawer.js`
-              - Einblendbares Layermenu links
-          - /`MoonDrawer.js`
-              - Einblendbare Mondphasen rechts
+          - /`MenuDrawer.js` Einblendbares Layermenu links
+          - /`MoonDrawer.js` Einblendbare Mondphasen rechts
       - /PopUp
-          - /`Popup.js`
-              - Inhalt des Marker PopUps
-          - /`FormDialog.js`
-              - Inhalt des Standortüberwachenfenster
-          - /`MarkerIcon.js`
-              - Markerstil
-          - /`TransformToLV95.js`
-              - Umrechung der Koordinaten in LV95
+          - /`PopupContent.js` Inhalt des Marker PopUps
+          - /`FormDialog.js` Inhalt des Standortüberwachenfenster
+          - /`MarkerIcon.js` Markerstil
+          - /`TransformToLV95.js` Umrechung der Koordinaten in LV95
       - /Images
           - Alle im Frontend verwendeten Bilder
   - /`package-lock.json`
@@ -195,7 +187,5 @@ Schatten werden lokal berechnet. Die Datei „schatten_loop.py“ prüft die Zei
       - Zukünftig: Handler-script für "Ort Überwachen"
   - /img
       - Resourcen für das Backend (Bilder im Email)
-  - /`starryeyes.py`
-      - Funktionen für das Backend und API
-  - /`main.py`
-      - API-Script
+  - /`starryeyes.py` (Funktionen für das Backend und API)
+  - /`main.py` (API-Script)
