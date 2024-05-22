@@ -24,12 +24,13 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
     - [API](#api)
     - [Berechnung Sonnenstand](#sonnenstand)
     - [Email Benachrichtigung](#email)
-    - [Schatten Berechnung](#schatten)
+    - [Schatten Berechnung](#schattenber)
     - [Geoserver](#geoserver)
 - [Architektur Frontend](#frontend)
     - [Mockup](#mockup)
     - [Berechnung Mondphasen](#berechnungmond)
     - [Lichtverschmutzungskarte](#lichtverschmutzungskarte)
+    - [Schatten Visualisierung](#schattenvis)
     - [Farb- und Symbolkonzept](#farbsymbolkonzept)
     - [Feedback Features](#feedback-features)
 - [Upcoming Features](#features)
@@ -65,7 +66,7 @@ Beim ersten Öffnen der App erhält man eine kurze Erklärung eingeblendet. Durc
 ### Hintergrundkarte
 <a id=karte></a>
 
-Im Hintergrund sind zwei unterschiedliche Karten der Swisstopo, je nach Zoomstufe. Bis Zoomlevel 15 ist die farbige Pixelkarte sichtbar. Diese bietet dem Nutzenden gute Anhaltspunkte sich zu orientieren. Ab Zoomlevel 16 wird dannn die swissTLM-Map (farbig) dargestellt. Diese ist hauptsächlich für den Massstabsbereich 1:10'000 - 1:5'000 geeignet und zeigt eine genauere Darstellung des Geländes. So ist es möglich, den gewünschten Standort exakter abzusetzen.
+Im Hintergrund sind zwei unterschiedliche Karten der Swisstopo, je nach Zoomstufe. Bis Zoomlevel 15 ist die farbige Pixelkarte sichtbar. Diese bietet dem Nutzenden gute Anhaltspunkte sich zu orientieren. Ab Zoomlevel 16 wird dann die swissTLM-Map (farbig) dargestellt. Diese ist hauptsächlich für den Massstabsbereich 1:10'000 - 1:5'000 geeignet und zeigt eine genauere Darstellung des Geländes. So ist es möglich, den gewünschten Standort exakter abzusetzen.
 
 ### Layer
 <a id=layer></a>
@@ -135,11 +136,11 @@ Wie die Sonnenstandberechnungen, werden die Emails mittels API im Backend versch
 Betreffend Sicherheit ist dieser Ansatz natürlich nicht ideal. Er wurde aber gewählt weil er einfach ist und nur als Prototyp dienen soll.
 
 ### Schatten Berechnung
-<a id=schatten></a>
+<a id=schattenber></a>
 
-Die Idee ist, jeden Tag (in der Nacht) alle notwendigen Tiff-Dateien zu berechnen und zu erstellen, um den Verlauf der Schatten darstellen zu können. Es wird zuerst die sogenannte "Horizon Angle" berechnet und dann wird überprüft, ob die steilste Neigung grösser oder kleiner als die Sonnenhöhe ist.
-Die Berechnung der Sonnenposition erfolgt mit Hilfe des Moduls ["suncalc"](https://pypi.org/project/suncalc/) und die der "Horizon Angle" dank einer Funktion ("horizonangle") von [Whitebox Geospatial](https://www.whiteboxgeo.com/).
-Mit dem Schedule-Modul kann der Startzeitpunkt der Funktion programmiert werden.
+Die Idee ist, jeden Tag (in der Nacht) alle notwendigen Tiff-Dateien zu berechnen und zu erstellen, um den Verlauf der Schatten darstellen zu können. Eine Funktion wird verwendet, um eine Liste von Dictionaries zu erstellen. Jedes Dictionary enthält die Stunde, die Minute und die Position der Sonne zu dieser Zeit (Azimut und Höhe). Um die Position der Sonne berechnen zu können, wurde das Modul ["suncalc"](https://pypi.org/project/suncalc/) verwendet. Dann wird auf der Grundlage des [DHM25-Höhenmodells](https://www.swisstopo.admin.ch/de/hoehenmodell-dhm25) der sogenannte "Horizon Angle" berechnet und überprüft, ob die steilste Neigung  in Richtung der Sonne grösser oder kleiner als die Sonnenhöhe ist.
+Die Berechnung der "Horizon Angle" erfolgt dank einer Funktion ("horizonangle") von [Whitebox Geospatial](https://www.whiteboxgeo.com/).
+Mit dem Schedule-Modul kann der Startzeitpunkt der Funktion programmiert werden, aber das wurde noch nicht implementiert.
 
 ### Geoserver
 <a id=geoserver></a>
@@ -177,6 +178,11 @@ Die Daten der Lichtverschmutzung wurden als Tiff von [Lightpollutionmap.info](ht
 - 0.5-1:&ensp;wenig Lichtverschmutzung
 - 1-9:&emsp;&nbsp;hohe Lichtverschmutzung
 - \>9:&emsp;&ensp;starke Lichtverschmutzung
+
+### Schatten Visualisierung
+<a id=schattenvis></a>
+
+Die Daten werden im Backend berechnet und lokal gespeichert. Sie werden jeden Tag neu berechnet. Jedes in diesen TIFF-Dateien enthaltene Pixel enthält den Wert 0 oder 1. Wenn der Wert 0 ist, befindet sich das betreffende Pixel im Schatten. Auf der Website wird es schwarz angezeigt, aber mit einer gewissen Transparenz, die es ermöglicht, die Karte darunter zu sehen. Wenn der Wert hingegen 1 ist, liegt das Pixel in der Sonne und wird transparent angezeigt. 
 
 ### Farb- und Symbolkonzept
 <a id=farbsymbolkonzept></a>
