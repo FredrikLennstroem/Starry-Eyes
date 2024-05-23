@@ -19,11 +19,11 @@ import WaningGibbous from './Images/Moon/Moon_6_Waning_Gibbous.png';
 import LastQuarter from './Images/Moon/Moon_7_Last_Quarter.png';
 import WaningCrescent from './Images/Moon/Moon_8_Waning_Crescent.png';
 
-const Symbolerklaerung = ({ MenuOpen }) => {
+const Symbolerklaerung = ({ LayerMenuOpen }) => {
   return (
     <div>
     <div style={{ background: 'white', height: '100vh', width: '100%' }}>
-      <div style={{ overflowY: 'auto', maxWidth: '100%', maxHeight: 'calc(100vh - 10px)', paddingTop: '70px', paddingLeft: MenuOpen ? '255px' : '10px', paddingRight: '10px', transition: 'padding-left 0.2s ease'}}>
+      <div style={{ overflowY: 'auto', maxWidth: '100%', maxHeight: 'calc(100vh - 10px)', paddingTop: '70px', paddingLeft: LayerMenuOpen ? '255px' : '10px', paddingRight: '10px', transition: 'padding-left 0.2s ease'}}>
         <Typography fontWeight= "bold" variant="h6" sx={{textAlign: 'left'}}>Symbolerklärungen</Typography>
         <Typography fontWeight= 'bold' sx={{marginTop: '10px', textAlign: 'left'}}>Standortinformationen</Typography>
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginTop: '5px' }}>
