@@ -6,7 +6,7 @@ Server Client Projekt für eine Geodateninfrastruktur Webportal im Rahmen des Mo
 
 GitHub Pages: https://fredriklennstroem.github.io/Starry-Eyes/
 
-Getestet mit Node version 18.18.0 und Python 3.9
+Getestet mit Node Version 18.18.0 und Python 3.9
 
 ## Requirements
 
@@ -40,7 +40,7 @@ npm start
 ```
 
 ## Backend installieren
-### API und Email-service
+### API und E-Mail-service
 **1. Erstellen vom Environment** 
 
 Im Terminal zum *backend* Ordner wechseln und dort mit der `requirements.txt` Datei eine virtuelle Python-Umgebung aufsetzen:
@@ -56,11 +56,11 @@ pip install -r requirements.txt
 ```
 **2. Einrichten vom E-Mail-Dienst** 
 
-Die App benötigt eine Email-Adresse um Bestätigungsemails versenden zu können.
-Die Credentials (Adresse & Passwort) zu der E-MAil sind in einer lokalen config-Datei gespeichert. Aus Sicherheitsgründen ist nur eine Vorlage zu dieser Datei abgelegt. Die  Vorlage ist hier abgelegt: `backend/config_template.yaml`. 
+Die App benötigt eine E-Mail-Adresse um Bestätigungsemails versenden zu können.
+Die Credentials (Adresse & Passwort) zu der E-Mail sind in einer lokalen config-Datei gespeichert. Aus Sicherheitsgründen ist nur eine Vorlage zu dieser Datei abgelegt. Die Vorlage ist hier abgelegt: `backend/config_template.yaml`. 
 
-- Für die Credentials der Starry-Eyes Email bitte [FredrikLennstroem](https://github.com/FredrikLennstroem) kontaktieren.
-- Falls ein eigene Email verwendet werden soll, geht dies am einfachsten mit Gmail. Die nachfolgenden Links helfen da weiter:
+- Für die Credentials der Starry-Eyes E-Mail bitte [FredrikLennstroem](https://github.com/FredrikLennstroem) kontaktieren.
+- Falls ein eigene E-Mail-Adresse verwendet werden soll, geht dies am einfachsten mit Gmail. Die nachfolgenden Links helfen da weiter:
 
     **Generelle Vorgehensweise:** [Sending An Email Using Python](https://bc-robotics.com/tutorials/sending-email-using-python-raspberry-pi/)
 
@@ -93,9 +93,9 @@ Voraussetzung ist die [Installation](https://docs.geoserver.org/main/en/user/ins
 
 Die Daten für die beiden Layer (Schatten, Lichtverschmutzung) sind [herunterzuladen](https://fhnw365-my.sharepoint.com/:f:/g/personal/silas_haab_students_fhnw_ch/EibUxdGifKhJtWSAZaRFsWIB5uk-V8vwm6cRjY4dMMnRCQ?e=VIci45) und der ganze Ordner im Verzeichnis `C:/GeoServer/data_dir/data` abzulegen. (Downloadlink nur via FHNW-Konto verfügbar)
 
-**2. Erweiterung importer installieren**
+**2. Erweiterung Importer installieren**
 
-Die Erweiterung Importer wird benötigt, um die alle Schattelayer miteinander hinzuzufügen. Sie kann gemäss der [Anleitung](https://docs.geoserver.org/main/en/user/extensions/importer/installing.html) installiert werden.
+Die Erweiterung Importer wird benötigt, um die alle Schattenlayer miteinander hinzuzufügen. Sie kann gemäss der [Anleitung](https://docs.geoserver.org/main/en/user/extensions/importer/installing.html) installiert werden.
 
 Die heruntergeladenen Files müssen dann in folgendes Verzeichnis `C:/GeoServer/webapps/geoserver/WEB-INF/lib` kopiert werden. Anschliessend muss der Geoserver neu gestartet werden.
 
@@ -141,7 +141,7 @@ Unter *Daten>Daten importieren*:
 - Arbeitsbereich: StarryEyes
 - Datenspeicher: Neuen Datenspeicher anlegen -> Next
 
-Es werden alle Inhalte des Ordner in mehreren Seiten aufgelistet: über *Select: Alle* können alle Dateien pro Seite angewählt und importiert werden. Es sollen alle hillshade_hh_mm Dateien importiert werden. -> Next
+Es werden alle Inhalte des Ordners in mehreren Seiten aufgelistet: über *Select: Alle* können alle Dateien pro Seite angewählt und importiert werden. Es sollen alle hillshade_hh_mm Dateien importiert werden. -> Next
 
 Unter *Daten>Stile* den Stil Schatten auswählen und unter Publishing bei allen importierten Layern auf diesen Stil als Default definieren.
 
@@ -186,6 +186,6 @@ Schatten werden lokal berechnet. Die Datei „schatten_loop.py“ prüft die Zei
       - Pythonscripts zum Handling von Datenbanken
       - Zukünftig: Handler-script für "Ort Überwachen"
   - /img
-      - Resourcen für das Backend (Bilder im Email)
+      - Resourcen für das Backend (Bilder im E-Mail)
   - /`starryeyes.py` (Funktionen für das Backend und API)
   - /`main.py` (API-Script)

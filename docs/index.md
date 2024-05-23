@@ -2,7 +2,7 @@
 
 # StarryEyes
 
-Projektwebseite von *StarryEyes*. Die App enthält eine Server und eine Client Umgebung.
+Projektwebseite von *StarryEyes*. Die App enthält eine Server- und eine Clientumgebung.
 - Server: FastAPI, Geoserver
 - Client: React + Leaflet
 
@@ -23,7 +23,7 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
 - [Architektur Backend](#backend)
     - [API](#api)
     - [Berechnung Sonnenstand](#sonnenstand)
-    - [Email Benachrichtigung](#email)
+    - [E-Mail Benachrichtigung](#email)
     - [Schatten Berechnung](#schattenber)
     - [Geoserver](#geoserver)
 - [Architektur Frontend](#frontend)
@@ -39,7 +39,7 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
 ## Die App
 <a id=beschrieb></a>
 
-Die App ermöglicht die Planung von Sternen- und Sonnenaufgangs-/untergangsfotos. Nutzer können mit integrierten Lichtverschmutzungs- und Schattenkarten den idealen Fotostandort wählen. Die App bietet Zugriff auf aktuelle Wetterdaten über eine API (z.B. Wolkenabdeckung). Mit der Überwachungsfunktion können Nutzer per Email über das optimale Zeitfenster für das Foto am ausgewählten Standort informiert werden. Zur weiteren Unterstützung der Planung sind die aktuellen Mondphasen graphisch dargestellt.
+Die App ermöglicht die Planung von Sternen- und Sonnenaufgangs-/untergangsfotos. Nutzer können mit integrierten Lichtverschmutzungs- und Schattenkarten den idealen Fotostandort wählen. Die App bietet Zugriff auf aktuelle Wetterdaten über eine API (z.B. Wolkenabdeckung). Mit der Überwachungsfunktion können Nutzer per E-Mail über das optimale Zeitfenster für das Foto am ausgewählten Standort informiert werden. Zur weiteren Unterstützung der Planung sind die aktuellen Mondphasen graphisch dargestellt.
 
 ## Installation
 <a id=installation></a>
@@ -52,14 +52,14 @@ Installation der APP erfolgt mit der Anleitung im github repository:
 ### Video
 <a id=video></a>
 
-Das Video gibt Ihnen eine kurzen Einblick in die Funktionalität dieser App:
+Das Video gibt Ihnen einen kurzen Einblick in die Funktionalität dieser App:
 
 [![StarryEyes Video](images/StarryEyes_Video.png)](images/StarryEyes_Video.mp4)
 
 ### Willkommenstext
 <a id=willkommenstext></a>
 
-Beim ersten Öffnen der App erhält man eine kurze Erklärung eingeblendet. Durch bestätigen der Checkbox wird diese dem Nutzenden beim erneuten zugreifen auf die App nicht mehr angezeigt. Zu Testzwecken kann dieser Entscheid durch klicken auf das StarryEyes Logo rückgängig gemacht werden.
+Beim ersten Öffnen der App erhält man eine kurze Erklärung eingeblendet. Durch Bestätigen der Checkbox wird diese dem Nutzenden beim erneuten zugreifen auf die App nicht mehr angezeigt. Zu Testzwecken kann dieser Entscheid durch Klicken auf das StarryEyes Logo rückgängig gemacht werden.
 
 ![Willkommenstext](images/Anwendung_Willkommen.png)
 
@@ -71,7 +71,7 @@ Im Hintergrund sind zwei unterschiedliche Karten der Swisstopo, je nach Zoomstuf
 ### Layer
 <a id=layer></a>
 
-Das Menuicon Oben Links bietet die Möglichkeit, folgende zusätzliche Layer einzublenden:
+Das Menuicon oben Links bietet die Möglichkeit, folgende zusätzliche Layer einzublenden:
 - Schattenkarte: Sie zeigt den Schattenwurf des jeweiligen Tages im Viertelstundentakt. Die Zeit kann über einen Slider bestimmt werden.
 - Lichtverschmutzungskarte: Sie zeigt die Lichtverschmutzung in vier verschiedenen Klassen (keine, wenig, hohe oder starke Lichtverschmutzung) über die ganze Schweiz.
 - Symbolerklärungen: Hier wird eine neue Seite eingeblendet, die alle verwendeten Symbole kurz erklärt.
@@ -124,16 +124,16 @@ Der Sonnenstand wird auf zwei verschiedene Arten berechnet:
 
 Diese beiden Methoden sind im Backend in einer Funktion verbaut die im Frontend als Rest-API aufgerufen werden kann.
 
-### Email Benachrichtigung
+### E-Mail Benachrichtigung
 <a id=email></a>
 
-Die Email wird mit der Adresse noreply.starryeyes@gmail.com verschickt. Dazu wurde die IMAP-Funktion im Googlekonto aktiviert. Diese Funktion ermöglichte es, mit dem automatisch generierten Apppasswort, Emails mit Python verschicken zu können. Für den Inhalt, wurde eine HTML-Struktur geschrieben in der die aktuellen Informationen zum Standort eingefühgt werden. 
+Die E-Mail wird mit der Adresse noreply.starryeyes@gmail.com verschickt. Dazu wurde die IMAP-Funktion im Google Konto aktiviert. Diese Funktion ermöglichte es, mit dem automatisch generierten Apppasswort, E-Mails mit Python verschicken zu können. Für den Inhalt wurde eine HTML-Struktur geschrieben, in der die aktuellen Informationen zum Standort eingefügt werden. 
 
 Für das Hemisphärenbild ist aktuell noch ein Platzhalter drin (siehe [Upcoming Features](#features)).
 
-Wie die Sonnenstandberechnungen, werden die Emails mittels API im Backend verschickt. Damit die Email-Funktion läuft, werden die Zugriffsdaten des Emailkontos benötigt. Aktuell wird dass mittels einem YAML config file gelöst, welches nicht auf Github abgelegt ist. Sollte das Bedürfnis da sein, um die StarryEyes-email zu verwenden kann [Fredrik Lennström](https://github.com/FredrikLennstroem) kontaktiert werden. Zum Aufsetzen einer eigenen Email siehe die Anleitung im REDME des Github Repos [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLennstroem/Starry-Eyes).
+Wie die Sonnenstandberechnungen, werden die E-Mails mittels API im Backend verschickt. Damit die E-Mail-Funktion läuft, werden die Zugriffsdaten des E-Mailkontos benötigt. Aktuell wird das mittels einem YAML config file gelöst, welches nicht auf Github abgelegt ist. Sollte das Bedürfnis da sein, um die StarryEyes-email zu verwenden kann [Fredrik Lennström](https://github.com/FredrikLennstroem) kontaktiert werden. Zum Aufsetzen einer eigenen E-Mail siehe die Anleitung im README des Github Repos [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLennstroem/Starry-Eyes).
 
-Betreffend Sicherheit ist dieser Ansatz natürlich nicht ideal. Er wurde aber gewählt weil er einfach ist und nur als Prototyp dienen soll.
+Betreffend Sicherheit ist dieser Ansatz nicht ideal. Er wurde aber gewählt, weil er einfach ist und nur als Prototyp dienen soll.
 
 ### Schatten Berechnung
 <a id=schattenber></a>
@@ -145,7 +145,7 @@ Mit dem Schedule-Modul kann der Startzeitpunkt der Funktion programmiert werden,
 ### Geoserver
 <a id=geoserver></a>
 
-Über einen lokal aufgesetzten Geoserver werden die zwei einblendbaren Layer publiziert und im Frontend dann als WMS dargestellt. Die Lichtverschmutzung ist eine einzelne GeoTiff Datei, während der Schattenlayer aus 96 GeoTiff Dateien besteht. Diese werden aus einem Orderverzeichnis bezogen und jeweils in der Nacht für den folgenden Tag neu gerechnet. Die Darstellung der Layer wird via *.sld-Datei auf dem Geoserver importiert und als zusätzlicher Parameter vom Frontend bezogen.
+Über einen lokal aufgesetzten Geoserver werden die zwei einblendbaren Layer publiziert und im Frontend dann als WMS dargestellt. Die Lichtverschmutzung ist eine einzelne GeoTiff Datei, während der Schattenlayer aus 72 GeoTiff Dateien besteht (05:00-11:00). Diese werden aus einem Orderverzeichnis bezogen und jeweils in der Nacht für den folgenden Tag neu gerechnet. Die Darstellung der Layer wird via *.sld-Datei auf dem Geoserver importiert und als zusätzlicher Parameter vom Frontend bezogen.
 
 ## Architektur Frontend
 <a id=frontend></a>
@@ -153,7 +153,7 @@ Mit dem Schedule-Modul kann der Startzeitpunkt der Funktion programmiert werden,
 ### Mock-Up
 <a id=mockup></a>
 
-Das Mock-Up dient der ersten Überisicht über die App. Es zeigt den geplanten Aufbau und das ungefähre Aussehen und ist ein grosses Hilfsmittel beim Erstellen des Frontends.
+Das Mock-Up dient der ersten Übersicht über die App. Es zeigt den geplanten Aufbau und das ungefähre Aussehen und ist ein grosses Hilfsmittel beim Erstellen des Frontend.
 
 ![Mockup_0](images/Mockup_0.png)
 
@@ -173,7 +173,7 @@ Die Mondphasen werden mit dem npm Modul [lunarphase-js](https://www.npmjs.com/pa
 
 ![Lichtverschmutzung](images/Design_Lichtverschmutzung.png)
 
-Die Daten der Lichtverschmutzung wurden als Tiff von [Lightpollutionmap.info](https://www.lightpollutionmap.info/) bezogen. Diese werden jährlich aktualisiert. Die Werte reichen von 0 bis 75 magnitude/arcsec<sup>2</sup> welche die Flächenhelligkeit beschreibt. Diese Werte können in Klassen aufgeteilt werden, welche die Sichtbarkeit der Sterne beschreiben ([Bortle Dark Sky Scale](https://www.handprint.com/ASTRO/bortle.html)). Aufgrund dieser Einschätzung haben wir uns entschieden vier für den Nutzenden unserere App relevante Klassen zu erstellen:
+Die Daten der Lichtverschmutzung wurden als Tiff von [Lightpollutionmap.info](https://www.lightpollutionmap.info/) bezogen. Diese werden jährlich aktualisiert. Die Werte reichen von 0 bis 75 magnitude/arcsec<sup>2</sup> welche die Flächenhelligkeit beschreibt. Diese Werte können in Klassen aufgeteilt werden, welche die Sichtbarkeit der Sterne beschreiben ([Bortle Dark Sky Scale](https://www.handprint.com/ASTRO/bortle.html)). Aufgrund dieser Einschätzung haben wir uns entschieden vier für den Nutzenden unserer App relevante Klassen zu erstellen:
 - <0.5:&ensp;&nbsp;keine Lichtverschmutzung
 - 0.5-1:&ensp;wenig Lichtverschmutzung
 - 1-9:&emsp;&nbsp;hohe Lichtverschmutzung
@@ -182,13 +182,15 @@ Die Daten der Lichtverschmutzung wurden als Tiff von [Lightpollutionmap.info](ht
 ### Schatten Visualisierung
 <a id=schattenvis></a>
 
+![Schatten](images/Design_Schatten.png)
+
 Die Daten werden im Backend berechnet und lokal gespeichert. Sie werden jeden Tag neu berechnet. Jedes in diesen TIFF-Dateien enthaltene Pixel enthält den Wert 0 oder 1. Wenn der Wert 0 ist, befindet sich das betreffende Pixel im Schatten. Auf der Website wird es schwarz angezeigt, aber mit einer gewissen Transparenz, die es ermöglicht, die Karte darunter zu sehen. Wenn der Wert hingegen 1 ist, liegt das Pixel in der Sonne und wird transparent angezeigt. 
 
 ### Farb- und Symbolkonzept
 <a id=farbsymbolkonzept></a>
 
 Die Farbe <span style="color:#334854">#334854</span> wurde in der ganzen App als Hauptakzentfarbe verwendet und tritt immer wieder auf. Der dunkle Grau-Ton mit Blaustich soll die ganze Seite farblich umrahmen.
-Als Sekundärfarbe wurde dann noch ein etwas hellerer Grau-Blau-Ton <span style="color:#667784">#667784</span> gewählt. Dieser wurde verwendet um das Hovern auf Buttons und Icons darzustellen und so dem Nutzenden ein Feedback zu geben.
+Als Sekundärfarbe wurde dann noch ein etwas hellerer Grau-Blau-Ton <span style="color:#667784">#667784</span> gewählt. Dieser wurde verwendet, um das Hovern auf Buttons und Icons darzustellen und so dem Nutzenden ein Feedback zu geben.
 
 ![Designkonzept](images/Design_Konzept.png)
 
@@ -196,9 +198,9 @@ Buttons, Checkboxen, Icons, etc. stammen alle aus der [MUI-Bibliothek](https://m
 
 ![Symbolerklärungen](images/Design_Symbolerklärungen.png)
 
-Alle verwendeten Symbole wurden selbst designt, sodass ein konsistentes Erscheinungsbild entsteht. Es wurde darauf geachtet, dass sie ins Farbkonzept passen und dass sie möglichst intuitiv zu verstehen sind.
+Alle verwendeten Symbole wurden selbst designt, sodass ein konsistentes Erscheinungsbild entsteht. Es wurde darauf geachtet, dass sie ins Farbkonzept passen und sie das Gemeinte möglichst gut und einfach darstellen.
 
-Icons, Symbole und Bilder wurden mit Hovertexten versehen, die dem Nutzenden eine schnelle und kurze Erklärung dazu abgeben. Wo möglich wurde zudem ein Alternativtext vergeben. Dieser wird angezeigt, wenn ein Element nicht geladen werden kann oder er wird erkannt, wenn die Seite mit einem Leseprogramm vorgelesen wird.
+Icons, Symbole und Bilder wurden mit Hovertexten versehen, die dem Nutzenden eine schnelle und kurze Erklärung dazu abgeben. Wo möglich, wurde zudem ein Alternativtext vergeben. Dieser wird angezeigt, wenn ein Element nicht geladen werden kann oder er wird erkannt, wenn die Seite mit einem Leseprogramm vorgelesen wird.
 
 ### Feedback Features
 <a id=feedbackfeatures></a>
@@ -206,19 +208,24 @@ Icons, Symbole und Bilder wurden mit Hovertexten versehen, die dem Nutzenden ein
 ![Feedback Features](images/Design_Feedback.png)
 
 Beim Abfragen der Standortinformation im PopUp des Markes kann es einige Sekunden dauern, bis die API die aktuellen Daten abgerufen hat. Diese Zeit wurde mit Ladekreisen überbrückt. <br/>
-Es ist wichtig dem Nutzenden Rückmeldungen auf seine Interaktionen zu geben. Also wurde das Abwarten der Übermittlung der Emailadresse mit einem Ladekreis auf dem Button dargestellt.Die erfolgreiche Übermittlung wurde ebenfalls abgefangen um ein kurzes Feedback auszulösen, welches nach kurzer Zeit wieder verschwindet.
+Es ist wichtig dem Nutzenden Rückmeldungen auf seine Interaktionen zu geben. Also wurde das Abwarten der Übermittlung der E-Mail-Adresse mit einem Ladekreis auf dem Button dargestellt. Die erfolgreiche Übermittlung wurde ebenfalls abgefangen um ein kurzes Feedback auszulösen, welches nach kurzer Zeit wieder verschwindet.
 
 ## Upcoming Features
 <a id=features></a>
 
---> Reflektion einführen, alle vorhanden Feautures aufzeigen und alles grafisch darstellen.
+StarryEyes bietet verschiedene Features, die den Nutzenden helfen sollen, einen geeigneten Fotostandort für Sternen und Sonnenuntergangsfotos zu finden. Während dem Entwicklungsprozess sind uns immer wieder Funktionen eingefallen, die noch verbessert oder umgesetzt werden können. Diese Upcoming Features und bereits vorhanden Features sind hier aufgelistet und teils genauer erläutert.
 
+- [x] Darstellung der Mondphasen
+- [x] Berechnung Sonnenunter/-aufgang
+- [x] Darstellung der Mondphasen
 - [x] Berechnung der Wolkenabdeckung in Prozent
+- [x] Layer Lichtverschmutzungskarte
+- [x] Layer Schatten
 - [ ] [Standortinformationen über Nacht überwachen](#feature_nachtueberwachung)
 - [ ] [Schattenlayer als WMTS aufbereiten](#feature_schattenlayer)
 - [ ] [Berücksichtigung der Lichtverschmutzung zur Einschätzung der Sternensichtbarkeit](#feature_lichtverschmutzung)
 - [ ] [Hemisphärenbild](#feature_hemisphaerenbild)
-- [ ] [Emailstruktur verbessern und verschönern](#email-benachrichtigung)
+- [ ] [E-Mail-Struktur verbessern und verschönern](#email-benachrichtigung)
 - [ ] Suchfunktion zur Navigation in der Karte
 - [ ] Geräteposition beziehen um Informationen am Livestandort anzuzeigen
 - [ ] Luftbilder als zusätzliche Hintergrundkarte
@@ -227,14 +234,14 @@ Es ist wichtig dem Nutzenden Rückmeldungen auf seine Interaktionen zu geben. Al
 ### Standortinformationen über Nacht überwachen
 <a id=feature_nachtueberwachung></a>
 
-Diese Funktion ist im Frontend der App bereits implementiert und auch die Möglichkeit besteht bereits, die Emailadresse zu hinterlegen (Speicherung in einer SQLite Datenbank). Diese Funktion würde stündlich an alle E-Mail-Adressen in der Datenbank zum jeweiligen Standort aktuelle Wetterdaten senden. Die Datenbank würde von der Funktionn jeweils am Morgen gelöscht werden.
+Diese Funktion ist im Frontend der App bereits implementiert und auch die Möglichkeit besteht bereits, die E-Mail_Adresse zu hinterlegen (Speicherung in einer SQLite Datenbank). Diese Funktion würde stündlich an alle E-Mail-Adressen in der Datenbank zum jeweiligen Standort aktuelle Wetterdaten senden. Die Datenbank würde von der Funktion jeweils am Morgen gelöscht werden.
 
 ![Funktion nicht verfügbar](images/Feature_Abo.png)
 
 ### Schattenlayer als WMTS
 <a id=feature_schattenlayer></a>
 
-Aktuell dauert das Laden der einzelnen Schattenlayer zu lange. Die Daten könnten gekachelt zur Verfügung gestellt werden um diesen Layer performanter zu machen.
+Aktuell dauert das Laden der einzelnen Schattenlayer zu lange. Die Daten könnten gekachelt zur Verfügung gestellt werden, um diesen Layer performanter zu machen.
 
 ### Berücksichtigung der Lichtverschmutzung
 <a id=feature_lichtverschmutzung></a>
@@ -244,7 +251,7 @@ Die Einschätzung der Sternensichtbarkeit in der Nacht bezieht sich auf die Wolk
 ### Hemisphärenbild
 <a id=feature_hemisphaerenbild></a>
 
-Dieses könnte mit der ersten Bestätigungsmail versendet werden. Es zeigt die Geländeabdeckung am Standort und visulisiert die Abdeckung des Himmels durch anliegendes Gelände.
+Es zeigt die Geländeabdeckung am Standort und visualisiert  die Abdeckung des Himmels durch anliegendes Gelände. Es ist vorgesehen das Hemisphärenbild im ersten Mail zu erhalten. Es wäre aber auch möglich, diese bei Klick auf den Ort darzustellen, was der explorativen Erkundung hilft.
 
 ![StarryEyes Konzept Hemisphärenbild](images/Hemisphärenbild.png)
 
