@@ -56,6 +56,10 @@ Das Video gibt Ihnen einen kurzen Einblick in die Funktionalität dieser App:
 
 [![StarryEyes Video](images/StarryEyes_Video.png)](images/StarryEyes_Video.mp4)
 
+<video width="100%" height="auto" controls>
+  <source src="images/StarryEyes_Video.mp4" type="video/mp4">
+</video>
+
 ### Willkommenstext
 <a id=willkommenstext></a>
 
