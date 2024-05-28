@@ -192,9 +192,12 @@ export default function MenuDrawer({activeItems, setActiveItems, sliderValue, se
 
         {/* GitHub Link */}
         <List sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
-            <ListItem sx={{ marginTop: 'auto', marginBottom: '0px' }}>
+            <ListItem sx={{ marginTop: 'auto', marginBottom: '0px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
+              <Typography variant="body2" sx={{ color: 'blue', textDecoration: 'underline', fontSize: 'smaller', marginBottom: '5px' }}>
+                <a href="https://github.com/FredrikLennstroem/Starry-Eyes" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </Typography>
               <Typography variant="body2" sx={{ color: 'blue', textDecoration: 'underline', fontSize: 'smaller' }}>
-                <a href="https://github.com/FredrikLennstroem/Starry-Eyes" target="_blank" rel="noopener noreferrer">GitHub-Page</a>
+                <a href="https://fredriklennstroem.github.io/Starry-Eyes" target="_blank" rel="noopener noreferrer">Projekt-Page</a>
               </Typography>
             </ListItem>
         </List>
