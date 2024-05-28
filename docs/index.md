@@ -15,6 +15,7 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
 - [Anwendung](#funktionen)
     - [Video](#video)
     - [Willkommenstext](#willkommenstext)
+    - [Architekturdiagramm](#architekturdiagramm)
     - [Hintergrundkarte](#karte)
     - [Layer](#layer)
     - [Mondphasen](#mond)
@@ -64,6 +65,11 @@ Das Video gibt Ihnen einen kurzen Einblick in die Funktionalität dieser App:
 Beim ersten Öffnen der App erhält man eine kurze Erklärung eingeblendet. Durch Bestätigen der Checkbox wird diese dem Nutzenden beim erneuten zugreifen auf die App nicht mehr angezeigt. Zu Testzwecken kann dieser Entscheid durch Klicken auf das StarryEyes Logo rückgängig gemacht werden.
 
 ![Willkommenstext](images/Anwendung_Willkommen.png)
+
+### Architekturdiagramm
+<a id=architekturdiagramm></a> 
+
+![Architekturdiagramm](images/Architekturdiagramm.png)
 
 ### Hintergrundkarte
 <a id=karte></a>
