@@ -267,16 +267,16 @@ Es zeigt die Geländeabdeckung am Standort und visualisiert  die Abdeckung des H
 ## Quellen
 <a id=quellen></a>
 
-- Wetter-API: Open-meteo (2022-2024): Weather Forecast API. https://open-meteo.com/
+- Wetter-API: Open-meteo (2022-2024): Weather Forecast API. [https://open-meteo.com/](https://open-meteo.com/)
 - Bibliotheken zur Berechnung der Sonnenstand:
-    - Brandon Rhodes (2023): PyEphem. https://github.com/brandon-rhodes/pyephem
-    - Guilhem Vellut (2022): TPPSS (TopopoSunsun). https://github.com/gvellut/tppss
-- Sonnenposition: Kyle Barron (2023): suncalc-py. https://pypi.org/project/suncalc/
-- Digitale Höhenmodell: Swisstopo (2024): DHM25. https://www.swisstopo.admin.ch/de/hoehenmodell-dhm25
-- Horizon Angle: Whitebox Geospatial (2024): horizonangle. https://www.whiteboxgeo.com/
-- Mondphasen: Jason Sturges (2024): Lunar phase, lunarphase-js. https://www.npmjs.com/package/lunarphase-js
-- Lichtsverschmutzungskarte: Jurij Stare (2024): Light Pollution Map. https://www.lightpollutionmap.info/
-- Symbole: MUI: MUI-Bibliothek. https://mui.com/
+    - Brandon Rhodes (2023): PyEphem. [https://github.com/brandon-rhodes/pyephem](https://github.com/brandon-rhodes/pyephem)
+    - Guilhem Vellut (2022): TPPSS (TopopoSunsun). [https://github.com/gvellut/tppss](https://github.com/gvellut/tppss)
+- Sonnenposition: Kyle Barron (2023): suncalc-py. [https://pypi.org/project/suncalc/](https://pypi.org/project/suncalc/)
+- Digitale Höhenmodell: Swisstopo (2024): DHM25. [https://www.swisstopo.admin.ch/de/hoehenmodell-dhm25](https://www.swisstopo.admin.ch/de/hoehenmodell-dhm25)
+- Horizon Angle: Whitebox Geospatial (2024): horizonangle. [https://www.whiteboxgeo.com/](https://www.whiteboxgeo.com/)
+- Mondphasen: Jason Sturges (2024): Lunar phase, lunarphase-js. [https://www.npmjs.com/package/lunarphase-js](https://www.npmjs.com/package/lunarphase-js)
+- Lichtsverschmutzungskarte: Jurij Stare (2024): Light Pollution Map. [https://www.lightpollutionmap.info/](https://www.lightpollutionmap.info/)
+- Symbole: MUI: MUI-Bibliothek. [https://mui.com/](https://mui.com/)
 
 ## Contribution
 <a id=contribution></a>
