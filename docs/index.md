@@ -35,6 +35,7 @@ GitHub Repository: [FredrikLennstroem/Starry-Eyes](https://github.com/FredrikLen
     - [Farb- und Symbolkonzept](#farbsymbolkonzept)
     - [Feedback Features](#feedback-features)
 - [Upcoming Features](#features)
+- [Quellen](#quellen)
 - [Contribution](#contribution)
 
 ## Die App
@@ -262,6 +263,20 @@ Die Einschätzung der Sternensichtbarkeit in der Nacht bezieht sich auf die Wolk
 Es zeigt die Geländeabdeckung am Standort und visualisiert  die Abdeckung des Himmels durch anliegendes Gelände. Es ist vorgesehen das Hemisphärenbild im ersten Mail zu erhalten. Es wäre aber auch möglich, diese bei Klick auf den Ort darzustellen, was der explorativen Erkundung hilft.
 
 ![StarryEyes Konzept Hemisphärenbild](images/Hemisphärenbild.png)
+
+## Quellen
+<a id=quellen></a>
+
+- Wetter-API: Open-meteo (2022-2024): Weather Forecast API. https://open-meteo.com/
+- Bibliotheken zur Berechnung der Sonnenstand:
+    - Brandon Rhodes (2023): PyEphem. https://github.com/brandon-rhodes/pyephem
+    - Guilhem Vellut (2022): TPPSS (TopopoSunsun). https://github.com/gvellut/tppss
+- Sonnenposition: Kyle Barron (2023): suncalc-py. https://pypi.org/project/suncalc/
+- Digitale Höhenmodell: Swisstopo (2024): DHM25. https://www.swisstopo.admin.ch/de/hoehenmodell-dhm25
+- Horizon Angle: Whitebox Geospatial (2024): horizonangle. https://www.whiteboxgeo.com/
+- Mondphasen: Jason Sturges (2024): Lunar phase, lunarphase-js. https://www.npmjs.com/package/lunarphase-js
+- Lichtsverschmutzungskarte: Jurij Stare (2024): Light Pollution Map. https://www.lightpollutionmap.info/
+- Symbole: MUI: MUI-Bibliothek. https://mui.com/
 
 ## Contribution
 <a id=contribution></a>
