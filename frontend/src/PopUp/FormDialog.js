@@ -95,7 +95,7 @@ export default function FormDialog({ open, handleClose, clickPosition, lv95Coord
                 Durch bestätigen der Checkbox erhalten Sie stündliche Updates während der Nacht. Ihre E-Mail-Adresse wird am folgenden Tag wieder gelöscht.
               </DialogContentText>
             </div>
-            <div style={{ position: 'absolute', bottom: 0, left: 70, transform: 'rotate(-5deg)', transformOrigin: 'left bottom', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '25px', color: 'red' }}>
+            <div style={{ position: 'absolute', bottom: '50%', left: '50%', transform: 'translate(-50%, 50%) rotate(-5deg)', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '100%', color: 'red' }}>
               -- Funktion noch nicht verfügbar --
             </div>
           </div>

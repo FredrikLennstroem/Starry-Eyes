@@ -48,7 +48,7 @@ function InfoBox({setInfoClose}) {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Checkbox className='Checkbox' onChange={handleCheckboxChange}/>
-                        <DialogContentText>Hinweis nicht mehr anzeigen</DialogContentText>
+                        <DialogContentText style={{paddingRight: '2px'}}>Hinweis nicht mehr anzeigen</DialogContentText>
                     </div>
                     <Button
                         type="submit"

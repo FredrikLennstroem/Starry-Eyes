@@ -70,8 +70,14 @@ export default function MenuDrawer({activeItems, setActiveItems, sliderValue, se
     } // Berechnen der aktuellen Uhrzeit mit richtiger Darstellung, falls der Schattenlayer eingeschaltet wird
   };
 
+  // Min- und Max-Werte für den Slider in Minuten, muss evtl. auf die Daten angepasst werden
+  const minSliderValue = 0; // für 6:45 Wert 405
+  const maxSliderValue = 1425; // für 19:00 Wert 1140
+
   const handleSliderChange = (event, newValue) => {
-    setSliderValue(newValue);
+    if (newValue >= minSliderValue && newValue <= maxSliderValue) {
+      setSliderValue(newValue);
+    }
   }; // Aktualisierung des Sliderwerts, falls dieser geändert wird
 
   const formatTime = (minutes) => {
@@ -81,12 +87,12 @@ export default function MenuDrawer({activeItems, setActiveItems, sliderValue, se
   }; // Funktion formatiert die aktuelle Uhrzeit für die Darstellung
 
   const handleIncrement = () => {
-    if (sliderValue - 15 >= 0) {
-      setSliderValue((prevValue) => prevValue - 15);}}; // Verunmöglicht den Unterlauf des Sliders unter 0:00 Uhr
+    if (sliderValue - 15 >= minSliderValue) {
+      setSliderValue((prevValue) => prevValue - 15);}}; // Verunmöglicht den Unterlauf des Sliders unter den minValue
   
   const handleDecrement = () => {
-    if (sliderValue + 15 <= 1425) {
-      setSliderValue((prevValue) => prevValue + 15);}}; // Verunmöglicht den Überlauf des Sliders über 23:45 Uhr
+    if (sliderValue + 15 <= maxSliderValue) {
+      setSliderValue((prevValue) => prevValue + 15);}}; // Verunmöglicht den Überlauf des Sliders über den maxValue
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -144,8 +150,8 @@ export default function MenuDrawer({activeItems, setActiveItems, sliderValue, se
                     value={sliderValue}
                     onChange={handleSliderChange}
                     aria-labelledby="continuous-slider"
-                    min={0}
-                    max={1425}
+                    min={minSliderValue}
+                    max={maxSliderValue}
                     step={15}
                     style={{width:'130px', marginLeft: '4px', marginRight: '4px', color:'#334854'}}
                   />
